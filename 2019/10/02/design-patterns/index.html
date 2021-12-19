@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Design Patterns and UML |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Design Patterns and UML</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-10-02 14:43:13</span>
+        <span class="mobile">2019-10-02 14:43</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/THEORY/">THEORY</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/design-patterns/">design patterns</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/uml/">uml</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Princinples"><a href="#Princinples" class="headerlink" title="Princinples"></a>Princinples</h1><ul>
+<li><p>The Open Closed Princinple(OCP)<br>A module should be open for extension but closed for modification. In other words, modules can be extened, without requiring them to be modified in existing source codes. This means that, with a llitle forethought, wd can add new features to existing code, without changing the existing code and by only adding new code. Symptoms of Rotting Design, rigidity, fragility, immobility, vicosity.</p>
+</li>
+<li><p>The Liskov Substitution Princile(LSP)<br>Subclasses should be substitutable for their base classes. It alse derives freom the concept of Design by Contract(DBC), e.g. circle/ellipse dilemma.</p>
+</li>
+<li><p>The Dependency Inversion Principle(DIP)<br>Denpand upon abstractions, do not depend upon concretions.</p>
+</li>
+<li><p>The Interface Segregation Principle(ISP)<br>Many client specific interfaces are better than on general purpose interface.</p>
+</li>
+<li><p>Principles of Package architecture</p>
+</li>
+</ul>
+<p>– The release reuse equivalency principle(REP), the granule of reuse is the granule of release.<br>– The common closure principle(CCP), classes that change together, belong together.<br>– The common reuse principle(CRP), classed that are not reused together should not be grouped together.<br>– The acyclic dependencies principle(ADP), the dependencies between packages must not form cycles.<br>– The stable dependencies principle(SDP), depend in the direction of stability.</p>
+<h1 id="Patterns-of-Object-Oriented-Architecture"><a href="#Patterns-of-Object-Oriented-Architecture" class="headerlink" title="Patterns of Object Oriented Architecture"></a>Patterns of Object Oriented Architecture</h1><ul>
+<li><p>Creational Patterns</p>
+<ul>
+<li>Abstract Factory, Factory Method<br>The DIP strongly recommends that modules not depend upon concrete classed. However, in order to create an instane fo a class, you must depend upon the concrete class. Abstract factory is a pattern that allows that dependency upon the concreate class to exist in on, and only one, place.</li>
+<li>Template(extend), Builder(implement)</li>
+<li>Singleton<br>Avoid creating an object everytime.</li>
+<li>Decorator, Prototype</li>
+</ul>
+</li>
+<li><p>Structural Patterns</p>
+<ul>
+<li>Adapter, Facade<br>When inserting an abstract interface is infeasible because the server is third party software, or is so heavily depended upon that it can not easily be changed, and ADAPTER can be used to bind the abstract interface to the server.<br>The adapter is an object that implements the abstract interface to delegate to the server. Every methon of the adpater simply translates and then delegates.</li>
+<li>Bridge<br>One of the problems with implementing an abstract class with inheritance is that the derived class is so tightly coupled to the base classes. This can lead to problems when other clients want to use the derived class functions without draging along the bagae of the base hiearchy, decouple an abstraction from its implementation.<br>Adapter makes things work after they’re designed, bridge makes them work before they are.</li>
+<li>Proxy, Abstract Server<br>When a client depends directly on a server, the DIP is violated. Changes to the server will propogate to the client, and the client will be unable to easily use similar servers. This can be recified by inserting an interface between the client and the server, to produce a unified interface for a number of underlying and unrelated objects.</li>
+<li>Flyweight, Composite, Decorator</li>
+</ul>
+</li>
+<li><p>Behavioral Patterns</p>
+<ul>
+<li>Observer<br>It often occurs that one element of a design needs to take some form of action when another element in the design dicovers that an event has occurred. However, we frequently donot want the detector to know about the actor.</li>
+<li>Chain of Responsibility, Command, Interpreter, Iterator, Mediator, Mememnto</li>
+<li>State, Strategy, Visitor</li>
+<li>Template Method</li>
+</ul>
+</li>
+</ul>
+<h1 id="UML-Unified-Modeling-Language"><a href="#UML-Unified-Modeling-Language" class="headerlink" title="UML(Unified Modeling Language)"></a>UML(Unified Modeling Language)</h1><ul>
+<li>UML Diagrams</li>
+</ul>
+<p>– Behavioral UML Diagram: Sequence Diagram: Activity diagram, Use Case diagram, Interaction Overview Diagram, Timing Diagram, State Machine Diagram, Communication Diagram, Sequence Diagram<br>– Structural UML Diagram: Class Diagram, Object Diagram, Component Diagram, Composite Structure Diagram, Deployment Diagram, Deployment Diagram, Profile Diagram</p>
+<ul>
+<li>UML Notations</li>
+</ul>
+<p>– Relationships: Dependency Notation, Association Notation, Generalization Notation, Extensibility Notation<br>– Relationships between classes<br><img src="07-relationships-between-classes.png" alt="Relationships between classes"><br>– Class Diagram Example: Order System<br><img src="17-class-diagram-example-order-system.png" alt="Class Diagram Example: Order System"><br>– Class Diagram Example: GUI<br><img src="18-uml-class-diagram-example-gui.png" alt="Class Diagram Example: GUI"></p>
+<h1 id="Referencs"><a href="#Referencs" class="headerlink" title="Referencs"></a>Referencs</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.visual-paradigm.com/guide/uml-unified-modeling-language/uml-class-diagram-tutorial/" >UML Class Diagram Tutorial<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://tallyfy.com/uml-diagram/#composite-structure-diagram" >All You Need to Know About UML Diagrams: Types and 5+ Examples<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/design-patterns/">#design patterns</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/uml/">#uml</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/10/05/virtualization-aarch64-vs-x86_64/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Virtualization: aarch64 vs x86_64</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/12/26/function-calling-conventions/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Function Calling Conventions</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

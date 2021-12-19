@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Algorithm Graph |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Algorithm Graph</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-12-01 14:51:13</span>
+        <span class="mobile">2019-12-01 14:51</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/algorithm/">algorithm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/algorithm/">algorithm</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/graph/">graph</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/shortest-path/">shortest path</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="DFS-and-BFS"><a href="#DFS-and-BFS" class="headerlink" title="DFS and BFS"></a>DFS and BFS</h1><p>DFS with recursive, while BFS with queue, caution for loops.</p>
+<p>DFS pseudocode steps:<br>I. if node is Null return<br>II. access node<br>III. access left node, recursive<br>IV. access right node, recursive<br><img src="DFS.png" alt="DFS"></p>
+<p>BFS pseudocode steps:<br>I. create queue<br>II. if node is not Null<br>III. push left/right node in queue<br>IV. pop queue, goto step II<br><img src="BFS.png" alt="BFS"></p>
+<h1 id="Shortest-Path-Algorithm"><a href="#Shortest-Path-Algorithm" class="headerlink" title="Shortest Path Algorithm"></a>Shortest Path Algorithm</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/floyd-warshall-algorithm-dp-16/" >Floyd Warshall Algorithm<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p><strong>All Pairs Shortest Path problem</strong><br>We initialize the solution matrix same as the input graph matrix as a first step. Then we update the solution matrix by considering all vertices as an intermediate vertex. The idea is to one by one pick all vertices and updates all shortest paths which include the picked vertex as an intermediate vertex in the shortest path. When we pick vertex number k as an intermediate vertex, we already have considered vertices {0, 1, 2, .. k-1} as intermediate vertices. For every pair (i, j) of the source and destination vertices respectively, there are two possible cases.</p>
+<ol>
+<li>k is not an intermediate vertex in shortest path from i to j. We keep the value of dist[i][j] as it is.</li>
+<li>k is an intermediate vertex in shortest path from i to j. We update the value of dist[i][j] as dist[i][k] + dist[k][j] if dist[i][j] &gt; dist[i][k] + dist[k][j]<br>The following figure shows the above optimal substructure property in the all-pairs shortest path problem.<br>![Floyd Warshall Algorithm](Floyd Warshall Algorithm.jpg)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// Solves the all-pairs shortest path problem using Floyd Warshall algorithm </span><br><span class="line">void floydWarshall (int graph[][V]) </span><br><span class="line">&#123; </span><br><span class="line">    /* dist[][] will be the output matrix that will finally have the shortest  </span><br><span class="line">      distances between every pair of vertices */</span><br><span class="line">    int dist[V][V], i, j, k; </span><br><span class="line">  </span><br><span class="line">    /* Initialize the solution matrix same as input graph matrix. Or  </span><br><span class="line">       we can say the initial values of shortest distances are based </span><br><span class="line">       on shortest paths considering no intermediate vertex. */</span><br><span class="line">    for (i = 0; i &lt; V; i++) </span><br><span class="line">        for (j = 0; j &lt; V; j++) </span><br><span class="line">            dist[i][j] = graph[i][j]; </span><br><span class="line">  </span><br><span class="line">    /* Add all vertices one by one to the set of intermediate vertices. </span><br><span class="line">      ---&gt; Before start of an iteration, we have shortest distances between all </span><br><span class="line">      pairs of vertices such that the shortest distances consider only the </span><br><span class="line">      vertices in set &#123;0, 1, 2, .. k-1&#125; as intermediate vertices. </span><br><span class="line">      ----&gt; After the end of an iteration, vertex no. k is added to the set of </span><br><span class="line">      intermediate vertices and the set becomes &#123;0, 1, 2, .. k&#125; */</span><br><span class="line">    for (k = 0; k &lt; V; k++) </span><br><span class="line">    &#123; </span><br><span class="line">        // Pick all vertices as source one by one </span><br><span class="line">        for (i = 0; i &lt; V; i++) </span><br><span class="line">        &#123; </span><br><span class="line">            // Pick all vertices as destination for the </span><br><span class="line">            // above picked source </span><br><span class="line">            for (j = 0; j &lt; V; j++) </span><br><span class="line">            &#123; </span><br><span class="line">                // If vertex k is on the shortest path from </span><br><span class="line">                // i to j, then update the value of dist[i][j] </span><br><span class="line">                if (dist[i][k] + dist[k][j] &lt; dist[i][j]) &#123;</span><br><span class="line">                    // here we can add an array to record the path</span><br><span class="line">                    // path[j] = k;</span><br><span class="line">                    dist[i][j] = dist[i][k] + dist[k][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125; </span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">  </span><br><span class="line">    // Print the shortest distance matrix </span><br><span class="line">    printSolution(dist); </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/bellman-ford-algorithm-dp-23/" >Bellman–Ford Algorithm<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<p><strong>Single Source Shortest Path</strong></p>
+<ol>
+<li>This step initializes distances from source to all vertices as infinite and distance to source itself as 0. Create an array dist[] of size |V| with all values as infinite except dist[src] where src is source vertex.</li>
+<li>This step calculates shortest distances. Do following |V|-1 times where |V| is the number of vertices in given graph.<br>…..a) Do following for each edge u-v<br>………………If dist[v] &gt; dist[u] + weight of edge uv, then update dist[v]<br>………………….dist[v] = dist[u] + weight of edge uv</li>
+<li>This step reports if there is a negative weight cycle in graph. Do following for each edge u-v<br>……If dist[v] &gt; dist[u] + weight of edge uv, then “Graph contains negative weight cycle”<br>The idea of step 3 is, step 2 guarantees shortest distances if graph doesn’t contain negative weight cycle. If we iterate through all edges one more time and get a shorter path for any vertex, then there is a negative weight cycle<br>How does this work? Like other Dynamic Programming Problems, the algorithm calculate shortest paths in bottom-up manner. It first calculates the shortest distances which have at-most one edge in the path. Then, it calculates shortest paths with at-most 2 edges, and so on. After the i-th iteration of outer loop, the shortest paths with at most i edges are calculated. There can be maximum |V| – 1 edges in any simple path, that is why the outer loop runs |v| – 1 times. The idea is, assuming that there is no negative weight cycle, if we have calculated shortest paths with at most i edges, then an iteration over all edges guarantees to give shortest path with at-most (i+1) edges (Proof is simple, you can refer <a class="link"   target="_blank" rel="noopener" href="http://courses.csail.mit.edu/6.006/spring11/lectures/lec15.pdf" >this<i class="fas fa-external-link-alt"></i></a> or <a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=Ttezuzs39nk" >MIT Video Lecture<i class="fas fa-external-link-alt"></i></a>)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">// The main function that finds shortest distances from src to </span><br><span class="line">// all other vertices using Bellman-Ford algorithm.  The function </span><br><span class="line">// also detects negative weight cycle </span><br><span class="line">void BellmanFord(struct Graph* graph, int src) </span><br><span class="line">&#123; </span><br><span class="line">    int V = graph-&gt;V; </span><br><span class="line">    int E = graph-&gt;E; </span><br><span class="line">    int dist[V]; </span><br><span class="line">  </span><br><span class="line">    // Step 1: Initialize distances from src to all other vertices </span><br><span class="line">    // as INFINITE </span><br><span class="line">    for (int i = 0; i &lt; V; i++) </span><br><span class="line">        dist[i] = INT_MAX; </span><br><span class="line">    dist[src] = 0; </span><br><span class="line">  </span><br><span class="line">    // Step 2: Relax all edges |V| - 1 times. A simple shortest </span><br><span class="line">    // path from src to any other vertex can have at-most |V| - 1 </span><br><span class="line">    // edges </span><br><span class="line">    for (int i = 1; i &lt;= V - 1; i++) &#123; </span><br><span class="line">        for (int j = 0; j &lt; E; j++) &#123; </span><br><span class="line">            int u = graph-&gt;edge[j].src; </span><br><span class="line">            int v = graph-&gt;edge[j].dest; </span><br><span class="line">            int weight = graph-&gt;edge[j].weight; </span><br><span class="line">            if (dist[u] != INT_MAX &amp;&amp; dist[u] + weight &lt; dist[v]) &#123;</span><br><span class="line">                // here we can add an array to record the path</span><br><span class="line">                // path[v] = u;</span><br><span class="line">                dist[v] = dist[u] + weight;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">    &#125; </span><br><span class="line">  </span><br><span class="line">    // Step 3: check for negative-weight cycles.  The above step </span><br><span class="line">    // guarantees shortest distances if graph doesn&#x27;t contain </span><br><span class="line">    // negative weight cycle.  If we get a shorter path, then there </span><br><span class="line">    // is a cycle. </span><br><span class="line">    for (int i = 0; i &lt; E; i++) &#123; </span><br><span class="line">        int u = graph-&gt;edge[i].src; </span><br><span class="line">        int v = graph-&gt;edge[i].dest; </span><br><span class="line">        int weight = graph-&gt;edge[i].weight; </span><br><span class="line">        if (dist[u] != INT_MAX &amp;&amp; dist[u] + weight &lt; dist[v]) &#123; </span><br><span class="line">            printf(&quot;Graph contains negative weight cycle&quot;); </span><br><span class="line">            return; // If negative cycle is detected, simply return </span><br><span class="line">        &#125;</span><br><span class="line">    &#125; </span><br><span class="line">  </span><br><span class="line">    printArr(dist, V); </span><br><span class="line">  </span><br><span class="line">    return; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></li>
+</ol>
+<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/dijkstras-shortest-path-algorithm-greedy-algo-7/" >Dijkstra’s shortest path algorithm<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h1 id="Detect-Cycle"><a href="#Detect-Cycle" class="headerlink" title="Detect Cycle"></a>Detect Cycle</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/topological-sorting-indegree-based-solution/" >Kahn’s algorithm<i class="fas fa-external-link-alt"></i></a><br>Steps involved in finding the topological ordering of a DAG(Directed Acyclic Graph):</li>
+</ul>
+<p><em>Step-1:</em> Compute in-degree (number of incoming edges) for each of the vertex present in the DAG and initialize the count of visited nodes as 0.<br><em>Step-2:</em> Pick all the vertices with in-degree as 0 and add them into a queue (Enqueue operation)<br><em>Step-3:</em> Remove a vertex from the queue (Dequeue operation) and then.</p>
+<ul>
+<li>Increment count of visited nodes by 1.</li>
+<li>Decrease in-degree by 1 for all its neighboring nodes.</li>
+<li>If in-degree of a neighboring nodes is reduced to zero, then add it to the queue.</li>
+</ul>
+<p>  <em>Step 5:</em> Repeat Step 3 until the queue is empty.<br>  <em>Step 5:</em> If count of visited nodes is not equal to the number of nodes in the graph then the topological sort is not possible for the given graph. <em>There is a loop when the queue size not equal the vertices.</em></p>
+<ul>
+<li>union–find data structure<br>A disjoint-set data structure is a data structure that keeps track of a set of elements partitioned into a number of disjoint (non-overlapping) subsets. A union-find algorithm is an algorithm that performs two useful operations on such a data structure:<br>Find: Determine which subset a particular element is in. This can be used for determining if two elements are in the same subset.<br>Union: Join two subsets into a single subset.</li>
+</ul>
+<ul>
+<li>naive way<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line">// A utility function to find the subset of an element i </span><br><span class="line">int find(int parent[], int i) </span><br><span class="line">&#123; </span><br><span class="line">    if (parent[i] == -1) </span><br><span class="line">        return i; </span><br><span class="line">    return find(parent, parent[i]); </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line">// A utility function to do union of two subsets  </span><br><span class="line">void Union(int parent[], int x, int y) </span><br><span class="line">&#123; </span><br><span class="line">    int xset = find(parent, x); </span><br><span class="line">    int yset = find(parent, y); </span><br><span class="line">    if(xset!=yset)&#123; </span><br><span class="line">       parent[xset] = yset; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line">// The main function to check whether a given graph contains  </span><br><span class="line">// cycle or not </span><br><span class="line">int isCycle( struct Graph* graph ) </span><br><span class="line">&#123; </span><br><span class="line">    // Allocate memory for creating V subsets </span><br><span class="line">    int *parent = (int*) malloc( graph-&gt;V * sizeof(int) ); </span><br><span class="line">  </span><br><span class="line">    // Initialize all subsets as single element sets </span><br><span class="line">    memset(parent, -1, sizeof(int) * graph-&gt;V); </span><br><span class="line">  </span><br><span class="line">    // Iterate through all edges of graph, find subset of both </span><br><span class="line">    // vertices of every edge, if both subsets are same, then  </span><br><span class="line">    // there is cycle in graph. </span><br><span class="line">    for(int i = 0; i &lt; graph-&gt;E; ++i) </span><br><span class="line">    &#123; </span><br><span class="line">        int x = find(parent, graph-&gt;edge[i].src); </span><br><span class="line">        int y = find(parent, graph-&gt;edge[i].dest); </span><br><span class="line">  </span><br><span class="line">        if (x == y) </span><br><span class="line">            return 1; </span><br><span class="line">  </span><br><span class="line">        Union(parent, x, y); </span><br><span class="line">    &#125; </span><br><span class="line">    return 0; </span><br><span class="line">&#125;   </span><br></pre></td></tr></table></figure></li>
+<li>optimize with rank and path compression<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line">struct subset </span><br><span class="line">&#123; </span><br><span class="line">    int parent; </span><br><span class="line">    int rank; </span><br><span class="line">&#125;; </span><br><span class="line">  </span><br><span class="line">// Creates a graph with V vertices and E edges </span><br><span class="line">struct Graph* createGraph(int V, int E) </span><br><span class="line">&#123; </span><br><span class="line">    struct Graph* graph = (struct Graph*) malloc( sizeof(struct Graph) ); </span><br><span class="line">    graph-&gt;V = V; </span><br><span class="line">    graph-&gt;E = E; </span><br><span class="line">  </span><br><span class="line">    graph-&gt;edge = (struct Edge*) malloc( graph-&gt;E * sizeof( struct Edge ) ); </span><br><span class="line">  </span><br><span class="line">    return graph; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line">// A utility function to find set of an element i </span><br><span class="line">// (uses path compression technique) </span><br><span class="line">int find(struct subset subsets[], int i) </span><br><span class="line">&#123; </span><br><span class="line">    // find root and make root as parent of i (path compression) </span><br><span class="line">    if (subsets[i].parent != i) </span><br><span class="line">        subsets[i].parent = find(subsets, subsets[i].parent); </span><br><span class="line">  </span><br><span class="line">    return subsets[i].parent; </span><br><span class="line">&#125; </span><br><span class="line">  </span><br><span class="line">// A function that does union of two sets of x and y </span><br><span class="line">// (uses union by rank) </span><br><span class="line">void Union(struct subset subsets[], int x, int y) </span><br><span class="line">&#123; </span><br><span class="line">    int xroot = find(subsets, x); </span><br><span class="line">    int yroot = find(subsets, y); </span><br><span class="line">  </span><br><span class="line">    // Attach smaller rank tree under root of high rank tree </span><br><span class="line">    // (Union by Rank) </span><br><span class="line">    if (subsets[xroot].rank &lt; subsets[yroot].rank) </span><br><span class="line">        subsets[xroot].parent = yroot; </span><br><span class="line">    else if (subsets[xroot].rank &gt; subsets[yroot].rank) </span><br><span class="line">        subsets[yroot].parent = xroot; </span><br><span class="line">  </span><br><span class="line">    // If ranks are same, then make one as root and increment </span><br><span class="line">    // its rank by one </span><br><span class="line">    else</span><br><span class="line">    &#123; </span><br><span class="line">        subsets[yroot].parent = xroot; </span><br><span class="line">        subsets[xroot].rank++; </span><br><span class="line">    &#125; </span><br><span class="line">&#125; </span><br></pre></td></tr></table></figure></li>
+</ul>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/fundamentals-of-algorithms/" >Geeks Algorithms<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/algorithm/">#algorithm</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/graph/">#graph</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/shortest-path/">#shortest path</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/01/05/segment-tree/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Segment Tree</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/10/05/virtualization-aarch64-vs-x86_64/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Virtualization: aarch64 vs x86_64</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

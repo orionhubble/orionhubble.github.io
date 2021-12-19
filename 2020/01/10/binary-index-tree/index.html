@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Binary Index Tree |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Binary Index Tree</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2020-01-10 21:23:01</span>
+        <span class="mobile">2020-01-10 21:23</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/algorithm/">algorithm</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/fenwick-tree/">fenwick tree</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/binary-index-tree/">binary index tree</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="Binary-Index-Tree"><a href="#Binary-Index-Tree" class="headerlink" title="Binary Index Tree"></a>Binary Index Tree</h3><p>Binary Indexed Tree also called Fenwick Tree provides a way to represent an array of numbers in an array, allowing prefix sums to be calculated efficiently. For example, an array [2, 3, -1, 0, 6] is given, then the prefix sum of first 3 elements [2, 3, -1] is 2 + 3 + -1 = 4. Calculating prefix sum efficiently is useful in various scenarios. Let’s start with a simple problem.</p>
+<pre><code>Problem:
+Description of GCD Sum
+Function F is defined as,
+F(x) = GCD(1,x) + GCD(2,x) + ... + GCD(x,x)
+where GCD is the Greatest Common Divisor.
+
+Given an array A of size N, there are 2 types of queries:
+1. C X Y : Compute the value of (F(A[X]) + F(A[X+1]) + F(A[X+2]) + ... + F(A[Y])) (mod(10^9 + 7))
+2. U X Y: Update the element of array A[X] = Y
+
+Input:
+First line of input contains integer N, size of the array.
+Next line contains N space separated integers the elements of A.
+Next line contains integer Q, number of queries.
+Next Q lines contains one of the two queries.
+
+Output:
+For each of the first type of query, output the required sum mod(10^9 + 7).
+
+Constraints:
+1&lt;=N&lt;=10^6
+1&lt;=Q&lt;=10^5
+1&lt;=A[i]&lt;=5*10^5
+
+For update,
+1&lt;=X&lt;=N
+1&lt;=Y&lt;5*10^5
+
+For compute,
+1&lt;=X&lt;=Y&lt;=N
+
+SAMPLE INTPU:
+3
+3 4 3
+6
+C 1 2
+C 1 3
+C 3 3
+U 1 4
+C 1 3
+C 1 2
+
+SAMPLE OUTPUT:
+13
+18
+5
+21
+16
+</code></pre>
+<h3 id="Binarty-Index-Tree-Layout"><a href="#Binarty-Index-Tree-Layout" class="headerlink" title="Binarty Index Tree Layout"></a>Binarty Index Tree Layout</h3><p>//for ease, we make sure our given array is 1-based indexed<br>int a[] = {0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16};<br><img src="binary-index-tree.jpg" alt="Binary Index Tree Layout"></p>
+<h3 id="Code-Implementation"><a href="#Code-Implementation" class="headerlink" title="Code Implementation"></a>Code Implementation</h3><ul>
+<li><p>Main</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdint.h&gt;</span><br><span class="line"></span><br><span class="line">#define V_MAX (500000 + 1)</span><br><span class="line">#define MOD_BASE (1000000000 + 7)</span><br><span class="line"></span><br><span class="line">//#define DBG(f_, ...) do &#123; printf((f_), ##__VA_ARGS__); &#125; while(0)</span><br><span class="line">#define DBG(f_, ...)</span><br><span class="line"></span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int *arr;</span><br><span class="line">    long long *BIT;</span><br><span class="line">    int i, size, opts, value;</span><br><span class="line">    long long phi[V_MAX], sums[V_MAX];</span><br><span class="line">    char opt;</span><br><span class="line">    int x, y;</span><br><span class="line">    </span><br><span class="line">    scanf(&quot;%d\n&quot;, &amp;size);</span><br><span class="line">    arr = malloc(sizeof(int) * (size + 1));</span><br><span class="line">    if (!arr) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    BIT = malloc(sizeof(long long) * (size + 1));</span><br><span class="line">    if (!BIT) &#123;</span><br><span class="line">        free(arr);</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    memset(arr, 0, sizeof(int) * (size + 1));</span><br><span class="line">    memset(BIT, 0, sizeof(int) * (size + 1));</span><br><span class="line">    </span><br><span class="line">    memset(phi, 0, sizeof(phi));</span><br><span class="line">    memset(sums, 0, sizeof(sums));</span><br><span class="line">    SumOfGCDs(sums, phi, V_MAX);</span><br><span class="line">    </span><br><span class="line">    DBG(&quot;Array size %d\n&quot;, size);</span><br><span class="line">    i = 0;</span><br><span class="line">    while ((++i) &lt;= size &amp;&amp; (scanf(&quot;%d&quot;, &amp;value) != EOF)) &#123;</span><br><span class="line">        if (value &gt;= V_MAX) &#123;</span><br><span class="line">            continue;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        arr[i] = sums[value];</span><br><span class="line">        Update(BIT, i, arr[i], size);</span><br><span class="line">        </span><br><span class="line">        DBG(&quot;arr[%d] = %d, gcdsum=%d\n&quot;, i, value, arr[i]);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    scanf(&quot;%d\n&quot;, &amp;opts);</span><br><span class="line">    DBG(&quot;Options %d\n&quot;, opts);</span><br><span class="line">    i = 0;</span><br><span class="line">    while ((++i) &lt;= opts &amp;&amp; (scanf(&quot;%c %d %d\n&quot;, &amp;opt, &amp;x, &amp;y) != EOF)) &#123;</span><br><span class="line">        int nValue;</span><br><span class="line">        </span><br><span class="line">        DBG(&quot;Opt: %c %d %d\n&quot;, opt, x, y);</span><br><span class="line">        switch (opt) &#123;</span><br><span class="line">            case &#x27;C&#x27;:</span><br><span class="line">                printf(&quot;%d\n&quot;, (Query(BIT, y) - Query(BIT, x - 1)) % MOD_BASE);</span><br><span class="line">                break;</span><br><span class="line">            case &#x27;U&#x27;:</span><br><span class="line">                nValue = sums[y];</span><br><span class="line">                Update(BIT, x, -arr[x], size);</span><br><span class="line">                Update(BIT, x, nValue, size);</span><br><span class="line">                arr[x] = nValue;</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    free(arr);</span><br><span class="line">    free(BIT);</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Construct&amp;Update</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">void Update(long long *BIT, int idx, long long diff, int n)</span><br><span class="line">&#123;</span><br><span class="line">    for (; idx &lt;= n; idx += (idx &amp; (-idx))) &#123;</span><br><span class="line">        BIT[idx] += diff;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Query</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">long long Query(long long *BIT, int idx)</span><br><span class="line">&#123;</span><br><span class="line">    long long sum = 0;</span><br><span class="line">    </span><br><span class="line">    for (; idx &gt; 0; idx -= (idx &amp; (-idx))) &#123;</span><br><span class="line">        sum += BIT[idx];</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    return sum;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Euler’s Totient function</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">// Precomputation of phi[] numbers. Refer below link </span><br><span class="line">// for details : https://goo.gl/LUqdtY </span><br><span class="line">void ComputeTotient(long long *phi, int size) </span><br><span class="line">&#123;</span><br><span class="line">    int i, j;</span><br><span class="line">    </span><br><span class="line">    // Refer https://goo.gl/LUqdtY </span><br><span class="line">    phi[1] = 1; </span><br><span class="line">    for (i = 2; i &lt; size; i++) &#123;</span><br><span class="line">        if (!phi[i]) &#123;</span><br><span class="line">            phi[i] = i - 1; </span><br><span class="line">            </span><br><span class="line">            for (j = (i &lt;&lt; 1); j &lt; size; j += i) &#123;</span><br><span class="line">                if (!phi[j])</span><br><span class="line">                    phi[j] = j;</span><br><span class="line">  </span><br><span class="line">                phi[j] = (phi[j]/i) * (i - 1);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void SumOfGCDs(long long *sums, long long *phi, int size)</span><br><span class="line">&#123;</span><br><span class="line">    int i, j, k;</span><br><span class="line">    </span><br><span class="line">    ComputeTotient(phi, size);</span><br><span class="line">    </span><br><span class="line">    for (i = 1; i &lt; size; i++) &#123;</span><br><span class="line">        // Iterate throght all the divisors </span><br><span class="line">        // of i. </span><br><span class="line">        for (j = i, k = 1; j &lt; size; j += i, k++) &#123;</span><br><span class="line">            sums[j] += (i*phi[k]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Cautions</p>
+</li>
+</ul>
+<p>– sum overflow, so with long long<br>– index 0 is ommited of BIT array</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.hackerearth.com/zh/practice/" >HackerEarth Practice<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.hackerearth.com/zh/practice/algorithms/searching/linear-search/tutorial/" >HackerEarth Algorithms<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.hackerearth.com/zh/practice/data-structures/advanced-data-structures/segment-trees/tutorial/" >HackerEarth Data Structure<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.geeksforgeeks.org/summation-gcd-pairs-n/" >Summation of GCD of all the pairs up to N<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/fenwick-tree/">#fenwick tree</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/binary-index-tree/">#binary index tree</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2020/08/02/aws-virtualization/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">AWS Virtualization Nitro</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2020/01/05/segment-tree/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Segment Tree</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

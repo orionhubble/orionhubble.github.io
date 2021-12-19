@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Deploy k3s on RaspberryPi4B |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Deploy k3s on RaspberryPi4B</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-09-12 10:41:51</span>
+        <span class="mobile">2021-09-12 10:41</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/PRACTICE/">PRACTICE</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/k3s/">k3s</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/raspberry-pi/">raspberry pi</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="Download-k3s-v1-21-4-k3s1"><a href="#Download-k3s-v1-21-4-k3s1" class="headerlink" title="Download k3s, v1.21.4+k3s1"></a>Download k3s, v1.21.4+k3s1</h3><ul>
+<li>get the binary<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/k3s-io/k3s/releases/download/v1.21.4%2Bk3s1/k3s-arm64</span><br><span class="line">sudo chmod +x k3s-arm64</span><br><span class="line">sudo cp k3s-arm64 /usr/sbin/</span><br><span class="line">sudo ln -s /usr/sbin/k3s-arm64 /usr/sbin/k3s</span><br></pre></td></tr></table></figure></li>
+<li>check config<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo k3s check-config</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Delploy-the-server-and-agent"><a href="#Delploy-the-server-and-agent" class="headerlink" title="Delploy the server and agent"></a>Delploy the server and agent</h3><ul>
+<li>run the server <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"># opntion, sudo ifconfig eth0 192.168.168.1/24</span><br><span class="line"># su root</span><br><span class="line">sudo nohup k3s server --node-ip 192.168.168.1 &gt; /dev/null 2&gt;&amp;1 &amp;</span><br></pre></td></tr></table></figure></li>
+<li>run the agent on a different node<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># opntion, sudo ifconfig eth0 192.168.168.2/24</span><br><span class="line"># replace the *192.168.168.1* with your own server ip</span><br><span class="line"># NODE_TOKEN comes from /var/lib/rancher/k3s/server/node-token on your server</span><br><span class="line"># sudo cat /var/lib/rancher/k3s/server/node-token</span><br><span class="line">sudo k3s agent --server https://192.168.168.1:6443 --token $&#123;NODE_TOKEN&#125;</span><br></pre></td></tr></table></figure></li>
+<li>change node role<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ sudo k3s kubectl get nodes</span><br><span class="line">NAME      STATUS   ROLES                  AGE   VERSION</span><br><span class="line">up-pi     Ready    &lt;none&gt;                 17m   v1.21.4+k3s1</span><br><span class="line">down-pi   Ready    control-plane,master   50m   v1.21.4+k3s1</span><br><span class="line"></span><br><span class="line">$ sudo k3s kubectl label --overwrite nodes up-pi kubernetes.io/role=worker</span><br><span class="line"></span><br><span class="line">$ sudo k3s kubectl get nodes</span><br><span class="line">NAME      STATUS   ROLES                  AGE     VERSION</span><br><span class="line">down-pi   Ready    control-plane,master   5h8m    v1.21.4+k3s1</span><br><span class="line">up-pi     Ready    worker                 4h36m   v1.21.4+k3s1</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Delploy-prometheus-operator-Not-complete"><a href="#Delploy-prometheus-operator-Not-complete" class="headerlink" title="Delploy prometheus-operator(Not complete)"></a>Delploy prometheus-operator(Not complete)</h3><ul>
+<li>download prometheus, 0.50.0<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/prometheus-operator/prometheus-operator/archive/refs/tags/v0.50.0.tar.gz</span><br><span class="line">tar -xvf prometheus-operator-0.50.0.tar.gz</span><br><span class="line">cd prometheus-operator-0.50.0</span><br><span class="line">sed -i &#x27;s/namespace: default/namespace: monitoring/g&#x27; bundle.yaml</span><br></pre></td></tr></table></figure></li>
+<li>deploy and query<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sudo k3s kubectl create namespace monitoring</span><br><span class="line">sudo k3s kubectl get namespaces</span><br><span class="line"># sudo k3s kubectl delete namespace monitoring</span><br><span class="line">sudo k3s kubectl apply -n monitoring -f bundle.yaml</span><br><span class="line"># sudo k3s kubectl delete -n monitoring -f bundle.yaml</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo k3s kubectl get pods -n monitoring</span><br><span class="line">NAME                                   READY   STATUS    RESTARTS   AGE</span><br><span class="line">prometheus-operator-54c4665c6b-vqbfk   1/1     Running   0          78s</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Deploy-prometheus-operator-kube-prometheus"><a href="#Deploy-prometheus-operator-kube-prometheus" class="headerlink" title="Deploy prometheus-operator/kube-prometheus"></a>Deploy prometheus-operator/kube-prometheus</h3><ul>
+<li>deploy <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo k3s kubectl create -f manifests/setup</span><br><span class="line">sudo k3s kubectl create -f manifests/</span><br><span class="line"># sudo k3s kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup</span><br><span class="line">$ sudo k3s kubectl get pods -n monitoring</span><br></pre></td></tr></table></figure></li>
+<li>debug<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ sudo k3s kubectl logs -f -n monitoring prometheus-operator-7775c66ccf-fdqsq</span><br><span class="line">error: a container name must be specified for pod prometheus-operator-7775c66ccf-fdqsq, choose one of: [prometheus-operator kube-rbac-proxy]</span><br><span class="line"></span><br><span class="line">$ sudo k3s kubectl logs -f -n monitoring prometheus-operator-7775c66ccf-fdqsq -c prometheus-operator</span><br></pre></td></tr></table></figure></li>
+<li>access<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo k3s kubectl --namespace monitoring port-forward svc/prometheus-k8s 9090</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Deploy-carlosedp-cluster-monitoring"><a href="#Deploy-carlosedp-cluster-monitoring" class="headerlink" title="Deploy carlosedp/cluster-monitoring"></a>Deploy carlosedp/cluster-monitoring</h3><ul>
+<li><p>download and set config</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clone https://github.com/carlosedp/cluster-monitoring.git</span><br></pre></td></tr></table></figure>
+<p>modify config file <em>vars.jsonnet</em>: k3s.enabled, k3s.master_ip, suffixDomain, traefikExporter, armExporter</p>
+</li>
+<li><p>deploy and query status</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ make vendor</span><br><span class="line">$ make</span><br><span class="line">$ kubectl apply -f manifests/setup/</span><br><span class="line">$ kubectl apply -f manifests/</span><br><span class="line"># sudo k3s kubectl delete --ignore-not-found=true -f manifests/ -f manifests/setup</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ sudo k3s kubectl get pods -n monitoring</span><br><span class="line">NAME                                  READY   STATUS    RESTARTS   AGE</span><br><span class="line">prometheus-operator-67755f959-kp9jn   2/2     Running   0          30m</span><br><span class="line">kube-state-metrics-6cb6df5d4-xcb22    3/3     Running   0          30m</span><br><span class="line">node-exporter-twbjr                   2/2     Running   0          30m</span><br><span class="line">node-exporter-k84g2                   2/2     Running   0          30m</span><br><span class="line">prometheus-adapter-585b57857b-b7mw7   1/1     Running   0          30m</span><br><span class="line">arm-exporter-flm96                    2/2     Running   0          30m</span><br><span class="line">arm-exporter-svvpm                    2/2     Running   0          30m</span><br><span class="line">grafana-7bc4784744-w9wk4              1/1     Running   0          30m</span><br><span class="line">alertmanager-main-0                   2/2     Running   0          30m</span><br><span class="line">prometheus-k8s-0                      3/3     Running   1          30m</span><br></pre></td></tr></table></figure></li>
+<li><p>access grafana</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ sudo k3s kubectl get ingress -n monitoring</span><br><span class="line">[sudo] password for down: </span><br><span class="line">NAME                CLASS    HOSTS                               ADDRESS                        PORTS     AGE</span><br><span class="line">alertmanager-main   &lt;none&gt;   alertmanager.192.168.168.1.nip.io   192.168.124.20,192.168.168.1   80, 443   30m</span><br><span class="line">grafana             &lt;none&gt;   grafana.192.168.168.1.nip.io        192.168.124.20,192.168.168.1   80, 443   30m</span><br><span class="line">prometheus-k8s      &lt;none&gt;   prometheus.192.168.168.1.nip.io     192.168.124.20,192.168.168.1   80, 443   30m</span><br></pre></td></tr></table></figure>
+<p><img src="./grafana.jpg" alt="grafana console"></p>
+</li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/k3s-io/k3s" >k3s github README<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://rancher.com/docs/k3s/latest/en/installation/install-options/server-config/" >K3s Server Configuration Reference<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/prometheus-operator/kube-prometheus#quickstart" >prometheus-operator/kube-prometheus Quickstart<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://github.com/carlosedp/cluster-monitoring" >carlosedp/cluster-monitoring Quickstart for K3s<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://rpi4cluster.com/monitoring/monitor-intro/" >rpi4cluster monitoring k3s<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/k3s/">#k3s</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/raspberry-pi/">#raspberry pi</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/09/18/softether-vpn-client-for-ubuntu/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Softether VPN Client for Ubuntu</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/08/13/launch-arm64-vm-on-raspberrypi4b/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Launch ARM64 VM on RaspberryPi4B</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

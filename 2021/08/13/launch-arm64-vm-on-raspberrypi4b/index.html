@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Launch ARM64 VM on RaspberryPi4B |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Launch ARM64 VM on RaspberryPi4B</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-08-13 22:52:51</span>
+        <span class="mobile">2021-08-13 22:52</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/PRACTICE/">PRACTICE</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/raspberry-pi/">raspberry pi</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/arm64/">arm64</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/aarch64/">aarch64</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/VM/">VM</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="Create-and-test-flash-images"><a href="#Create-and-test-flash-images" class="headerlink" title="Create and test flash images"></a>Create and test flash images</h3><ul>
+<li><p>create images<br>repalce <em>/usr/share/qemu-efi/QEMU_EFI.fd</em> with your own built file</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dd if=/dev/zero of=flash0.img bs=1M count=64</span><br><span class="line">dd if=/usr/share/qemu-efi/QEMU_EFI.fd of=flash0.img conv=notrunc</span><br><span class="line">dd if=/dev/zero of=flash1.img bs=1M count=64</span><br></pre></td></tr></table></figure></li>
+<li><p>test if your flash work well</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/qemu-system-aarch64 -enable-kvm -M virt -m 1024 -cpu host -smp 2 -pflash /home/up/env/code/images/flash0.img -pflash /home/up/env/code/images/flash1.img -nographic</span><br></pre></td></tr></table></figure>
+<p><img src="./flash-boot-img.jpg" alt="flash boot imgage"></p>
+</li>
+</ul>
+<h3 id="Download-and-boot-from-cloud-image"><a href="#Download-and-boot-from-cloud-image" class="headerlink" title="Download and boot from cloud image"></a>Download and boot from cloud image</h3><ul>
+<li><p>download imgage</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cloud-images.ubuntu.com/hirsute/current/hirsute-server-cloudimg-arm64.img</span><br></pre></td></tr></table></figure></li>
+<li><p>query image information</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ ./build/qemu-img info ../images/hirsute-server-cloudimg-arm64.img </span><br><span class="line">image: ../images/hirsute-server-cloudimg-arm64.img</span><br><span class="line">file format: qcow2</span><br><span class="line">virtual size: 2.2 GiB (2361393152 bytes)</span><br><span class="line">disk size: 528 MiB</span><br><span class="line">cluster_size: 65536</span><br><span class="line">Format specific information:</span><br><span class="line">    compat: 0.10</span><br><span class="line">    compression type: zlib</span><br><span class="line">    refcount bits: 16</span><br></pre></td></tr></table></figure></li>
+<li><p>boot from image</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/qemu-system-aarch64 -enable-kvm -M virt -m 1024 -cpu host -smp 2 -pflash /home/up/env/code/images/flash0.img -pflash /home/up/env/code/images/flash1.img -nographic -drive if=none,file=/home/up/env/code/images/hirsute-server-cloudimg-arm64.img,id=hd0 -device virtio-blk-device,drive=hd0</span><br></pre></td></tr></table></figure>
+<p>CANNOT BOOT HERE!!! shoud debug in edk2 function BdsEntry().</p>
+</li>
+<li><p>boot hung<br><img src="./boot_hung.jpg" alt="boot hung"></p>
+</li>
+<li><p>exit shell<br><img src="./exit_shell.jpg" alt="exit shell"></p>
+</li>
+<li><p>select device<br><img src="./select_device.jpg" alt="select device"></p>
+</li>
+</ul>
+<h3 id="Boot-successful"><a href="#Boot-successful" class="headerlink" title="Boot successful!"></a>Boot successful!</h3><p><img src="./boot_sucess.jpg" alt="boot successful"></p>
+<h3 id="Config-image-with-cloud-init"><a href="#Config-image-with-cloud-init" class="headerlink" title="Config image with cloud-init"></a>Config image with cloud-init</h3><ul>
+<li>cloud-localds<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install genisoimage</span><br></pre></td></tr></table></figure></li>
+<li>generate cloud-init config file<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ &#123; echo instance-id: iid-local01; echo local-hostname: cloudimg; &#125; &gt; meta-data</span><br><span class="line">printf &quot;#cloud-config\npassword: passw0rd\nchpasswd: &#123; expire: False &#125;\nssh_pwauth: True\n&quot; &gt; user-data</span><br></pre></td></tr></table></figure></li>
+<li>set your own passwd<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ openssl passwd -6</span><br><span class="line">Password: </span><br><span class="line">Verifying - Password: </span><br><span class="line">$6$he0icVn3e98gzInO$jv/jT5HQwSeXwQOJ8rLOcPOBekJmsIaQCEBmAT2RZYD8Tv6N/NMGvMHvuBEc98yCjOeVbGvtvaDfjub/bsyfC/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ cat user-data </span><br><span class="line">#cloud-config</span><br><span class="line">password: &quot;$6$he0icVn3e98gzInO$jv/jT5HQwSeXwQOJ8rLOcPOBekJmsIaQCEBmAT2RZYD8Tv6N/NMGvMHvuBEc98yCjOeVbGvtvaDfjub/bsyfC/&quot;</span><br><span class="line">chpasswd: &#123; expire: False &#125;</span><br><span class="line">ssh_pwauth: True</span><br></pre></td></tr></table></figure></li>
+<li>generate config iso<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">genisoimage -output seed.iso -volid cidata -joliet -rock user-data meta-data</span><br></pre></td></tr></table></figure></li>
+<li>launch vm with seed.iso<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./build/qemu-system-aarch64 -enable-kvm -M virt -m 1024 -cpu host -smp 2 -pflash /home/up/env/code/images/flash0.img -pflash /home/up/env/code/images/flash1.img -nographic -drive if=none,file=/home/up/env/code/images/hirsute-server-cloudimg-arm64.img,id=hd0 -device virtio-blk-device,drive=hd0 -drive file=/home/up/env/code/images/seed.iso,if=virtio</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://wiki.ubuntu.com/ARM64/QEMU" >Ubuntu wiki Qemu<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://wiki.ubuntu.com/UEFI/OVMF" >Ubuntu wiki OVMF<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.intel.com/content/dam/doc/guide/uefi-development-best-technical-methods-idf2009-presentation.pdf" >Best Technical Methods for UEFI Development<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://cloudinit.readthedocs.io/en/latest/topics/datasources/nocloud.html" >Cloud init datasource NoCloud<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/raspberry-pi/">#raspberry pi</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/arm64/">#arm64</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/aarch64/">#aarch64</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/VM/">#VM</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/09/12/deploy-k3s-on-raspberrypi4b/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Deploy k3s on RaspberryPi4B</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/08/01/guide-for-hexo-with-github/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">A Late Simple Guide for hexo with github</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

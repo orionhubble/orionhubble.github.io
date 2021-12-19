@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Virtualization: aarch64 vs x86_64 |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Virtualization: aarch64 vs x86_64</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2019-10-05 11:06:13</span>
+        <span class="mobile">2019-10-05 11:06</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/virtualization/">virtualization</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/virtualization/">virtualization</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/aarch64/">aarch64</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/x86-64/">x86_64</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h1 id="Virtualization-Generations"><a href="#Virtualization-Generations" class="headerlink" title="Virtualization Generations"></a>Virtualization Generations</h1><p>Full-virtualization -&gt; Para-virtualization -&gt; Hardware-assisted virtualization -&gt; Hardware-offload virtualization -&gt; ?</p>
+<h1 id="Types-of-virtualization"><a href="#Types-of-virtualization" class="headerlink" title="Types of virtualization"></a>Types of virtualization</h1><p>To understand virtualization, hpervisor should be addressed firtst. Hypervisor enables communication between hardware and a virtual machine so that the virtualizaion accomplished with this abstraction layer(hypervisor). While there is another word virtual machine monitor(VMM), those two terms are typically treated as synonyms. But there is a slightly distinction, a virtual machine monitor is a software that mnages CPU, memory, I/O data transfer, interrupt, and the instruction set on a given virtualized environment, a hypervisor may refer to an operating system(OS) with the VMM.</p>
+<p>Typically, a hypervisor can be divided into two Type 1 and Type 2 hypervisor based on the different level of implementation. Type 1 is sitting on hardware and the communication between hardware and virtual machine is direct, somtime called ‘bare metal hypervisor’. Type 2 hypervisor is on the operating system to manage virtual machine easily with the support of hardware configuration from operating system.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Types</th>
+<th align="left">Level of Implementation</th>
+<th align="left">Typical Hypervisor</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Type 1</td>
+<td align="left">bare metal</td>
+<td align="left">ESXi, XEN, Hyper-V</td>
+</tr>
+<tr>
+<td align="left">Type 2</td>
+<td align="left">with OS</td>
+<td align="left">Virtual Box, KVM</td>
+</tr>
+</tbody></table>
+<p>Virtualization also divided into full virtualizaton, para-virtualization and hardware-assited virtualization(direct access to resources without binary translation or emulation) from the view of GuestOS.</p>
+<h1 id="Virtualization-overhead-and-micro-benchmark"><a href="#Virtualization-overhead-and-micro-benchmark" class="headerlink" title="Virtualization overhead and micro-benchmark"></a>Virtualization overhead and micro-benchmark</h1><p>The hypervisor introduces overheads in emulating inter-processor interrupts (IPIs), TLB invalidation(TLB flush IPI), and transitions to/from idle modes, among others. Semantic gap between the guest OS and hypervisor also causes double scheduling, where the guest and host-level CPU schedulers make independent, but inefficient, scheduling decisions.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Name</th>
+<th align="left">Descripton</th>
+<th align="left">Measure method</th>
+<th align="left">Measure Tool</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Hypercall</td>
+<td align="left">Transition freom VM to hypervisor and return to VM without doing any work in the hypervisor.</td>
+<td align="left">Measures bidirectional base trasition cost of hypervisor operatons.</td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">Interrupt Controller Trap</td>
+<td align="left">Trap from VM to emulated interrupt controller then return to VM.</td>
+<td align="left">Measures a frequent operation for many device drivers and baseline for accessing I/O devices emulated in the hypervisor.</td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">Virtual IPI</td>
+<td align="left">Issure a virtual IPI freom a vCPU to another vCPU running on a different pCPU, both pCPUs executing VM code.</td>
+<td align="left">Measures time between sending the virtual IPI until the receiveing vCPU handles it, a frequent operation in multi-core OSes that affects many workloads.</td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">Virtual IRQ Completion</td>
+<td align="left">VM acknowledging and completing a virtual interrupt.</td>
+<td align="left">Measures a frequent operation taht happerns for every injected virtual interrupt.</td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">VM Switch</td>
+<td align="left">Switching freom one VM to another on the same physical core.</td>
+<td align="left">Measures a central cost when over-subscribing physical CPUs.</td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">I/O Latency In</td>
+<td align="left">Measures latency between a driver in the VM signaling the virtual I/O device in the hypervisor and the virtual I/O device receiving the signal.</td>
+<td align="left">For KVM , this involves trapping to the host kernel. For xen, this involves trapping to xen then raising a virtual interrupt to Dom0</td>
+<td align="left">NA</td>
+</tr>
+<tr>
+<td align="left">I/O Latentcy Out</td>
+<td align="left">Measures latency between the virtual I/O device in the hypervisor signaling the VM and the VM receiving the corresponding virtual interrupt.</td>
+<td align="left">For KVM , this involves signaling the vCPU thread and injecting a virtual interrupt for the virtio device. For XEN, this involves trapping to Xen then raising a virtual interrupt to DomU.</td>
+<td align="left">NA</td>
+</tr>
+</tbody></table>
+<p>All measures unit in cycles by call tsc(Time Stamp Counter).</p>
+<h1 id="Hardware-assisted-virtualization-technology"><a href="#Hardware-assisted-virtualization-technology" class="headerlink" title="Hardware-assisted virtualization technology"></a>Hardware-assisted virtualization technology</h1><ul>
+<li><p>CPU Virtualization</p>
+<ul>
+<li>VHE and VTx<ul>
+<li>aarch64, Virtualization Host Extensions(VHE), vmid/asid<br><img src="arch64-vhe.png" alt="Virtualization Host Extensions(VHE)"></li>
+<li>x86_64 VTx: vmcs, root and non-root mode, vpid.<br><img src="x86_64-vt-x_cpu-virtualization.png" alt="x86_64 CPU Virtualization with VT-x"></li>
+</ul>
+</li>
+<li>Privilege levels<ul>
+<li>aarch64 excpetion level, EL 0(userspace applications), EL 1(guest kernel), EL 2(host kernel/hypervisor), EL 3(secure)</li>
+<li>x86_64 ring, ring 0(hypervisor under root mode, guest under non-root mode), ring 1, ring 2, ring3(applications)<br><img src="x86_64-ring.png" alt="x86_64 rings"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Memory Virtualization</p>
+<ul>
+<li>GVA to PHA translation<ul>
+<li>aarch64, stage 2 translation, GVA –mmu-&gt; IPA/GPA –mmu-&gt; HPA<br><img src="arch64-stage-2.png" alt="Stage 2 translation"></li>
+<li>x86_64, extended page tables(EPT)<br><img src="x86_64-ept.png" alt="EPT"></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>IO &amp; Timers &amp; Interrupt  Virtualization</p>
+</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th align="left">types</th>
+<th align="left">x86_64</th>
+<th align="left">aarch64</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">IO</td>
+<td align="left">IOMMU(vIOMMU)</td>
+<td align="left">SMMU(vSMMU)</td>
+</tr>
+<tr>
+<td align="left">Timers</td>
+<td align="left">pmtimer</td>
+<td align="left">the generic timers</td>
+</tr>
+<tr>
+<td align="left">Virtual interrupt</td>
+<td align="left">APIC(vAPIC)</td>
+<td align="left">GIC(vGIC)</td>
+</tr>
+</tbody></table>
+<pre><code>Timers Notes:
+    Real time is expressed in nanoseconds passed since machine boot and is maintained to the accuracy of the processor’s cycle counter and can be frequency-locked to an external time source (for example, via NTP).
+    A domain’s virtual time only advances while it is executing: this is typically used by the guest OS scheduler to ensure correct sharing of its timeslice between application processes.
+    Finally, wall-clock time is specified as an offset to be added to the current real time. This allows the wall-clock time to be adjusted without affecting the forward progress of real time.
+</code></pre>
+<h1 id="References"><a href="#References" class="headerlink" title="References"></a>References</h1><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.arm.com/architectures/learn-the-architecture/armv8-a-virtualization" >Learn the architecture of armv8 virtualization<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/architecture-and-technology/64-ia-32-architectures-software-developer-vol-3a-part-1-manual.html" >Intel® 64 and IA-32 Architectures Developer’s Manual<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.usenix.org/system/files/conference/atc17/atc17-dall.pdf" >Optimizing the Design and Implementation of the Linux ARM Hypervisor<i class="fas fa-external-link-alt"></i></a>, 2017 USENIX Annual Technical Conference</li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/virtualization/">#virtualization</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/aarch64/">#aarch64</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/x86-64/">#x86_64</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2019/12/01/algorithm-graph/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Algorithm Graph</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2019/10/02/design-patterns/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Design Patterns and UML</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

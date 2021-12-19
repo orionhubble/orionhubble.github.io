@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Key Ponits of TCP/IP |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Key Ponits of TCP/IP</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-02-19 10:41:51</span>
+        <span class="mobile">2018-02-19 10:41</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/STANDARD/">STANDARD</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/protocols/">protocols</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/tcp-ip/">tcp/ip</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="TCP-Timer"><a href="#TCP-Timer" class="headerlink" title="TCP Timer"></a>TCP Timer</h3><ul>
+<li><p>Retransmission timer<br>When TCP sends a group of segments, it normally sets a single retransmission timer, waiting for the other end to acknowledge reception. TCP does not set a different retransmission timer for every segment. Rather, it sets a timer when it sends a window of data and updates the timeout as ACKs arrive. If an acknowledgment is not received in time, a segment is retransmitted.</p>
+</li>
+<li><p>Keepalive timer<br>Under some circumstances, it is useful for a client or server to become aware of the termination or loss of connection with its peer. In other circumstances, it is desirable to keep a minimal amount of data flowing over a connection, even if the applications do not have any to exchange. TCP keepalive provides a capability useful for both cases. Keepalive is a method for TCP to probe its peer without affecting the content of the data stream. It is driven by a keepalive timer. When the timer fires, a keepalive probe (keepalive for short) is sent, and the peer receiving the probe responds with an ACK.</p>
+</li>
+<li><p>Persist timer in zero-window scenario<br>If an acknowledgment (containing a window update) is lost, we could end up with both sides waiting for the other: the receiver waiting to receive data (because it provided the sender with a nonzero window and expects to see incoming data) and the sender waiting to <em>receive the window update</em> allowing it to send. To prevent this form of deadlock from occurring, the sender uses a <em>persist timer</em> to query the receiver periodically, to find out if the window size has increased. The persist timer triggers the transmission of <em>window probes</em>. Also see in <a class="link"   target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc1122.txt" >RFC1122<i class="fas fa-external-link-alt"></i></a>.</p>
+</li>
+</ul>
+<h3 id="TCP-Sliding-Windows"><a href="#TCP-Sliding-Windows" class="headerlink" title="TCP Sliding Windows"></a>TCP Sliding Windows</h3><ul>
+<li>TCP Sliding Windows<br><img src="sliding-window.jpg" alt="TCP Sliding Windows"></li>
+</ul>
+<h3 id="TCP-Congestion-Control"><a href="#TCP-Congestion-Control" class="headerlink" title="TCP Congestion Control"></a>TCP Congestion Control</h3><ul>
+<li><p>Self-Clock based on ACK</p>
+</li>
+<li><p>TCP Timeout and Retransmission Timeout</p>
+</li>
+<li><p>High Bandwidth-Delay-Product, with scaling window size</p>
+</li>
+<li><p>Slow Start, Congestion Avoidance, Fast Retransmit, and Fast Recovery Algorithms, <a class="link"   target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc2001" >RFC2001<i class="fas fa-external-link-alt"></i></a></p>
+<ul>
+<li><p>Slow start: each time an ACK is received, the congestion window is increased by one segment. The sender can transmit up to the minimum of the congestion window and the advertised window.</p>
+</li>
+<li><p>Congestion window, cwnd, the flow control imposed by the sender. While the advertised window if flow control imposed by the receiver. The former is based on the sender’s assessment of perceived network congestion; the latter is related to the amount of available buffer space at the receiver for this connection.</p>
+</li>
+<li><p>Fast retransmit, If three or more duplicate ACKs are received in a row, it is a strong indication that a segment has been lost.  TCP then performs a retransmission of what appears to be the missing segment, without waiting for a retransmission timer to expire.</p>
+</li>
+<li><p>Congestion avoidance, except cwnd, another varible is needed, ssthresh, a slow start threshold.</p>
+</li>
+<li><p>If cwnd is less than or equal to ssthresh, TCP is in slow start; otherwise TCP is performing congestion avoidance.</p>
+</li>
+<li><p>After fast retransmit sends what appears to be the missing segment, congestion avoidance, but not slow start is performed.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1. Initialization for a given connection sets cwnd to one segment</span><br><span class="line">   and ssthresh to 65535 bytes.</span><br><span class="line"></span><br><span class="line">2. The TCP output routine never sends more than the minimum of cwnd</span><br><span class="line">   and the receiver&#x27;s advertised window.</span><br><span class="line"></span><br><span class="line">3. When congestion occurs (indicated by a timeout or the reception</span><br><span class="line">   of duplicate ACKs), one-half of the current window size (the</span><br><span class="line">   minimum of cwnd and the receiver&#x27;s advertised window, but at</span><br><span class="line">   least two segments) is saved in ssthresh.  Additionally, if the</span><br><span class="line">   congestion is indicated by a timeout, cwnd is set to one segment</span><br><span class="line">   (i.e., slow start).</span><br><span class="line"></span><br><span class="line">4. When new data is acknowledged by the other end, increase cwnd,</span><br><span class="line">   but the way it increases depends on whether TCP is performing</span><br><span class="line">   slow start or congestion avoidance.</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+</ul>
+<p>Congestion avoidance dictates that cwnd be incremented by segsize*segsize/cwnd each time an ACK is received, where segsize is the segment size and cwnd is maintained in bytes. This is a <em>linear growth</em> of cwnd, compared to slow start’s <em>exponential growth</em>.</p>
+<ul>
+<li><p>TCP Congestion Control illustrate<br><img src="congestion_control.jpg" alt="TCP Congestion Control illustrate"></p>
+</li>
+<li><p>Bandwith Utilization of Competion Between Multiple-Flows<br><img src="competion-between-multiple-flows.jpg" alt="Bandwith Utilization of Competion Between Multiple-Flows"></p>
+</li>
+</ul>
+<h3 id="TCP-Connection-Establishment-and-Termination"><a href="#TCP-Connection-Establishment-and-Termination" class="headerlink" title="TCP Connection Establishment and Termination"></a>TCP Connection Establishment and Termination</h3><ul>
+<li>Connection Set-Up: Three-Way Handshake<br><img src="tcpopen3way.png" alt="Connection Set-Up: Three-Way Handshake"></li>
+<li>Connection Close: Modified Three-Way Handshake<br><img src="tcpclose.png" alt="Connection Close: Modified Three-Way Handshake"></li>
+<li>TCP State Machine<br><img src="tcpfsm.png" alt="TCP State Transition"></li>
+</ul>
+<h3 id="Some-Problems"><a href="#Some-Problems" class="headerlink" title="Some Problems"></a>Some Problems</h3><ul>
+<li>Without any flow control, mixed with tcp and udp streams, tcp streams are always starved.</li>
+<li>Silly window syndrome, when it occurs, small data segments are exchanged across the connection instead of full-size segments, <a class="link"   target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc0813" >RFC0813<i class="fas fa-external-link-alt"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc1122" >RFC1122<i class="fas fa-external-link-alt"></i></a>.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">1. When operating as a receiver, small windows are not advertised. The receive</span><br><span class="line">   algorithm specified by [RFC1122] is to not send a segment advertising a</span><br><span class="line">   larger window than is currently being advertised (which can be 0) until the</span><br><span class="line">   window can be increased by either one full-size segment (i.e., the receive</span><br><span class="line">   MSS) or by one-half of the receiver’s buffer space, whichever is smaller.</span><br><span class="line">   Note that there are two cases where this rule can come into play: when buffer</span><br><span class="line">   space has become available because of an application consuming data</span><br><span class="line">   from the network, and when TCP must respond to a window probe.</span><br><span class="line">2. When sending, small segments are not sent and the Nagle algorithm governs</span><br><span class="line">   when to send. Senders avoid SWS by not transmitting a segment</span><br><span class="line">   unless at least one of the following conditions is true:</span><br><span class="line">   a. A full-size (send MSS bytes) segment can be sent.</span><br><span class="line">   b. TCP can send at least one-half of the maximum-size window that the</span><br><span class="line">	  other end has ever advertised on this connection.</span><br><span class="line">   c. TCP can send everything it has to send and either (i) an ACK is not currently</span><br><span class="line">	  expected (i.e., we have no outstanding unacknowledged data) or</span><br><span class="line">	  (ii) the Nagle algorithm is disabled for this connection.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Other-Choice-but-TCP"><a href="#Other-Choice-but-TCP" class="headerlink" title="Other Choice but TCP"></a>Other Choice but TCP</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc4960" >SCTP(Stream Control Transmission Protocol)<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://tools.ietf.org/html/rfc4340" >DCCP(Datagram Congestion Control Protocol)<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>TCP/IP Illustrated, Volume I The Protocols(Second Edition)</li>
+<li><a class="link"   target="_blank" rel="noopener" href="http://intronetworks.cs.luc.edu/current/html/tcp.html" >An Introduction to Computer Networks: Chapter 12, TCP Transport<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/protocols/">#protocols</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/tcp-ip/">#tcp/ip</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2018/02/20/path-MTU-discovery/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Path MTU Discovery</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/02/18/gartner/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Gartner&#39;s view of Technology and Company</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

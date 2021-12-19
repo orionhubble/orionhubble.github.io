@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Unified Virt Architecture |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Unified Virt Architecture</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-10-06 10:30:19</span>
+        <span class="mobile">2021-10-06 10:30</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/virtualization/">virtualization</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/offload/">offload</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/architecture/">architecture</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="0-Intel’s-DataCenter-of-Future"><a href="#0-Intel’s-DataCenter-of-Future" class="headerlink" title="0. Intel’s DataCenter of Future"></a>0. Intel’s DataCenter of Future</h3><p><img src="./intel-data-center-future-16x9.png.rendition.intel.web.1648.927.png" alt="Intel&#39;s DataCentre of Future"></p>
+<h3 id="I-Unified-Architecture-Conception"><a href="#I-Unified-Architecture-Conception" class="headerlink" title="I. Unified Architecture Conception"></a>I. Unified Architecture Conception</h3><p><img src="./Unified-Virt-Architecture-Conception.png" alt="Unified Virt Architecture"></p>
+<ul>
+<li>Key Points<ul>
+<li>Decoupling orchestration with the hypervisor, VisorOS to be a custom hypervisor dedicated OS(ecological closure)</li>
+<li>Stateless VisorOS, which run in memory(only kernel and initrd), upgrade within reboot</li>
+<li>Offload and non-offload with symmetric architecture</li>
+</ul>
+</li>
+</ul>
+<h3 id="II-Unified-Architecture-Implementation"><a href="#II-Unified-Architecture-Implementation" class="headerlink" title="II. Unified Architecture Implementation"></a>II. Unified Architecture Implementation</h3><ul>
+<li>APIs: remote control with vsock<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://libvirt.org/uri.html#URI_remote" >Libvirt Remote URIs<i class="fas fa-external-link-alt"></i></a><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://docs.openstack.org/image-guide/virt-manager.html" >OpenStack Use the virt-manager X11 GUI<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.openvswitch.org/support/dist-docs/ovsdb.7.html" >Open vSwitch CONNECTION METHODS<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li>Stateless(Immutable) OS<ul>
+<li>IBM’s RedHat, <a class="link"   target="_blank" rel="noopener" href="https://getfedora.org/en/coreos?stream=stable" >CoreOS<i class="fas fa-external-link-alt"></i></a></li>
+<li>SuSE, <a class="link"   target="_blank" rel="noopener" href="https://microos.opensuse.org/" >MicroOS<i class="fas fa-external-link-alt"></i></a></li>
+<li>Ubuntu, <a class="link"   target="_blank" rel="noopener" href="https://ubuntu.com/core" >Core<i class="fas fa-external-link-alt"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://ubuntu.com/blog/ubuntu-server-21-10s" >Minimised system<i class="fas fa-external-link-alt"></i></a></li>
+<li>Microsoft’s <a class="link"   target="_blank" rel="noopener" href="https://kinvolk.io/" >Kinvolk<i class="fas fa-external-link-alt"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://www.flatcar-linux.org/faq/" >Flatcar<i class="fas fa-external-link-alt"></i></a></li>
+<li>AWS, <a class="link"   target="_blank" rel="noopener" href="https://aws.amazon.com/bottlerocket/" >Bottlerocket<i class="fas fa-external-link-alt"></i></a></li>
+<li>Intel, <a class="link"   target="_blank" rel="noopener" href="https://clearlinux.org/features/stateless" >Clear Linux<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li>Offload SDK<ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.nvidia.com/networking/doca" >Nvidia DPU Bluefield<i class="fas fa-external-link-alt"></i></a><br><img src="./DPU-offload-application-example.png" alt="DPU-offload application example"></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/products/network-io/smartnic.html" >Intel IPUs<i class="fas fa-external-link-alt"></i></a><br><img src="./IPU-use-cases.png" alt="IPU&#39;s use cases"></li>
+</ul>
+</li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://resource.nvidia.com/en-us-linely-whitepaper" >DPU-Based Hardware Acceleration: A Software Perspective<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.intel.com/content/www/us/en/newsroom/news/infrastructure-processing-unit-data-center.html#gs.d2wcl0" >Intel Unveils Infrastructure Processing Unit<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.intel.com/content/dam/www/central-libraries/us/en/documents/ipu-based-cloud-infrastructure-white-paper.pdf" >IPU based Cloud Infrastructure White Paper<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://developer.nvidia.com/networking/doca" >Nvidia DPUs DOCA<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://xcp-ng.org/blog/2021/07/12/dpus-and-the-future-of-virtualization/" >DPUs and the future of virtualization<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.camptocamp.com/de/news-events/news_immutability_and_loose_coupling" >Immutability &amp; loose coupling: a match made in heaven<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/offload/">#offload</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/architecture/">#architecture</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/11/14/nas-with-raspberrypi/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Build NAS with Raspberry Pi</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/09/18/softether-vpn-client-for-ubuntu/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Softether VPN Client for Ubuntu</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

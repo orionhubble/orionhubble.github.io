@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Build NAS with Raspberry Pi |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Build NAS with Raspberry Pi</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-11-14 10:55:19</span>
+        <span class="mobile">2021-11-14 10:55</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/TOOLS/">TOOLS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Raspberry-Pi/">Raspberry Pi</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/NAS/">NAS</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/OMV-Open-Medida-Vault/">OMV(Open Medida Vault)</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="I-Install-Raspberry-Pi-OS"><a href="#I-Install-Raspberry-Pi-OS" class="headerlink" title="I. Install Raspberry Pi OS"></a>I. Install Raspberry Pi OS</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.raspberrypi.com/software/" >Install Raspberry Pi OS using Raspberry Pi Imager<i class="fas fa-external-link-alt"></i></a><br><a class="link"   target="_blank" rel="noopener" href="https://www.raspberrypi.com/software/operating-systems/" >Raspberry Pi Operating system images<i class="fas fa-external-link-alt"></i></a>, Raspberry Pi OS Lite.</p>
+<h3 id="II-Modify-Pi-OS-SD-Card-Content-Optional"><a href="#II-Modify-Pi-OS-SD-Card-Content-Optional" class="headerlink" title="II. Modify Pi OS SD Card Content(Optional)"></a>II. Modify Pi OS SD Card Content(Optional)</h3><p>Connect via SSH to a Raspberry Pi, without desktop monitor.</p>
+<ul>
+<li>touch <strong>ssh</strong> file in <em>boot volume</em>.</li>
+<li>touch and config wifi file <strong>wpa_supplicant.conf</strong>  in <em>boot volume</em>.<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">country=CN</span><br><span class="line">ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev</span><br><span class="line">update_config=1</span><br><span class="line"></span><br><span class="line">network=&#123;</span><br><span class="line">scan_ssid=1</span><br><span class="line">ssid=&quot;your_wifi_ssid&quot;</span><br><span class="line">psk=&quot;your_wifi_password&quot;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li>Added files in <em>boot volume</em><br><img src="addedfilesinbootvolume.png" alt="added files"></li>
+<li>Content of wpa_supplicant.conf<br><img src="./wpa_supplicant.conf.png" alt="wpa_supplicant.conf"></li>
+</ul>
+<h3 id="III-Boot-Pi-OS-and-Install-Open-Media-Vault"><a href="#III-Boot-Pi-OS-and-Install-Open-Media-Vault" class="headerlink" title="III. Boot Pi OS, and Install Open Media Vault"></a>III. Boot Pi OS, and Install Open Media Vault</h3><p>Raspberry Pi OS default user <strong>pi</strong>, and password <strong>raspberry</strong>.</p>
+<ul>
+<li>Update Pi OS<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt-get update</span><br><span class="line">$ sudo apt-get upgrade</span><br><span class="line">$ sudo reboot</span><br></pre></td></tr></table></figure></li>
+<li>Download and Install Open Media Vault<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ sudo apt install git</span><br><span class="line">$ git clone https://github.com/OpenMediaVault-Plugin-Developers/installScript.git</span><br><span class="line">$ cd installScript/</span><br><span class="line">$ sudo ./install</span><br><span class="line">$ sudo ./install --fix-missing</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="IV-Access-Open-Media-Vault"><a href="#IV-Access-Open-Media-Vault" class="headerlink" title="IV. Access Open Media Vault"></a>IV. Access Open Media Vault</h3><p>Open a browser and enter the Raspberry Pi IP address. The default credentials are user: <strong>admin</strong>, pass: <strong>openmediavault</strong>.</p>
+<ul>
+<li>Open Media Vault Login Console<br><img src="./openmediavaultlogin.png" alt="Open Media Vault Login Console"></li>
+<li>Open Media Vault Management Console<br><img src="./openmediavault.png" alt="Open Media Vault Management Console"></li>
+</ul>
+<h3 id="V-Share-FileSystem-to-Windows-10"><a href="#V-Share-FileSystem-to-Windows-10" class="headerlink" title="V. Share FileSystem to Windows 10"></a>V. Share FileSystem to Windows 10</h3><ul>
+<li>Open Media Vault Config<ul>
+<li><strong>Storage</strong> -&gt; <strong>File Systems</strong> -&gt; Create &amp; Mount filesytem, Apply the changes</li>
+<li><strong>User Management</strong> -&gt; <strong>Settings</strong> -&gt; Create user <em>win</em></li>
+<li><strong>Storage</strong> -&gt; <strong>Shared Folders</strong> -&gt; Create folder <em>win</em>, and set user <em>win</em> with Read/Write Privileges</li>
+<li><strong>Services</strong> -&gt; <strong>SMB/CIFS</strong> -&gt; <strong>Settings</strong> -&gt; turn on Enabled, <em>Workgroup</em> name should be same with your Windows</li>
+<li><strong>Services</strong> -&gt; <strong>SMB/CIFS</strong> -&gt; <strong>Shares</strong> -&gt; Create, Apply the changes</li>
+</ul>
+</li>
+<li>Windows 10 Config<ul>
+<li><strong>Network &amp; Internet</strong> -&gt; <strong>Change advanced sharing options</strong> -&gt; Turn on  <strong>Network Discovery and File Sharing</strong></li>
+<li><strong>Credential Manager</strong> -&gt; <strong>Add a Windows Credential</strong>, same with the created OMV user name and password</li>
+</ul>
+</li>
+<li>Access shared folder with OMV Server hostname<br>WIN+R: <strong>\\hostname</strong>, try to create a new file or folder in the shared folder.<br><img src="./winaccesssharedfolder.png" alt="WIN Access Shared Folder"></li>
+</ul>
+<h3 id="VI-Share-FileSystem-to-MacOS-Not-Completed"><a href="#VI-Share-FileSystem-to-MacOS-Not-Completed" class="headerlink" title="VI. Share FileSystem to MacOS(Not Completed)"></a>VI. Share FileSystem to MacOS(Not Completed)</h3><p>…</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.openmediavault.org/" >openmediavault: The open network storage solution<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.instructables.com/NAS-Raspberry-Pi/" >NAS Raspberry Pi<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.learnrobotics.org/blog/raspberry-pi-without-a-monitor/" >Connect to Raspberry Pi without a Monitor<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.tomshardware.com/reviews/raspberry-pi-headless-setup-how-to,6028.html" >How to Set Up a Headless Raspberry Pi, Without Ever Attaching a Monitor<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://forum.openmediavault.org/index.php?thread/27271-how-to-connect-to-omv-smb-shares-with-windows-10/" >Connect to OMV SMB shares with Windows 10<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Raspberry-Pi/">#Raspberry Pi</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/NAS/">#NAS</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/OMV-Open-Medida-Vault/">#OMV(Open Medida Vault)</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/10/06/unified-virt-architecture/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Unified Virt Architecture</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Softether VPN Client for Ubuntu |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Softether VPN Client for Ubuntu</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2021-09-18 11:02:19</span>
+        <span class="mobile">2021-09-18 11:02</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/TOOLS/">TOOLS</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/tool/">tool</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/vpn-client/">vpn client</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ubuntu/">ubuntu</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <h3 id="I-Download-and-Install"><a href="#I-Download-and-Install" class="headerlink" title="I. Download and Install"></a>I. Download and Install</h3><ul>
+<li>download softether linux client<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget https://github.com/SoftEtherVPN/SoftEtherVPN_Stable/releases/download/v4.38-9760-rtm/softether-vpnclient-v4.38-9760-rtm-2021.08.17-linux-arm64-64bit.tar.gz</span><br><span class="line">tar -xvf softether-vpnclient-v4.38-9760-rtm-2021.08.17-linux-arm64-64bit.tar.gz</span><br></pre></td></tr></table></figure></li>
+<li>install client and check<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">cd vpnclient</span><br><span class="line">./.install.sh</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line">$ ./vpncmd </span><br><span class="line">vpncmd command - SoftEther VPN Command Line Management Utility</span><br><span class="line">SoftEther VPN Command Line Management Utility (vpncmd command)</span><br><span class="line">Version 4.38 Build 9760   (English)</span><br><span class="line">Compiled 2021/08/17 22:32:49 by buildsan at crosswin</span><br><span class="line">Copyright (c) SoftEther VPN Project. All Rights Reserved.</span><br><span class="line"></span><br><span class="line">By using vpncmd program, the following can be achieved. </span><br><span class="line"></span><br><span class="line">1. Management of VPN Server or VPN Bridge </span><br><span class="line">2. Management of VPN Client</span><br><span class="line">3. Use of VPN Tools (certificate creation and Network Traffic Speed Test Tool)</span><br><span class="line"></span><br><span class="line">Select 1, 2 or 3: 3</span><br><span class="line"></span><br><span class="line">VPN Tools has been launched. By inputting HELP, you can view a list of the commands that can be used.</span><br><span class="line"></span><br><span class="line">VPN Tools&gt;help</span><br><span class="line">You can use the following 6 commands: </span><br><span class="line"> About         - Display the version information</span><br><span class="line"> Check         - Check whether SoftEther VPN Operation is Possible</span><br><span class="line"> MakeCert      - Create New X.509 Certificate and Private Key (1024 bit)</span><br><span class="line"> MakeCert2048  - Create New X.509 Certificate and Private Key (2048 bit)</span><br><span class="line"> TrafficClient - Run Network Traffic Speed Test Tool in Client Mode</span><br><span class="line"> TrafficServer - Run Network Traffic Speed Test Tool in Server Mode</span><br><span class="line"></span><br><span class="line">To reference the usage for each command, input &quot;command name ?&quot; to view a help.</span><br><span class="line">The command completed successfully.</span><br><span class="line"></span><br><span class="line">VPN Tools&gt;check</span><br><span class="line">Check command - Check whether SoftEther VPN Operation is Possible</span><br><span class="line">---------------------------------------------------</span><br><span class="line">SoftEther VPN Operation Environment Check Tool</span><br><span class="line"></span><br><span class="line">Copyright (c) SoftEther VPN Project.</span><br><span class="line">All Rights Reserved.</span><br><span class="line"></span><br><span class="line">If this operation environment check tool is run on a system and that system passes, it is most likely that SoftEther VPN software can operate on that system. This check may take a while. Please wait...</span><br><span class="line"></span><br><span class="line">Checking &#x27;Kernel System&#x27;... </span><br><span class="line">              Pass</span><br><span class="line">Checking &#x27;Memory Operation System&#x27;... </span><br><span class="line">              Pass</span><br><span class="line">Checking &#x27;ANSI / Unicode string processing system&#x27;... </span><br><span class="line">              Pass</span><br><span class="line">Checking &#x27;File system&#x27;... </span><br><span class="line">              Pass</span><br><span class="line">Checking &#x27;Thread processing system&#x27;... </span><br><span class="line">              Pass</span><br><span class="line">Checking &#x27;Network system&#x27;... </span><br><span class="line">              Pass</span><br><span class="line"></span><br><span class="line">All checks passed. It is most likely that SoftEther VPN Server / Bridge can operate normally on this system.</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="II-Config-Client"><a href="#II-Config-Client" class="headerlink" title="II. Config Client"></a>II. Config Client</h3><ul>
+<li>start client<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo /home/down/vpn/vpnclient/vpnclient start</span><br></pre></td></tr></table></figure></li>
+<li>vpncmd help<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br></pre></td><td class="code"><pre><span class="line">$ sudo ./vpncmd </span><br><span class="line">vpncmd command - SoftEther VPN Command Line Management Utility</span><br><span class="line">SoftEther VPN Command Line Management Utility (vpncmd command)</span><br><span class="line">Version 4.38 Build 9760   (English)</span><br><span class="line">Compiled 2021/08/17 22:32:49 by buildsan at crosswin</span><br><span class="line">Copyright (c) SoftEther VPN Project. All Rights Reserved.</span><br><span class="line"></span><br><span class="line">By using vpncmd program, the following can be achieved. </span><br><span class="line"></span><br><span class="line">1. Management of VPN Server or VPN Bridge </span><br><span class="line">2. Management of VPN Client</span><br><span class="line">3. Use of VPN Tools (certificate creation and Network Traffic Speed Test Tool)</span><br><span class="line"></span><br><span class="line">Select 1, 2 or 3: 2</span><br><span class="line"></span><br><span class="line">Specify the host name or IP address of the computer that the destination VPN Client is operating on. </span><br><span class="line">If nothing is input and Enter is pressed, connection will be made to localhost (this computer).</span><br><span class="line">Hostname of IP Address of Destination: </span><br><span class="line"></span><br><span class="line">Connected to VPN Client &quot;localhost&quot;.</span><br><span class="line"></span><br><span class="line">VPN Client&gt;help</span><br><span class="line">You can use the following 66 commands: </span><br><span class="line"> About                    - Display the version information</span><br><span class="line"> AccountAnonymousSet      - Set User Authentication Type of VPN Connection Setting to Anonymous Authentication</span><br><span class="line"> AccountCertGet           - Get Client Certificate to Use for Cascade Connection</span><br><span class="line"> AccountCertSet           - Set User Authentication Type of VPN Connection Setting to Client Certificate Authentication</span><br><span class="line"> AccountCompressDisable   - Disable Data Compression when Communicating by VPN Connection Setting</span><br><span class="line"> AccountCompressEnable    - Enable Data Compression when Communicating by VPN Connection Setting</span><br><span class="line"> AccountConnect           - Start Connection to VPN Server using VPN Connection Setting</span><br><span class="line"> AccountCreate            - Create New VPN Connection Setting</span><br><span class="line"> AccountDelete            - Delete VPN Connection Setting</span><br><span class="line"> AccountDetailSet         - Set Advanced Settings for VPN Connection Setting</span><br><span class="line"> AccountDisconnect        - Disconnect VPN Connection Setting During Connection</span><br><span class="line"> AccountEncryptDisable    - Disable Encryption when Communicating by VPN Connection Setting</span><br><span class="line"> AccountEncryptEnable     - Enable Encryption when Communicating by VPN Connection Setting</span><br><span class="line"> AccountExport            - Export VPN Connection Setting</span><br><span class="line"> AccountGet               - Get Setting of VPN Connection Setting </span><br><span class="line"> AccountImport            - Import VPN Connection Setting</span><br><span class="line"> AccountList              - Get List of VPN Connection Settings</span><br><span class="line"> AccountNicSet            - Set Virtual Network Adapter for VPN Connection Setting to Use</span><br><span class="line"> AccountPasswordSet       - Set User Authentication Type of VPN Connection Setting to Password Authentication</span><br><span class="line"> AccountProxyHttp         - Set Connection Method of VPN Connection Setting to be via an HTTP Proxy Server</span><br><span class="line"> AccountProxyNone         - Specify Direct TCP/IP Connection as the Connection Method of VPN Connection Setting</span><br><span class="line"> AccountProxySocks        - Set Connection Method of VPN Connection Setting to be via an SOCKS Proxy Server</span><br><span class="line"> AccountRename            - Change VPN Connection Setting Name</span><br><span class="line"> AccountRetrySet          - Set Interval between Connection Retries for Connection Failures or Disconnections of VPN Connection Setting</span><br><span class="line"> AccountSecureCertSet     - Set User Authentication Type of VPN Connection Setting to Smart Card Authentication</span><br><span class="line"> AccountServerCertDelete  - Delete Server Individual Certificate for VPN Connection Setting</span><br><span class="line"> AccountServerCertDisable - Disable VPN Connection Setting Server Certificate Verification Option</span><br><span class="line"> AccountServerCertEnable  - Enable VPN Connection Setting Server Certificate Verification Option</span><br><span class="line"> AccountServerCertGet     - Get Server Individual Certificate for VPN Connection Setting</span><br><span class="line"> AccountServerCertSet     - Set Server Individual Certificate for VPN Connection Setting</span><br><span class="line"> AccountSet               - Set the VPN Connection Setting Connection Destination</span><br><span class="line"> AccountStartupRemove     - Remove Startup Connection of VPN Connection Setting </span><br><span class="line"> AccountStartupSet        - Set VPN Connection Setting as Startup Connection</span><br><span class="line"> AccountStatusGet         - Get Current VPN Connection Setting Status</span><br><span class="line"> AccountStatusHide        - Set Connection Status and Error Screen to be Hidden when Connecting to VPN Server</span><br><span class="line"> AccountStatusShow        - Set Connection Status and Error Screen to Display when Connecting to VPN Server</span><br><span class="line"> AccountUsernameSet       - Set User Name of User to Use Connection of VPN Connection Setting</span><br><span class="line"> CertAdd                  - Add Trusted CA Certificate</span><br><span class="line"> CertDelete               - Delete Trusted CA Certificate</span><br><span class="line"> CertGet                  - Get Trusted CA Certificate</span><br><span class="line"> CertList                 - Get List of Trusted CA Certificates</span><br><span class="line"> Check                    - Check whether SoftEther VPN Operation is Possible</span><br><span class="line"> KeepDisable              - Disable the Keep Alive Internet Connection Function</span><br><span class="line"> KeepEnable               - Enable the Keep Alive Internet Connection Function</span><br><span class="line"> KeepGet                  - Get the Keep Alive Internet Connection Function</span><br><span class="line"> KeepSet                  - Set the Keep Alive Internet Connection Function</span><br><span class="line"> MakeCert                 - Create New X.509 Certificate and Private Key (1024 bit)</span><br><span class="line"> MakeCert2048             - Create New X.509 Certificate and Private Key (2048 bit)</span><br><span class="line"> NicCreate                - Create New Virtual Network Adapter</span><br><span class="line"> NicDelete                - Delete Virtual Network Adapter</span><br><span class="line"> NicDisable               - Disable Virtual Network Adapter</span><br><span class="line"> NicEnable                - Enable Virtual Network Adapter</span><br><span class="line"> NicGetSetting            - Get Virtual Network Adapter Setting</span><br><span class="line"> NicList                  - Get List of Virtual Network Adapters</span><br><span class="line"> NicSetSetting            - Change Virtual Network Adapter Setting</span><br><span class="line"> NicUpgrade               - Upgrade Virtual Network Adapter Device Driver</span><br><span class="line"> PasswordGet              - Get Password Setting to Connect to VPN Client Service</span><br><span class="line"> PasswordSet              - Set the password to connect to the VPN Client service.</span><br><span class="line"> RemoteDisable            - Deny Remote Management of VPN Client Service</span><br><span class="line"> RemoteEnable             - Allow Remote Management of VPN Client Service</span><br><span class="line"> SecureGet                - Get ID of Smart Card Type to Use</span><br><span class="line"> SecureList               - Get List of Usable Smart Card Types</span><br><span class="line"> SecureSelect             - Select the Smart Card Type to Use</span><br><span class="line"> TrafficClient            - Run Network Traffic Speed Test Tool in Client Mode</span><br><span class="line"> TrafficServer            - Run Network Traffic Speed Test Tool in Server Mode</span><br><span class="line"> VersionGet               - Get Version Information of VPN Client Service</span><br><span class="line"></span><br><span class="line">To reference the usage for each command, input &quot;command name ?&quot; to view a help.</span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+<li>create nic<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VPN Client&gt;NicCreate</span><br><span class="line">NicCreate command - Create New Virtual Network Adapter</span><br><span class="line">Virtual Network Adapter Name: aws</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+<li>create account<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VPN Client&gt;AccountCreate</span><br><span class="line">AccountCreate command - Create New VPN Connection Setting</span><br><span class="line">Name of VPN Connection Setting: aws</span><br><span class="line"></span><br><span class="line">Destination VPN Server Host Name and Port Number: 13.230.1.6:443</span><br><span class="line"></span><br><span class="line">Destination Virtual Hub Name: VPN</span><br><span class="line"></span><br><span class="line">Connecting User Name: rpi1 </span><br><span class="line"></span><br><span class="line">Used Virtual Network Adapter Name: aws</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+<li>set password<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">VPN Client&gt;AccountPasswordSet</span><br><span class="line">AccountPasswordSet command - Set User Authentication Type of VPN Connection Setting to Password Authentication</span><br><span class="line">Name of VPN Connection Setting: aws</span><br><span class="line"></span><br><span class="line">Please enter the password. To cancel press the Ctrl+D key.</span><br><span class="line"></span><br><span class="line">Password: ********</span><br><span class="line">Confirm input: ********</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Specify standard or radius: standard</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure>
+<h3 id="III-Connect-and-Query-Status"><a href="#III-Connect-and-Query-Status" class="headerlink" title="III. Connect and Query Status"></a>III. Connect and Query Status</h3></li>
+<li>connect<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">VPN Client&gt;AccountConnect</span><br><span class="line">AccountConnect command - Start Connection to VPN Server using VPN Connection Setting</span><br><span class="line">Name of VPN Connection Setting: aws</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br><span class="line"></span><br><span class="line">VPN Client&gt;AccountList</span><br><span class="line">AccountList command - Get List of VPN Connection Settings</span><br><span class="line">Item                        |Value</span><br><span class="line">----------------------------+-----------------------------------------</span><br><span class="line">VPN Connection Setting Name |aws</span><br><span class="line">Status                      |Connected</span><br><span class="line">VPN Server Hostname         |13.230.1.6:443 (Direct TCP/IP Connection)</span><br><span class="line">Virtual Hub                 |VPN</span><br><span class="line">Virtual Network Adapter Name|aws</span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+<li>disconnect<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VPN Client&gt;AccountDisconnect </span><br><span class="line">AccountDisconnect command - Disconnect VPN Connection Setting During Connection</span><br><span class="line">Name of VPN Connection Setting: aws</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="enable-ip-forward-and-config-route"><a href="#enable-ip-forward-and-config-route" class="headerlink" title="enable ip forward and config route"></a>enable ip forward and config route</h3><ul>
+<li><p>enable ipv4 forward<br>uncommnet /etc/sysctl.conf ‘s <em>#net.ipv4.ip_forward = 1</em> field.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ sudo sysctl -p</span><br><span class="line">net.ipv4.ip_forward = 1</span><br></pre></td></tr></table></figure></li>
+<li><p>dhcp ip</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">$ ifconfig vpn_aws</span><br><span class="line">vpn_aws: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet6 fe80::5c8a:2fff:fea2:9bcd  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 5e:8a:2f:a2:9b:cd  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 480  bytes 36783 (36.7 KB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 404  bytes 34409 (34.4 KB)</span><br><span class="line">        TX errors 0  dropped 0 overruns 0  carrier 0  collisions 0</span><br><span class="line">		</span><br><span class="line">$ sudo dhclient vpn_aws</span><br><span class="line"></span><br><span class="line">$ ifconfig vpn_aws</span><br><span class="line">vpn_aws: flags=4163&lt;UP,BROADCAST,RUNNING,MULTICAST&gt;  mtu 1500</span><br><span class="line">        inet 192.168.30.11  netmask 255.255.255.0  broadcast 192.168.30.255</span><br><span class="line">        inet6 fe80::5c8a:2fff:fea2:9bcd  prefixlen 64  scopeid 0x20&lt;link&gt;</span><br><span class="line">        ether 5e:8a:2f:a2:9b:cd  txqueuelen 1000  (Ethernet)</span><br><span class="line">        RX packets 503  bytes 38923 (38.9 KB)</span><br><span class="line">        RX errors 0  dropped 0  overruns 0  frame 0</span><br><span class="line">        TX packets 269644  bytes 188780458 (188.7 MB)</span><br><span class="line">        TX errors 0  dropped 42599 overruns 0  carrier 0  collisions 0</span><br></pre></td></tr></table></figure></li>
+<li><p>config route</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">$ ip route </span><br><span class="line">default via 192.168.30.1 dev vpn_aws </span><br><span class="line">default via 192.168.124.1 dev wlan0 proto dhcp metric 600 </span><br><span class="line">169.254.0.0/16 dev wlan0 scope link metric 1000 </span><br><span class="line">192.168.30.0/24 dev vpn_aws proto kernel scope link src 192.168.30.11 </span><br><span class="line">192.168.124.0/24 dev wlan0 proto kernel scope link src 192.168.124.8 metric 600 </span><br><span class="line"></span><br><span class="line">$ sudo ip route add 13.230.1.6/32 via 192.168.124.1 dev wlan0</span><br><span class="line">$ sudo ip route del default via 192.168.124.1 dev wlan0 proto dhcp metric 600</span><br><span class="line"></span><br><span class="line">$ ip route</span><br><span class="line">default via 192.168.30.1 dev vpn_aws </span><br><span class="line">13.230.1.6 via 192.168.124.1 dev wlan0 </span><br><span class="line">169.254.0.0/16 dev wlan0 scope link metric 1000 </span><br><span class="line">192.168.30.0/24 dev vpn_aws proto kernel scope link src 192.168.30.11 </span><br><span class="line">192.168.124.0/24 dev wlan0 proto kernel scope link src 192.168.124.8 metric 600 </span><br></pre></td></tr></table></figure></li>
+<li><p>set nameserver</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ su root</span><br><span class="line">$ echo &quot;nameserver 8.8.8.8&quot; &gt;&gt; /etc/resolv.conf</span><br><span class="line">$ ping 8.8.8.8 -c4</span><br></pre></td></tr></table></figure></li>
+<li><p>done</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"># ping google.com.au -c4</span><br><span class="line">PING google.com.au (172.217.25.99) 56(84) bytes of data.</span><br><span class="line">64 bytes from nrt13s51-in-f99.1e100.net (172.217.25.99): icmp_seq=1 ttl=104 time=197 ms</span><br><span class="line">64 bytes from nrt13s51-in-f99.1e100.net (172.217.25.99): icmp_seq=2 ttl=104 time=194 ms</span><br><span class="line">64 bytes from nrt13s51-in-f99.1e100.net (172.217.25.99): icmp_seq=3 ttl=104 time=194 ms</span><br><span class="line">64 bytes from nrt13s51-in-f99.1e100.net (172.217.25.99): icmp_seq=4 ttl=104 time=194 ms</span><br><span class="line"></span><br><span class="line">--- google.com.au ping statistics ---</span><br><span class="line">4 packets transmitted, 4 received, 0% packet loss, time 3004ms</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Summarize-everytime"><a href="#Summarize-everytime" class="headerlink" title="Summarize(everytime)"></a>Summarize(everytime)</h3><ul>
+<li><p>start vpn</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo /home/down/vpn/vpnclient/vpnclient start; sleep 5</span><br><span class="line">sudo dhclient vpn_aws</span><br><span class="line">sudo ip route add 13.230.1.6/32 via 192.168.124.1 dev wlan0</span><br><span class="line">sudo ip route del default via 192.168.124.1 dev wlan0</span><br></pre></td></tr></table></figure></li>
+<li><p><strong>Notes</strong>: the account should be set startup mode</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">VPN Client&gt;AccountStartupSet</span><br><span class="line">AccountStartupSet command - Set VPN Connection Setting as Startup Connection</span><br><span class="line">Name of VPN Connection Setting: aws</span><br><span class="line"></span><br><span class="line">The command completed successfully.</span><br></pre></td></tr></table></figure></li>
+<li><p>stop vpn</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">sudo ifconfig down vpn_aws</span><br><span class="line">sudo /home/down/vpn/vpnclient/vpnclient stop; sleep 5</span><br><span class="line">sudo ip route del 13.230.1.6/32</span><br><span class="line">sudo ip route del default</span><br><span class="line">sudo ip route add default via 192.168.124.1 dev wlan0 proto dhcp metric 600</span><br><span class="line">sudo dhclient -x wlan0; sudo dhclient wlan0</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a class="link"   target="_blank" rel="noopener" href="https://www.youtube.com/watch?v=i2zN1IFKNYU" >How to install and set up Softether VPN Client for Ubuntu Linux via free VPN Gate servers<i class="fas fa-external-link-alt"></i></a></p>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/tool/">#tool</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/vpn-client/">#vpn client</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/ubuntu/">#ubuntu</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2021/10/06/unified-virt-architecture/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Unified Virt Architecture</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2021/09/12/deploy-k3s-on-raspberrypi4b/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Deploy k3s on RaspberryPi4B</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

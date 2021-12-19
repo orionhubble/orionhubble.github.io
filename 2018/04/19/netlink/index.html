@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Generic Netlink used in OvS |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Generic Netlink used in OvS</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-04-19 21:27:59</span>
+        <span class="mobile">2018-04-19 21:27</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/virtualization/">virtualization</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/Open-vSwitch/">Open vSwitch</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/network/">network</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/netlink/">netlink</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>The netlink protocol is a socket-based Inter Process Communication (IPC) mechanism, based on <a class="link"   target="_blank" rel="noopener" href="https://www.rfc-editor.org/rfc/rfc3549.txt" >RFC 3549<i class="fas fa-external-link-alt"></i></a>, “Linux Netlink as an IP Services Protocol.” It provides a bidirectional communication channel between userspace and the kernel or among some parts of the kernel itself.</p>
+<p>Appeared first in the 2.2 Linux kernel, an alternative to the awkward IOCTL communication method, but more flexiblity. The IOCTL handlers cannot send asynchronous messages to userspace from the kernel, and you have to define IOCTL numbers.</p>
+<h3 id="Netlink-API-and-Structure-in-userspace"><a href="#Netlink-API-and-Structure-in-userspace" class="headerlink" title="Netlink API and Structure in userspace"></a>Netlink API and Structure in userspace</h3><h4 id="create-netlink-socket"><a href="#create-netlink-socket" class="headerlink" title="create netlink socket"></a>create netlink socket</h4><p>socket(AF_NETLINK, SOCK_RAW, NETLINK_GENERIC)</p>
+<h4 id="set-netlink-sock-options"><a href="#set-netlink-sock-options" class="headerlink" title="set netlink sock options"></a>set netlink sock options</h4><p>setsockopt(int fd, SOL_SOCKET, SO_RCVBUFFORCE, const void *optval, socklen_t optlen)</p>
+<h4 id="connect-a-netlink-sock"><a href="#connect-a-netlink-sock" class="headerlink" title="connect a netlink sock"></a>connect a netlink sock</h4><p>connect(int fd, struct sockaddr *, int len)</p>
+<h4 id="get-created-generic-netlink-sock’s-id"><a href="#get-created-generic-netlink-sock’s-id" class="headerlink" title="get created generic netlink sock’s id"></a>get created generic netlink sock’s id</h4><p>Send CTRL_CMD_GETFAMILY cmd to generic netlink id GENL_ID_CTRL with <strong>sendmsg()</strong>.</p>
+<h4 id="generic-netlink-sock’s-id-in-OvS"><a href="#generic-netlink-sock’s-id-in-OvS" class="headerlink" title="generic netlink sock’s id in OvS"></a>generic netlink sock’s id in OvS</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">static int ovs_datapath_family;</span><br><span class="line">static int ovs_vport_family;</span><br><span class="line">static int ovs_flow_family;</span><br><span class="line">static int ovs_packet_family;</span><br></pre></td></tr></table></figure>
+<p>Corresponding with “generic netlink operations in OvS”.</p>
+<p><strong>With a word, the operations of netlink sock in userspace just as the unix or network socket’s operations, such a friendly design.</strong></p>
+<h3 id="Netlink-Interface-and-Structure-in-Kernel"><a href="#Netlink-Interface-and-Structure-in-Kernel" class="headerlink" title="Netlink Interface and Structure in Kernel"></a>Netlink Interface and Structure in Kernel</h3><h4 id="create-netlink-sock"><a href="#create-netlink-sock" class="headerlink" title="create netlink sock"></a>create netlink sock</h4><p>netlink_kernel_create(struct net *net, int unit, struct netlink_kernel_cfg *cfg)</p>
+<h4 id="generic-netlink-init"><a href="#generic-netlink-init" class="headerlink" title="generic netlink init"></a>generic netlink init</h4><p>genl_pernet_init()</p>
+<h4 id="generic-netlink-input-callback"><a href="#generic-netlink-input-callback" class="headerlink" title="generic netlink input callback"></a>generic netlink input callback</h4><p>(*input)(struct sk_buff *skb)<br>genl_rcv–&gt;genl_rcv_msg</p>
+<h4 id="generic-netlink-sendmsg-to-userspace"><a href="#generic-netlink-sendmsg-to-userspace" class="headerlink" title="generic netlink sendmsg to userspace"></a>generic netlink sendmsg to userspace</h4><p>genlmsg_put()<br>genlmsg_unicast() /* mostly used */<br>genlmsg_multicast()</p>
+<h4 id="generic-netlink-operations"><a href="#generic-netlink-operations" class="headerlink" title="generic netlink operations"></a>generic netlink operations</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * struct genl_ops - generic netlink operations</span><br><span class="line"> * @cmd: command identifier</span><br><span class="line"> * @internal_flags: flags used by the family</span><br><span class="line"> * @flags: flags</span><br><span class="line"> * @policy: attribute validation policy</span><br><span class="line"> * @doit: standard command callback</span><br><span class="line"> * @dumpit: callback for dumpers</span><br><span class="line"> * @done: completion callback for dumps</span><br><span class="line"> * @ops_list: operations list</span><br><span class="line"> */</span><br><span class="line">struct genl_ops &#123;</span><br><span class="line">	const struct nla_policy	*policy;</span><br><span class="line">	int		       (*doit)(struct sk_buff *skb,</span><br><span class="line">				       struct genl_info *info);</span><br><span class="line">	int		       (*dumpit)(struct sk_buff *skb,</span><br><span class="line">					 struct netlink_callback *cb);</span><br><span class="line">	int		       (*done)(struct netlink_callback *cb);</span><br><span class="line">	u8			cmd;</span><br><span class="line">	u8			internal_flags;</span><br><span class="line">	u8			flags;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * struct nla_policy - attribute validation policy</span><br><span class="line"> * @type: Type of attribute or NLA_UNSPEC</span><br><span class="line"> * @len: Type specific length of payload</span><br><span class="line"> *</span><br><span class="line"> * Policies are defined as arrays of this struct, the array must be</span><br><span class="line"> * accessible by attribute type up to the highest identifier to be expected.</span><br><span class="line"> *</span><br><span class="line"> * Meaning of &#x27;len&#x27; field:</span><br><span class="line"> *    NLA_STRING           Maximum length of string</span><br><span class="line"> *    NLA_NUL_STRING       Maximum length of string (excluding NUL)</span><br><span class="line"> *    NLA_FLAG             Unused</span><br><span class="line"> *    NLA_BINARY           Maximum length of attribute payload</span><br><span class="line"> *    NLA_NESTED           Don&#x27;t use &#x27;len&#x27; field -- length verification is</span><br><span class="line"> *                         done by checking len of nested header (or empty)</span><br><span class="line"> *    NLA_NESTED_COMPAT    Minimum length of structure payload</span><br><span class="line"> *    NLA_U8, NLA_U16,</span><br><span class="line"> *    NLA_U32, NLA_U64,</span><br><span class="line"> *    NLA_S8, NLA_S16,</span><br><span class="line"> *    NLA_S32, NLA_S64,</span><br><span class="line"> *    NLA_MSECS            Leaving the length field zero will verify the</span><br><span class="line"> *                         given type fits, using it verifies minimum length</span><br><span class="line"> *                         just like &quot;All other&quot;</span><br><span class="line"> *    All other            Minimum length of attribute payload</span><br><span class="line"> *</span><br><span class="line"> * Example:</span><br><span class="line"> * static const struct nla_policy my_policy[ATTR_MAX+1] = &#123;</span><br><span class="line"> * 	[ATTR_FOO] = &#123; .type = NLA_U16 &#125;,</span><br><span class="line"> *	[ATTR_BAR] = &#123; .type = NLA_STRING, .len = BARSIZ &#125;,</span><br><span class="line"> *	[ATTR_BAZ] = &#123; .len = sizeof(struct mystruct) &#125;,</span><br><span class="line"> * &#125;;</span><br><span class="line"> */</span><br><span class="line">struct nla_policy &#123;</span><br><span class="line">	u16		type;</span><br><span class="line">	u16		len;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
+<h4 id="generic-netlink-operations-in-OvS"><a href="#generic-netlink-operations-in-OvS" class="headerlink" title="generic netlink operations in OvS"></a>generic netlink operations in OvS</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">/* datapath operatons, new, del, dump and set */</span><br><span class="line">struct genl_ops dp_datapath_genl_ops;</span><br><span class="line"></span><br><span class="line">/* port operations, new, del, dump and set */</span><br><span class="line">struct genl_ops dp_vport_genl_ops;</span><br><span class="line"></span><br><span class="line">/* exact flow operations */</span><br><span class="line">struct genl_ops dp_flow_genl_ops;</span><br><span class="line"></span><br><span class="line">/* upcall packets handler */</span><br><span class="line">struct genl_ops dp_packet_genl_ops;</span><br></pre></td></tr></table></figure>
+
+<p>One-to-one correspondence with netlink sock’s id.</p>
+<h3 id="Netlink-message-layout"><a href="#Netlink-message-layout" class="headerlink" title="Netlink message layout"></a>Netlink message layout</h3><h4 id="layout-illustrate"><a href="#layout-illustrate" class="headerlink" title="layout illustrate"></a>layout illustrate</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">/*</span><br><span class="line"> *  &lt;------- NLA_HDRLEN ------&gt; &lt;-- NLA_ALIGN(payload)--&gt;</span><br><span class="line"> * +---------------------+- - -+- - - - - - - - - -+- - -+</span><br><span class="line"> * |        Header       | Pad |     Payload       | Pad |</span><br><span class="line"> * |   (struct nlattr)   | ing |                   | ing |</span><br><span class="line"> * +---------------------+- - -+- - - - - - - - - -+- - -+</span><br><span class="line"> *  &lt;-------------- nlattr-&gt;nla_len --------------&gt;</span><br><span class="line"> */</span><br></pre></td></tr></table></figure>
+<h3 id="Summary-with-flow-chart"><a href="#Summary-with-flow-chart" class="headerlink" title="Summary with flow chart"></a>Summary with flow chart</h3><ul>
+<li>generic netlink flow chart in OvS<br><img src="netlink-flow.jpg" alt="generic netlink flow chart in OvS"></li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a class="link"   target="_blank" rel="noopener" href="https://wiki.linuxfoundation.org/networking/generic_netlink_howto" >generic netlink howto<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Append-generic-netlink-example-code"><a href="#Append-generic-netlink-example-code" class="headerlink" title="Append: generic netlink example code"></a>Append: generic netlink example code</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── kernel</span><br><span class="line">│   └── netlink_instance.c</span><br><span class="line">├── Makefile</span><br><span class="line">├── pub</span><br><span class="line">│   └── genl_ins_pub.h</span><br><span class="line">└── user</span><br><span class="line">    └── user_netlink.c</span><br></pre></td></tr></table></figure>
+
+<h4 id="kernel-netlink-instance-c"><a href="#kernel-netlink-instance-c" class="headerlink" title="kernel/netlink_instance.c"></a>kernel/netlink_instance.c</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;linux/kernel.h&gt;</span><br><span class="line">#include &lt;linux/module.h&gt;</span><br><span class="line">#include &lt;net/genetlink.h&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;../pub/genl_ins_pub.h&quot;</span><br><span class="line"></span><br><span class="line">/* attribute policy */</span><br><span class="line">static struct nla_policy instance_genl_policy[INSTANCE_A_MAX + 1] = &#123;</span><br><span class="line">   [INSTANCE_A_MSG] = &#123; .type = NLA_NUL_STRING &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/* handler */</span><br><span class="line">int instance_echo(struct sk_buff *skb, struct genl_info *info);</span><br><span class="line"></span><br><span class="line">/* operation definition */</span><br><span class="line">static struct genl_ops instance_genl_ops[INSTANCE_C_MAX] = &#123;</span><br><span class="line">    &#123;</span><br><span class="line">        .cmd = INSTANCE_C_ECHO,</span><br><span class="line">        .flags = 0,</span><br><span class="line">        .policy = instance_genl_policy,</span><br><span class="line">        .doit = instance_echo,</span><br><span class="line">        .dumpit = NULL,</span><br><span class="line">   &#125;,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/* family definition */</span><br><span class="line">static struct genl_family instance_genl_family = &#123;</span><br><span class="line">   .id = GENL_ID_GENERATE,</span><br><span class="line">   .hdrsize = 0,</span><br><span class="line">   .name = GENL_INSTANCE_NAME,</span><br><span class="line">   .version = 1,</span><br><span class="line">   .maxattr = INSTANCE_A_MAX,</span><br><span class="line">   .netnsok = true,</span><br><span class="line">   .parallel_ops = true,</span><br><span class="line">   .ops = instance_genl_ops,</span><br><span class="line">   .n_ops = ARRAY_SIZE(instance_genl_ops),</span><br><span class="line">   .module = THIS_MODULE,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">int instance_echo(struct sk_buff *skb, struct genl_info *info)</span><br><span class="line">&#123;</span><br><span class="line">    struct nlattr *na;</span><br><span class="line">    struct sk_buff *skb_echo = NULL;</span><br><span class="line">    int rc;</span><br><span class="line">    void *msg_head;</span><br><span class="line">    char *mydata;</span><br><span class="line"> </span><br><span class="line">    if (info == NULL) &#123;</span><br><span class="line">        goto out;</span><br><span class="line">    &#125;</span><br><span class="line">  </span><br><span class="line">    /* For each attribute there is an index in info-&gt;attrs</span><br><span class="line">     * which points to a nlattr structure in this structure</span><br><span class="line">     * the data is given</span><br><span class="line">     */</span><br><span class="line">    na = info-&gt;attrs[INSTANCE_A_MSG];</span><br><span class="line">    if (na) &#123;</span><br><span class="line">        mydata = (char *) nla_data(na);</span><br><span class="line">        if (mydata == NULL) &#123;</span><br><span class="line">            printk(KERN_ERR &quot;error while receiving data\n&quot;);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            /* shuld be validate the contend of data before print */</span><br><span class="line">            printk(KERN_INFO &quot;received: %s\n&quot;, mydata);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        printk(KERN_INFO &quot;no info-&gt;attrs %i\n&quot;, INSTANCE_A_MSG);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* Send a message back */</span><br><span class="line">    /* Allocate some memory, since the size is not</span><br><span class="line">     * yet known use NLMSG_GOODSIZE</span><br><span class="line">     */</span><br><span class="line">    skb_echo = genlmsg_new(NLMSG_GOODSIZE, GFP_KERNEL);</span><br><span class="line">    if (skb_echo == NULL) &#123;</span><br><span class="line">        goto out;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* Create the message headers */</span><br><span class="line">    /* arguments of genlmsg_put: </span><br><span class="line">     * struct sk_buff *, </span><br><span class="line">     * int (sending) pid, </span><br><span class="line">     * int sequence number, </span><br><span class="line">     * struct genl_family *, </span><br><span class="line">     * int flags, </span><br><span class="line">     * u8 command index (why do we need this?)</span><br><span class="line">     */</span><br><span class="line">    msg_head = genlmsg_put(skb_echo, 0, info-&gt;snd_seq + 1,</span><br><span class="line">                           &amp;instance_genl_family, 0, INSTANCE_C_ECHO);</span><br><span class="line">    if (msg_head == NULL) &#123;</span><br><span class="line">        rc = -ENOMEM;</span><br><span class="line">        goto out;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* Add a INSTANCE_A_MSG attribute (actual value to be sent) */</span><br><span class="line">    rc = nla_put_string(skb_echo, INSTANCE_A_MSG,</span><br><span class="line">                        &quot;Hello world from kernel space&quot;);</span><br><span class="line">    if (rc != 0) &#123;</span><br><span class="line">        goto out;</span><br><span class="line">    &#125;</span><br><span class="line"> </span><br><span class="line">    /* Finalize the message */</span><br><span class="line">    genlmsg_end(skb_echo, msg_head);</span><br><span class="line"></span><br><span class="line">    /* Send the message back */</span><br><span class="line">    rc = genlmsg_unicast(genl_info_net(info), skb_echo, info-&gt;snd_portid);</span><br><span class="line">    if (rc != 0) &#123;</span><br><span class="line">        goto out;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line"></span><br><span class="line">out:</span><br><span class="line">    if (!skb_echo) &#123;</span><br><span class="line">        kfree_skb(skb_echo);</span><br><span class="line">    &#125;</span><br><span class="line">    printk(KERN_ERR &quot;an error occured in instance_echo\n&quot;);</span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int __init genl_instance_init(void)</span><br><span class="line">&#123;</span><br><span class="line">    int rc;</span><br><span class="line"></span><br><span class="line">    rc = genl_register_family(&amp;instance_genl_family);</span><br><span class="line">    if (rc != 0) &#123;</span><br><span class="line">        printk(KERN_ERR &quot;register instance genl family fail, err %d\n&quot;, rc);</span><br><span class="line">        return rc;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    printk(KERN_INFO &quot;register %s genl family success\n&quot;, GENL_INSTANCE_NAME);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void genl_instance_uninit(void)</span><br><span class="line">&#123;</span><br><span class="line">    genl_unregister_family(&amp;instance_genl_family);</span><br><span class="line"></span><br><span class="line">    printk(KERN_INFO &quot;unregister %s genl family success\n&quot;, GENL_INSTANCE_NAME);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">module_init(genl_instance_init);</span><br><span class="line">module_exit(genl_instance_uninit);</span><br><span class="line"></span><br><span class="line">MODULE_DESCRIPTION(&quot;generic netlink instance&quot;);</span><br><span class="line">MODULE_LICENSE(&quot;GPL&quot;);</span><br><span class="line">MODULE_VERSION(&quot;0.1&quot;);</span><br><span class="line">MODULE_ALIAS_GENL_FAMILY(GENL_INSTANCE_NAME);</span><br></pre></td></tr></table></figure>
+
+<h4 id="user-user-netlink-c"><a href="#user-user-netlink-c" class="headerlink" title="user/user_netlink.c"></a>user/user_netlink.c</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br></pre></td><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line">#include &lt;stdint.h&gt;</span><br><span class="line">#include &lt;stdlib.h&gt;</span><br><span class="line">#include &lt;errno.h&gt;</span><br><span class="line">#include &lt;unistd.h&gt;</span><br><span class="line">#include &lt;poll.h&gt;</span><br><span class="line">#include &lt;string.h&gt;</span><br><span class="line">#include &lt;fcntl.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;sys/stat.h&gt;</span><br><span class="line">#include &lt;sys/socket.h&gt;</span><br><span class="line">#include &lt;sys/types.h&gt;</span><br><span class="line">#include &lt;signal.h&gt;</span><br><span class="line"></span><br><span class="line">#include &lt;linux/genetlink.h&gt;</span><br><span class="line"></span><br><span class="line">#include &quot;../pub/genl_ins_pub.h&quot;</span><br><span class="line"></span><br><span class="line">/* Generic macros for dealing with netlink sockets. Might be duplicated</span><br><span class="line"> * elsewhere. It is recommended that commercial grade applications use</span><br><span class="line"> * libnl or libnetlink and use the interfaces provided by the library</span><br><span class="line"> */</span><br><span class="line">#define GENLMSG_DATA(gh) ((void *)(NLMSG_DATA(gh) + GENL_HDRLEN))</span><br><span class="line">#define GENLMSG_PAYLOAD(gh) (NLMSG_PAYLOAD(gh, 0) - GENL_HDRLEN)</span><br><span class="line">#define NLA_DATA(na) ((void *)((char*)(na) + NLA_HDRLEN))</span><br><span class="line"></span><br><span class="line">#define MESSAGE_TO_KERNEL &quot;Hello World!&quot;</span><br><span class="line"></span><br><span class="line">struct nl_sock</span><br><span class="line">&#123;</span><br><span class="line">    int fd;</span><br><span class="line">    uint32_t pid;</span><br><span class="line">    </span><br><span class="line">    int protocol;</span><br><span class="line">    uint32_t seq_id;</span><br><span class="line"></span><br><span class="line">    int family_id;</span><br><span class="line">    const char *name;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">/* memory for netlink request and response messages</span><br><span class="line"> * - headers are included</span><br><span class="line"> */</span><br><span class="line">struct gennl_ins_msg &#123;</span><br><span class="line">    struct nlmsghdr nh;</span><br><span class="line">    struct genlmsghdr gh;</span><br><span class="line">    char user[256];</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">static struct nl_sock instance = &#123; .fd = -1,</span><br><span class="line">                                   .name = GENL_INSTANCE_NAME &#125;;</span><br><span class="line"></span><br><span class="line">int create_nl_sock(struct nl_sock *nl_sock, int protocol);</span><br><span class="line">int lookup_gennl_family_id(struct nl_sock *nl_sock);</span><br><span class="line">int gennl_interaction(struct nl_sock *nl_sock);</span><br><span class="line"></span><br><span class="line">int main(char **argv, int argc)</span><br><span class="line">&#123;</span><br><span class="line">    do &#123;</span><br><span class="line">        if (create_nl_sock(&amp;instance, NETLINK_GENERIC) &lt; 0) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        if (gennl_interaction(&amp;instance)) &#123;</span><br><span class="line">            break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; while (0);</span><br><span class="line"></span><br><span class="line">    if (instance.fd &gt; 0) &#123;</span><br><span class="line">        close(instance.fd);</span><br><span class="line">        instance.fd = -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int create_nl_sock(struct nl_sock *nl_sock, int protocol)</span><br><span class="line">&#123;</span><br><span class="line">    int retval, rcvbuf = 1024 * 1024;</span><br><span class="line">    struct sockaddr_nl local, remote;</span><br><span class="line"></span><br><span class="line">    nl_sock-&gt;fd = socket(AF_NETLINK, SOCK_RAW, protocol);</span><br><span class="line">    if (nl_sock-&gt;fd &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;create socket errno: %d\n&quot;, errno);</span><br><span class="line">        return errno;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    nl_sock-&gt;protocol = protocol;</span><br><span class="line">    nl_sock-&gt;seq_id = 1;</span><br><span class="line">    </span><br><span class="line">    if (setsockopt(nl_sock-&gt;fd, SOL_SOCKET, SO_RCVBUFFORCE,</span><br><span class="line">                   &amp;rcvbuf, sizeof rcvbuf)) &#123;</span><br><span class="line">        printf(&quot;setting %d-bytes socket receive buffer failed, errno %d\n&quot;,</span><br><span class="line">               rcvbuf, errno);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* Connect to kernel (pid 0) as remote address. */</span><br><span class="line">    memset(&amp;remote, 0, sizeof remote);</span><br><span class="line">    remote.nl_family = AF_NETLINK;</span><br><span class="line">    remote.nl_pid = 0;</span><br><span class="line"></span><br><span class="line">    if (connect(nl_sock-&gt;fd, (struct sockaddr *) &amp;remote,</span><br><span class="line">                sizeof(remote)) &lt; 0) &#123;</span><br><span class="line">        retval = errno;</span><br><span class="line">        fprintf(stderr, &quot;connect sock fail, errno %d\n&quot;, errno);</span><br><span class="line"></span><br><span class="line">        goto error;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (lookup_gennl_family_id(nl_sock)) &#123;</span><br><span class="line">        retval = -1;</span><br><span class="line">        goto error;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line"></span><br><span class="line">error:</span><br><span class="line">    if (nl_sock-&gt;fd &gt;= 0) &#123;</span><br><span class="line">        close(nl_sock-&gt;fd);</span><br><span class="line">        nl_sock-&gt;fd = -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    return retval;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int lookup_gennl_family_id(struct nl_sock *nl_sock)</span><br><span class="line">&#123;</span><br><span class="line">    struct gennl_ins_msg request, reply;</span><br><span class="line">    struct nlattr *nl_na;</span><br><span class="line">    struct sockaddr_nl nl_address;</span><br><span class="line">    int length;</span><br><span class="line"></span><br><span class="line">    /* Step 1. prepare request msg */</span><br><span class="line">    /* netlink header */</span><br><span class="line">    request.nh.nlmsg_type = GENL_ID_CTRL;</span><br><span class="line">    request.nh.nlmsg_flags = NLM_F_REQUEST;</span><br><span class="line">    request.nh.nlmsg_seq = nl_sock-&gt;seq_id;</span><br><span class="line">    request.nh.nlmsg_pid = getpid();</span><br><span class="line">    request.nh.nlmsg_len = NLMSG_LENGTH(GENL_HDRLEN);</span><br><span class="line"></span><br><span class="line">    /* generic netlink header */</span><br><span class="line">    request.gh.cmd = CTRL_CMD_GETFAMILY;</span><br><span class="line">    request.gh.version = 0x2;</span><br><span class="line"></span><br><span class="line">    /* assemble attr */</span><br><span class="line">    nl_na = (struct nlattr *) GENLMSG_DATA(&amp;request);</span><br><span class="line">    nl_na-&gt;nla_type = CTRL_ATTR_FAMILY_NAME;</span><br><span class="line">    nl_na-&gt;nla_len = strlen(GENL_INSTANCE_NAME) + 1 + NLA_HDRLEN;</span><br><span class="line">    strcpy(NLA_DATA(nl_na), GENL_INSTANCE_NAME);</span><br><span class="line"></span><br><span class="line">    request.nh.nlmsg_len += NLMSG_ALIGN(nl_na-&gt;nla_len);</span><br><span class="line"></span><br><span class="line">    /* Step 2. send request msg */</span><br><span class="line">    memset(&amp;nl_address, 0, sizeof(nl_address));</span><br><span class="line">    nl_address.nl_family = AF_NETLINK;</span><br><span class="line"></span><br><span class="line">    length = sendto(nl_sock-&gt;fd, (char *) &amp;request, request.nh.nlmsg_len,</span><br><span class="line">                    0, (struct sockaddr *) &amp;nl_address, sizeof(nl_address));</span><br><span class="line">    if (length != request.nh.nlmsg_len) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%s sendto fail, %d\n&quot;, __func__, length);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* Step 3. receive reply msg */</span><br><span class="line">    length = recv(nl_sock-&gt;fd, &amp;reply, sizeof(reply), 0);</span><br><span class="line">    if (length &lt; 0) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%s recv fail, %d\n&quot;, __func__, length);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    /* Step 4. validate&amp;parse reply msg */</span><br><span class="line">    if (!NLMSG_OK((&amp;reply.nh), length)) &#123;</span><br><span class="line">        fprintf(stderr, &quot;family ID request: invalid message\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line">    if (reply.nh.nlmsg_type == NLMSG_ERROR) &#123;</span><br><span class="line">        fprintf(stderr, &quot;family ID request: receive error\n&quot;);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nl_na = (struct nlattr *) GENLMSG_DATA(&amp;reply);</span><br><span class="line">    nl_na = (struct nlattr *) ((char *) nl_na + NLA_ALIGN(nl_na-&gt;nla_len));</span><br><span class="line">    if (nl_na-&gt;nla_type != CTRL_ATTR_FAMILY_ID) &#123;</span><br><span class="line">        fprintf(stderr, &quot;family ID request: receive nla type(%d) not match %d\n&quot;,</span><br><span class="line">                nl_na-&gt;nla_type, CTRL_ATTR_FAMILY_ID);</span><br><span class="line">        return -1;    </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    nl_sock-&gt;family_id = *(__u16 *) NLA_DATA(nl_na);</span><br><span class="line">    printf(&quot;%s genric netlink id %d\n&quot;,</span><br><span class="line">           GENL_INSTANCE_NAME, nl_sock-&gt;family_id);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int gennl_interaction(struct nl_sock *nl_sock)</span><br><span class="line">&#123;</span><br><span class="line">    struct gennl_ins_msg request, reply;</span><br><span class="line">    struct nlattr *nl_na;</span><br><span class="line">    struct sockaddr_nl nl_address;</span><br><span class="line">    int length;</span><br><span class="line"></span><br><span class="line">    memset(&amp;request, 0, sizeof(request));</span><br><span class="line">    memset(&amp;reply, 0, sizeof(reply));</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    request.nh.nlmsg_len = NLMSG_LENGTH(GENL_HDRLEN);</span><br><span class="line">    request.nh.nlmsg_type = nl_sock-&gt;family_id;</span><br><span class="line">    request.nh.nlmsg_flags = NLM_F_REQUEST;</span><br><span class="line">    request.nh.nlmsg_seq = 60;</span><br><span class="line">    request.nh.nlmsg_pid = getpid();</span><br><span class="line"></span><br><span class="line">    request.gh.cmd = INSTANCE_C_ECHO;</span><br><span class="line">    nl_na = (struct nlattr *) GENLMSG_DATA(&amp;request);</span><br><span class="line">    nl_na-&gt;nla_type = INSTANCE_A_MSG;</span><br><span class="line">    nl_na-&gt;nla_len = sizeof(MESSAGE_TO_KERNEL) + NLA_HDRLEN;</span><br><span class="line">    memcpy(NLA_DATA(nl_na), MESSAGE_TO_KERNEL, sizeof(MESSAGE_TO_KERNEL));</span><br><span class="line"></span><br><span class="line">    request.nh.nlmsg_len += NLMSG_ALIGN(nl_na-&gt;nla_len);</span><br><span class="line"></span><br><span class="line">    memset(&amp;nl_address, 0, sizeof(nl_address));</span><br><span class="line">    nl_address.nl_family = AF_NETLINK;</span><br><span class="line"></span><br><span class="line">    length = sendto(nl_sock-&gt;fd, (char *) &amp;request, request.nh.nlmsg_len,</span><br><span class="line">                    0, (struct sockaddr *) &amp;nl_address, sizeof(nl_address));</span><br><span class="line">    if (length != request.nh.nlmsg_len) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%s sento return %d, expect %d\n&quot;, __func__,</span><br><span class="line">                length, request.nh.nlmsg_len);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    length = recv(nl_sock-&gt;fd, &amp;reply, sizeof(reply), 0);</span><br><span class="line">    if (length &lt; 0) &#123;</span><br><span class="line">        printf(&quot;%s recv error %d\n&quot;, __func__, length);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (!NLMSG_OK((&amp;reply.nh), length)) &#123;</span><br><span class="line">        fprintf(stderr, &quot;%s recv invalid nlmsg\n&quot;, __func__);</span><br><span class="line">        return -1;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    length = GENLMSG_PAYLOAD(&amp;reply.nh);</span><br><span class="line">    nl_na = (struct nlattr *) GENLMSG_DATA(&amp;reply);</span><br><span class="line">    printf(&quot;kernel replied: %s\n&quot;,(char *)NLA_DATA(nl_na));</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h4 id="pub-genl-ins-pub-h"><a href="#pub-genl-ins-pub-h" class="headerlink" title="pub/genl_ins_pub.h"></a>pub/genl_ins_pub.h</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#define GENL_INSTANCE_NAME &quot;gennl_ins&quot;</span><br><span class="line"></span><br><span class="line">#ifndef ARRAY_SIZE</span><br><span class="line">#define ARRAY_SIZE(_x)  ((sizeof(_x))/sizeof (_x)[0])</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">/* commands */</span><br><span class="line">enum &#123;</span><br><span class="line">   INSTANCE_C_UNSPEC,</span><br><span class="line">   INSTANCE_C_ECHO,</span><br><span class="line">   __INSTANCE_C_MAX,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#define INSTANCE_C_MAX (__INSTANCE_C_MAX - 1)</span><br><span class="line"></span><br><span class="line">/* attributes */</span><br><span class="line">enum &#123;</span><br><span class="line">   INSTANCE_A_UNSPEC,</span><br><span class="line">   INSTANCE_A_MSG,</span><br><span class="line">   __INSTANCE_A_MAX,</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">#define INSTANCE_A_MAX (__INSTANCE_A_MAX - 1)</span><br></pre></td></tr></table></figure>
+
+<h4 id="Makefile"><a href="#Makefile" class="headerlink" title="Makefile"></a>Makefile</h4><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"># Example run in CentOS 7.4 with kernel 3.10.0-693.el7.x86_64</span><br><span class="line"># Tabs maybe transfer to space, this should be check or correct after copy.</span><br><span class="line"></span><br><span class="line">CONFIG_MODULE_SIG=n</span><br><span class="line">obj-m += kernel/netlink_instance.o</span><br><span class="line">nl_kern-objs := kernel/netlink_instance.o</span><br><span class="line"></span><br><span class="line">all: kernel-build kernel-clean-temporary user-build</span><br><span class="line">	@tput setaf 3</span><br><span class="line">	@echo &quot;    done: all&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">clean: kernel-clean user-clean</span><br><span class="line">	@tput setaf 3</span><br><span class="line">	@echo &quot;    done: clean&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">kernel-build:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    kernel-build&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) modules</span><br><span class="line">kernel-clean:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    kernel-clean&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	make -C /lib/modules/$(shell uname -r)/build M=$(PWD) clean</span><br><span class="line">kernel-clean-temporary:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    kernel-clean-temporary&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	-rm -rf *.o *~ core .depend .*.cmd *.mod.c .tmp_versions</span><br><span class="line">	-rm -rf kernel/*.o kernel/*~ kernel/core kernel/.depend kernel/.*.cmd  kernel/*.mod.c kernel/.tmp_versions</span><br><span class="line">	-rm -rf Module.symvers modules.order</span><br><span class="line">kernel-module-install:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    kernel-module-install&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	-sudo insmod netlink-instance.ko</span><br><span class="line">kernel-module-uninstall:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    kernel-module-uninstall&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	-sudo rmmod netlink-instance</span><br><span class="line">kernel-clean-ring-buffer:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    kernel-clean-ring-buffer&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	sudo dmesg -c &gt; /dev/null</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">user-build:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    user-build&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	gcc user/user_netlink.c -o genl_user</span><br><span class="line">user-clean:</span><br><span class="line">	@tput setaf 1</span><br><span class="line">	@echo &quot;    user-clean&quot;</span><br><span class="line">	@tput sgr0</span><br><span class="line">	rm -rf *.out genl_user</span><br></pre></td></tr></table></figure>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/Open-vSwitch/">#Open vSwitch</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/network/">#network</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/netlink/">#netlink</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2018/06/30/flow-acceleration/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Flow Acceleration</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/04/01/bio-path/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Block IO Path in Kernel</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>

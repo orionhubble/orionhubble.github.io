@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content="Hexo Theme Keep">
+    <meta name="description" content="virtualization, orchestration">
+    <meta name="author" content="Orion">
+    
+    <title>
+        
+            Ethernet, Fibre Channel and InfiniBand |
+        
+        Orion Hubble
+    </title>
+    
+<link rel="stylesheet" href="/css/style.css">
+
+    <link rel="shortcut icon" href="/images/Xen-Panda-Summit-500px.png">
+    
+<link rel="stylesheet" href="/css/font-awesome.min.css">
+
+    <script id="hexo-configurations">
+    let KEEP = window.KEEP || {};
+    KEEP.hexo_config = {"hostname":"orionhubble.github.io","root":"/","language":"en","path":"search.xml"};
+    KEEP.theme_config = {"toc":{"enable":false,"number":false,"expand_all":false,"init_open":false},"style":{"primary_color":"#989898","avatar":"/images/Xen-Fu-Panda-500px.png","favicon":"/images/Xen-Panda-Summit-500px.png","article_img_align":"left","left_side_width":"650px","content_max_width":"650px","hover":{"shadow":false,"scale":false},"first_screen":{"enable":true,"background_img":"/images/bg.svg","description":"The Sea of Stars, Computing World, Leptons, Bosons, Quarks."},"scroll":{"progress_bar":{"enable":false},"percent":{"enable":false}}},"local_search":{"enable":true,"preload":true},"code_copy":{"enable":true,"style":"default"},"pjax":{"enable":false},"lazyload":{"enable":false},"version":"3.4.3"};
+    KEEP.language_ago = {"second":"%s seconds ago","minute":"%s minutes ago","hour":"%s hours ago","day":"%s days ago","week":"%s weeks ago","month":"%s months ago","year":"%s years ago"};
+  </script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+<div class="progress-bar-container">
+    
+
+    
+</div>
+
+
+<main class="page-container">
+
+    
+
+    <div class="page-main-content">
+
+        <div class="page-main-content-top">
+            <header class="header-wrapper">
+
+    <div class="header-content">
+        <div class="left">
+            
+            <a class="logo-title" href="/">
+                Orion Hubble
+            </a>
+        </div>
+
+        <div class="right">
+            <div class="pc">
+                <ul class="menu-list">
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/"
+                            >
+                                HOME
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/categories"
+                            >
+                                CATEGORIES
+                            </a>
+                        </li>
+                    
+                        <li class="menu-item">
+                            <a class=""
+                               href="/archives"
+                            >
+                                ARCHIVES
+                            </a>
+                        </li>
+                    
+                    
+                        <li class="menu-item search search-popup-trigger">
+                            <i class="fas fa-search"></i>
+                        </li>
+                    
+                </ul>
+            </div>
+            <div class="mobile">
+                
+                    <div class="icon-item search search-popup-trigger"><i class="fas fa-search"></i></div>
+                
+                <div class="icon-item menu-bar">
+                    <div class="menu-bar-middle"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="header-drawer">
+        <ul class="drawer-menu-list">
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/">HOME</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/categories">CATEGORIES</a>
+                </li>
+            
+                <li class="drawer-menu-item flex-center">
+                    <a class=""
+                       href="/archives">ARCHIVES</a>
+                </li>
+            
+        </ul>
+    </div>
+
+    <div class="window-mask"></div>
+
+</header>
+
+
+        </div>
+
+        <div class="page-main-content-middle">
+
+            <div class="main-content">
+
+                
+                    <div class="fade-in-down-animation">
+    <div class="article-content-container">
+
+        <div class="article-title">
+            <span class="title-hover-animation">Ethernet, Fibre Channel and InfiniBand</span>
+        </div>
+
+        
+            <div class="article-header">
+                <div class="avatar">
+                    <img src="/images/Xen-Fu-Panda-500px.png">
+                </div>
+                <div class="info">
+                    <div class="author">
+                        <span class="name">Orion</span>
+                        
+                            <span class="author-label">Lv4</span>
+                        
+                    </div>
+                    <div class="meta-info">
+                        <div class="article-meta-info">
+    <span class="article-date article-meta-item">
+        <i class="fas fa-edit"></i>&nbsp;
+        <span class="pc">2018-08-26 08:52:43</span>
+        <span class="mobile">2018-08-26 08:52</span>
+    </span>
+    
+        <span class="article-categories article-meta-item">
+            <i class="fas fa-folder"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/categories/INDUSTRY/">INDUSTRY</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+    
+        <span class="article-tags article-meta-item">
+            <i class="fas fa-tags"></i>&nbsp;
+            <ul>
+                
+                    <li>
+                        <a href="/tags/hardware/">hardware</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/ethernet/">ethernet</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/fibre-channel/">fibre channel</a>&nbsp;
+                    </li>
+                
+                    <li>
+                        | <a href="/tags/infiniband/">infiniband</a>&nbsp;
+                    </li>
+                
+            </ul>
+        </span>
+    
+
+    
+    
+    
+    
+</div>
+
+                    </div>
+                </div>
+            </div>
+        
+
+        <div class="article-content markdown-body">
+            <p>Ethernet and its slower speed cousins are the networking technology of choice for client-server networks, Fibre Channel is the fabric technology for storage applications, and InfiniBand Architecture is introduced as a fabric technology for CPU-memory complex to adapter connections.</p>
+<table>
+<thead>
+<tr>
+<th align="left">Technology</th>
+<th align="left">Standards Body</th>
+<th align="left">Signaling Speed(Y2018)</th>
+<th align="left">First Standard</th>
+<th align="left">Maximum frame size</th>
+<th align="left">Primary Application</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">Ethernet</td>
+<td align="left"><a class="link"   target="_blank" rel="noopener" href="https://ethernetalliance.org/" >IEEE<i class="fas fa-external-link-alt"></i></a></td>
+<td align="left">200Gb</td>
+<td align="left">Y1999</td>
+<td align="left">1.5K/9k</td>
+<td align="left">Local Area Network(LAN)</td>
+</tr>
+<tr>
+<td align="left">Fibre Channel</td>
+<td align="left"><a class="link"   target="_blank" rel="noopener" href="https://fibrechannel.org/" >ANSI<i class="fas fa-external-link-alt"></i></a></td>
+<td align="left">128Gb</td>
+<td align="left">Y1988</td>
+<td align="left">2K</td>
+<td align="left">Storage Area Network(SAN)</td>
+</tr>
+<tr>
+<td align="left">InfiniBand</td>
+<td align="left"><a class="link"   target="_blank" rel="noopener" href="https://www.infinibandta.org/" >InfiniBand Trade Association<i class="fas fa-external-link-alt"></i></a></td>
+<td align="left">600Gb</td>
+<td align="left">Y2001</td>
+<td align="left">4K</td>
+<td align="left">IO Area Network(IAN)</td>
+</tr>
+</tbody></table>
+<p>Network Technology Choices in the Data Center(bandwidth, latency and reliability):<br><img src="datacenter_choice.png" alt=" Network Technology Choices in the Data Center"></p>
+<h3 id="RoadMap"><a href="#RoadMap" class="headerlink" title="RoadMap"></a>RoadMap</h3><ul>
+<li><p>Fibre Channel RoadMap<br><img src="fibrechannle_roadmap.png" alt="Fibre Channel RoadMap"></p>
+</li>
+<li><p>Fibre Channel is doomed:</p>
+<ul>
+<li>Modern Ethernet Outperforms Fibre Channel</li>
+<li>iSER(iSCSI Extensions for RDMA) Turbocharges iSCSI</li>
+<li>Flash: Fast Storage Needs Fast Networking, but speed of FC’s improvement is slower than ethernet</li>
+</ul>
+</li>
+<li><p>Ethernet RoadMap<br><img src="ethernet_roadmap.png" alt="Ethernet RoadMap"></p>
+</li>
+<li><p>InfiniBand RoadMap<br><img src="InfiniBand_roadmap.jpg" alt="InfiniBand RoadMap"></p>
+</li>
+</ul>
+<h3 id="Reliability-congestion-control-over-subscription-or-over-commit"><a href="#Reliability-congestion-control-over-subscription-or-over-commit" class="headerlink" title="Reliability, congestion control, over-subscription or over-commit"></a>Reliability, congestion control, over-subscription or over-commit</h3><ul>
+<li><p>Fibre Channel, Lossless data delivery with buffer to buffer credit, congestion strategy is “pause it”.<br><img src="fibrechannel_cogestion.png" alt="Fibre Channel Congestion Bandwidth"></p>
+</li>
+<li><p><a class="link"   target="_blank" rel="noopener" href="https://fibrechannel.org/wp-content/uploads/2018/02/FCIA_Fibre_Channel_Performance_Congestion_Slowdrain_and_Over_Utilization_Final.pdf" >Fibre Channel Performance: Congestion, Slow Drain, and Over Utilization<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+<li><p>Ethernet, based on Transport Layer Protocols, congestion strategy is “drop it”.<br><img src="ethernet_congestion_control.jpg" alt="TCP Congestion Bandwidth Utiliztion"></p>
+</li>
+</ul>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>There are a variety of switched fabrics and networks to apply to the problem of server I/O. The selection of the “best” technology depends on particular situations, legacy installations, and the desired application. The Ethernet technologies are well suited for client-server connections in a LAN environment, and Fibre Channel technology is the well suited for storage applications in a SAN. InfiniBand is a new technology well suited for interconnection of CPU-memory complexes to I/O in an IAN. A fabric-based IAN enables clustering as well as connections to I/O controllers.</p>
+<p>The comparison of these three, layered technologies demonstrated a striking similarity, yet there are subtle differences evident in specific installations. The management model of these three technologies is different, each one supporting the needs of the application. Ethernet network management is loosely defined, and is tolerant of peer nodes joining and leaving segments. There is no need for a node to communicate with a central management entity. This pure peer-to-peer network has few dependencies on the existence of particular nodes, which can be good when a network spans hundreds of offices.</p>
+<p>Management of a fabric is better defined out of necessity. The fabric manager must configure each node as it joins the fabric. It implements partitioning and provides a central directory to discover attached nodes. Fibre Channel defines a fabric manager to reside in the fabric, and relies upon proprietary implementations to expand management across many switches. InfiniBand takes this one step further and defines the management entity such that it can reside on any node of the network. It configures and manages the subnet in a manner defined by the InfiniBand Architecture Specification.</p>
+<p>Application protocols traditionally favor particular technologies. Most client-server communication is based on TCP/IP or similar protocols. Storage protocols are based on SCSI-3 in the enterprise environment. The protocols used between CPU-memory complexes and adapters have been a mix of bus protocols and custom control messages, and InfiniBand Architecture will standardize these connections. InfiniBand also enables a new level of clustering by allowing CPU-memory complexes to directly communicate using the IAN.</p>
+<p>The future belongs to ethernet and infiband, Fibre Channle will be out?</p>
+<p>Ethernet is really easy to build for one, two, three, even four user Ethernet SAN, cause you’ll end up with oversubscription. Unfortunately, errors can still happen- Ethernet is not a guaranteed in-order delivery, nor a guaranteed latency, Fibre Channel is.</p>
+<p>With fibre channel, in-order guaranteed latency is possible, and scalable to larger amounts of systems.</p>
+<p>Ultimately, with Ethernet you can find yourself with multiple drop-frames and other issues during a production. </p>
+<h3 id="Alliances-or-Standards"><a href="#Alliances-or-Standards" class="headerlink" title="Alliances or Standards"></a>Alliances or Standards</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://ethernetalliance.org/" >Ethernet Alliance<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.openfabrics.org/" >Open Fabric Alliance<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.infinibandta.org/" >InfiniBand Association<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://fibrechannel.org/" >Fibre Channel Industry Association<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Forum"><a href="#Forum" class="headerlink" title="Forum"></a>Forum</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://edgeoptic.com/" >Edge Optic<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+
+        </div>
+
+        
+
+        
+            <ul class="post-tags-box">
+                
+                    <li class="tag-item">
+                        <a href="/tags/hardware/">#hardware</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/ethernet/">#ethernet</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/fibre-channel/">#fibre channel</a>&nbsp;
+                    </li>
+                
+                    <li class="tag-item">
+                        <a href="/tags/infiniband/">#infiniband</a>&nbsp;
+                    </li>
+                
+            </ul>
+        
+
+        
+            <div class="article-nav">
+                
+                    <div class="article-prev">
+                        <a class="prev"
+                           rel="prev"
+                           href="/2018/08/28/graph-greedy-algorithms/"
+                        >
+                            <span class="left arrow-icon flex-center">
+                              <i class="fas fa-chevron-left"></i>
+                            </span>
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Graph and Greedy algorithms</span>
+                                <span class="post-nav-item">Prev posts</span>
+                            </span>
+                        </a>
+                    </div>
+                
+                
+                    <div class="article-next">
+                        <a class="next"
+                           rel="next"
+                           href="/2018/08/25/softether-vpn-on-cloud/"
+                        >
+                            <span class="title flex-center">
+                                <span class="post-nav-title-item">Softether VPN on Cloud</span>
+                                <span class="post-nav-item">Next posts</span>
+                            </span>
+                            <span class="right arrow-icon flex-center">
+                              <i class="fas fa-chevron-right"></i>
+                            </span>
+                        </a>
+                    </div>
+                
+            </div>
+        
+
+        
+    </div>
+</div>
+
+
+                
+            </div>
+
+        </div>
+
+        <div class="page-main-content-bottom">
+            <footer class="footer">
+    <div class="info-container">
+        <div class="copyright-info info-item">
+            &copy;
+            
+              <span>2018</span>
+              -
+            
+            2021&nbsp;<i class="fas fa-heart icon-animate"></i>&nbsp;<a href="/">Orion</a>
+        </div>
+        
+        <div class="theme-info info-item">
+            Powered by <a target="_blank" href="https://hexo.io">Hexo</a>&nbsp;|&nbsp;Theme&nbsp;<a class="theme-version" target="_blank" href="https://github.com/XPoet/hexo-theme-keep">Keep v3.4.3</a>
+        </div>
+        
+        
+    </div>
+</footer>
+
+        </div>
+    </div>
+
+    
+        <div class="post-tools">
+            <div class="post-tools-container">
+    <ul class="tools-list">
+        <!-- TOC aside toggle -->
+        
+
+        <!-- go comment -->
+        
+    </ul>
+</div>
+
+        </div>
+    
+
+    <div class="right-bottom-side-tools">
+        <div class="side-tools-container">
+    <ul class="side-tools-list">
+        <li class="tools-item tool-font-adjust-plus flex-center">
+            <i class="fas fa-search-plus"></i>
+        </li>
+
+        <li class="tools-item tool-font-adjust-minus flex-center">
+            <i class="fas fa-search-minus"></i>
+        </li>
+
+        <li class="tools-item tool-expand-width flex-center">
+            <i class="fas fa-arrows-alt-h"></i>
+        </li>
+
+        <li class="tools-item tool-dark-light-toggle flex-center">
+            <i class="fas fa-moon"></i>
+        </li>
+
+        <!-- rss -->
+        
+
+        
+            <li class="tools-item tool-scroll-to-top flex-center">
+                <i class="fas fa-arrow-up"></i>
+            </li>
+        
+
+        <li class="tools-item tool-scroll-to-bottom flex-center">
+            <i class="fas fa-arrow-down"></i>
+        </li>
+    </ul>
+
+    <ul class="exposed-tools-list">
+        <li class="tools-item tool-toggle-show flex-center">
+            <i class="fas fa-cog fa-spin"></i>
+        </li>
+        
+    </ul>
+</div>
+
+    </div>
+
+    
+
+    <div class="image-viewer-container">
+    <img src="">
+</div>
+
+
+    
+        <div class="search-pop-overlay">
+    <div class="popup search-popup">
+        <div class="search-header">
+          <span class="search-input-field-pre">
+            <i class="fas fa-keyboard"></i>
+          </span>
+            <div class="search-input-container">
+                <input autocomplete="off"
+                       autocorrect="off"
+                       autocapitalize="off"
+                       placeholder="Search..."
+                       spellcheck="false"
+                       type="search"
+                       class="search-input"
+                >
+            </div>
+            <span class="popup-btn-close">
+                <i class="fas fa-times"></i>
+            </span>
+        </div>
+        <div id="search-result">
+            <div id="no-result">
+                <i class="fas fa-spinner fa-pulse fa-5x fa-fw"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+
+</main>
+
+
+
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/main.js"></script>
+
+<script src="/js/header-shrink.js"></script>
+
+<script src="/js/back2top.js"></script>
+
+<script src="/js/dark-light-toggle.js"></script>
+
+
+
+    
+<script src="/js/local-search.js"></script>
+
+
+
+
+    
+<script src="/js/code-copy.js"></script>
+
+
+
+
+
+<div class="post-scripts">
+    
+</div>
+
+
+
+</body>
+</html>
