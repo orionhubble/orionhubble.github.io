@@ -15,7 +15,7 @@
   --scroll-bar-bg-color: #e6e6e6;
   --link-color: #484853;
   --copyright-info-color: #c03;
-  --avatar-background-color: #06c;
+  --avatar-background-color: #fff;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
 }
 @media (prefers-color-scheme: light) {
@@ -36,7 +36,7 @@
     --scroll-bar-bg-color: #e6e6e6;
     --link-color: #484853;
     --copyright-info-color: #c03;
-    --avatar-background-color: #06c;
+    --avatar-background-color: #fff;
     --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
   }
 }
@@ -58,7 +58,7 @@
     --scroll-bar-bg-color: #5c5e6a;
     --link-color: #c5c5cc;
     --copyright-info-color: #a30029;
-    --avatar-background-color: #005cb8;
+    --avatar-background-color: #e6e6e6;
     --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
   }
 }
@@ -79,7 +79,7 @@
   --scroll-bar-bg-color: #e6e6e6;
   --link-color: #484853;
   --copyright-info-color: #c03;
-  --avatar-background-color: #06c;
+  --avatar-background-color: #fff;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
 }
 .dark-mode {
@@ -99,7 +99,7 @@
   --scroll-bar-bg-color: #5c5e6a;
   --link-color: #c5c5cc;
   --copyright-info-color: #a30029;
-  --avatar-background-color: #005cb8;
+  --avatar-background-color: #e6e6e6;
   --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
 }
 .fade-in-down-animation {
@@ -556,7 +556,7 @@ button {
   --scroll-bar-bg-color: #e6e6e6;
   --link-color: #484853;
   --copyright-info-color: #c03;
-  --avatar-background-color: #06c;
+  --avatar-background-color: #fff;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
 }
 @media (prefers-color-scheme: light) {
@@ -577,7 +577,7 @@ button {
     --scroll-bar-bg-color: #e6e6e6;
     --link-color: #484853;
     --copyright-info-color: #c03;
-    --avatar-background-color: #06c;
+    --avatar-background-color: #fff;
     --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
   }
 }
@@ -599,7 +599,7 @@ button {
     --scroll-bar-bg-color: #5c5e6a;
     --link-color: #c5c5cc;
     --copyright-info-color: #a30029;
-    --avatar-background-color: #005cb8;
+    --avatar-background-color: #e6e6e6;
     --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
   }
 }
@@ -620,7 +620,7 @@ button {
   --scroll-bar-bg-color: #e6e6e6;
   --link-color: #484853;
   --copyright-info-color: #c03;
-  --avatar-background-color: #06c;
+  --avatar-background-color: #fff;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
 }
 .dark-mode {
@@ -640,7 +640,7 @@ button {
   --scroll-bar-bg-color: #5c5e6a;
   --link-color: #c5c5cc;
   --copyright-info-color: #a30029;
-  --avatar-background-color: #005cb8;
+  --avatar-background-color: #e6e6e6;
   --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
 }
 :root {
@@ -940,7 +940,7 @@ pre .javascript .function {
   --scroll-bar-bg-color: #e6e6e6;
   --link-color: #484853;
   --copyright-info-color: #c03;
-  --avatar-background-color: #06c;
+  --avatar-background-color: #fff;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
 }
 @media (prefers-color-scheme: light) {
@@ -961,7 +961,7 @@ pre .javascript .function {
     --scroll-bar-bg-color: #e6e6e6;
     --link-color: #484853;
     --copyright-info-color: #c03;
-    --avatar-background-color: #06c;
+    --avatar-background-color: #fff;
     --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
   }
 }
@@ -983,7 +983,7 @@ pre .javascript .function {
     --scroll-bar-bg-color: #5c5e6a;
     --link-color: #c5c5cc;
     --copyright-info-color: #a30029;
-    --avatar-background-color: #005cb8;
+    --avatar-background-color: #e6e6e6;
     --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
   }
 }
@@ -1004,7 +1004,7 @@ pre .javascript .function {
   --scroll-bar-bg-color: #e6e6e6;
   --link-color: #484853;
   --copyright-info-color: #c03;
-  --avatar-background-color: #06c;
+  --avatar-background-color: #fff;
   --pjax-progress-bar-color: linear-gradient(45deg, #f10006, #ef5b00, #e59c01, #19ca05, #00cab5, #0264c8, #c303c3);
 }
 .dark-mode {
@@ -1024,7 +1024,7 @@ pre .javascript .function {
   --scroll-bar-bg-color: #5c5e6a;
   --link-color: #c5c5cc;
   --copyright-info-color: #a30029;
-  --avatar-background-color: #005cb8;
+  --avatar-background-color: #e6e6e6;
   --pjax-progress-bar-color: linear-gradient(45deg, #ea404a, #ea722f, #e9a71f, #67e559, #18ecec, #1b85f1, #ee1dee);
 }
 :root {
