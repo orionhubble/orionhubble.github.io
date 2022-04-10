@@ -1,74 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Big-O Notation</title>
-    <url>/2018/08/04/Big-O/</url>
-    <content><![CDATA[<p>Some common algorithms and their big-O noations</p>
-<table>
-<thead>
-<tr>
-<th align="left">constant time</th>
-<th align="left">logarithmic time</th>
-<th align="left">linear time</th>
-<th align="left">linear-multiply-log</th>
-<th align="left">square time</th>
-<th align="left">factorial time</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">O(1)</td>
-<td align="left">O(log2n)</td>
-<td align="left">O(n)</td>
-<td align="left">O(nlog2n)</td>
-<td align="left">O(n2)</td>
-<td align="left">O(n!)</td>
-</tr>
-<tr>
-<td align="left">hash</td>
-<td align="left">binary search</td>
-<td align="left">simple search</td>
-<td align="left">quik/merge sort</td>
-<td align="left">selection sort</td>
-<td align="left">traveling salesperson</td>
-</tr>
-</tbody></table>
-<h3 id="O-log2n"><a href="#O-log2n" class="headerlink" title="O(log2n)"></a>O(log2n)</h3><ul>
-<li><p>logarithmic time<br><img src="log2n.png" alt="logarithmic time"></p>
-</li>
-<li><p>code of binary search</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;9, 15, 21, 23, 57, 98, 101, 111&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;array[%d] = %d, &quot;, i, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int bsearch(int array[], int size, int key)</span><br><span class="line">&#123;</span><br><span class="line">  int i, low, high, guess;</span><br><span class="line"> </span><br><span class="line">  low = 0; high = size - 1;</span><br><span class="line"></span><br><span class="line">  while (low &lt;= high) &#123;</span><br><span class="line">    guess = (low + high) / 2;</span><br><span class="line"></span><br><span class="line">    if (key &gt; array[guess]) &#123;</span><br><span class="line">      low = guess + 1;</span><br><span class="line">    &#125; else if (key &lt; array[guess]) &#123;</span><br><span class="line">      high = guess - 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      printf(&quot;key %d index is %d\n&quot;, key, guess);</span><br><span class="line">      return guess;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int i, key[] = &#123;0, 9, 15, 57, 98, 101, 111, 230&#125;;</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot;Array&quot;);</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; sizeof(key) / sizeof(int); i++) &#123;</span><br><span class="line">    if (bsearch(array, asize, key[i]) &lt; 0) &#123;</span><br><span class="line">      printf(&quot;key %d is not in array\n&quot;, key[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h3><ul>
-<li><p>linear time<br><img src="n.png" alt="linear time"></p>
-</li>
-<li><p>code of simple search</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;9, 15, 21, 23, 57, 98, 101, 111&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;array[%d] = %d, &quot;, i, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int ssearch(int array[], int size, int key)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"> </span><br><span class="line">  for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line">    if (key == array[i]) &#123;</span><br><span class="line">      printf(&quot;key %d index is %d\n&quot;, key, i);</span><br><span class="line">      return i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int i, key[] = &#123;0, 9, 15, 57, 98, 101, 111, 230&#125;;</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot;Array&quot;);</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; sizeof(key) / sizeof(int); i++) &#123;</span><br><span class="line">    if (ssearch(array, asize, key[i]) &lt; 0) &#123;</span><br><span class="line">      printf(&quot;key %d is not in array\n&quot;, key[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="O-nlog2n"><a href="#O-nlog2n" class="headerlink" title="O(nlog2n)"></a>O(nlog2n)</h3><ul>
-<li>linear-multiply-log<br><img src="nlog2n.png" alt="linear-multiply-log"></li>
-</ul>
-<h3 id="O-n2"><a href="#O-n2" class="headerlink" title="O(n2)"></a>O(n2)</h3><ul>
-<li><p>square time<br><img src="n2.png" alt="square time"></p>
-</li>
-<li><p>code of selection sort</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;15, 9, 23, 21, 111, 101, 98&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;array[%d] = %d, &quot;, i, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void ssort(int array[], int size)</span><br><span class="line">&#123;</span><br><span class="line">  int i, j, hit;</span><br><span class="line"> </span><br><span class="line">  for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line"></span><br><span class="line">    hit = i;</span><br><span class="line">    for (j = i; j &lt; size; j++) &#123;</span><br><span class="line">      if (array[j] &lt; array[hit]) &#123;</span><br><span class="line">        hit = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (i != hit) &#123;</span><br><span class="line">      int swap;</span><br><span class="line"></span><br><span class="line">      swap = array[i];</span><br><span class="line">      array[i] = array[hit];</span><br><span class="line">      array[hit] = swap;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  dump_array(array, asize, &quot;Before sort&quot;);</span><br><span class="line"></span><br><span class="line">  ssort(array, asize);</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot; After sort&quot;);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="O-n-1"><a href="#O-n-1" class="headerlink" title="O(n!)"></a>O(n!)</h3><ul>
-<li>factorial time<br><img src="n!.png" alt="factorial time"></li>
-</ul>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a class="link"   href="https://algs4.cs.princeton.edu/home/" >Algorithms, 4th Edition<i class="fas fa-external-link-alt"></i></a><br>Grokking Algorithms: An illustrated guide for programmers and other curious people</p>
-]]></content>
-      <categories>
-        <category>algorithm</category>
-      </categories>
-      <tags>
-        <tag>algorithm</tag>
-        <tag>simple search</tag>
-        <tag>binary search</tag>
-        <tag>selection sort</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Building EDK2 Qemu From Scratch On Raspberry Pi</title>
     <url>/2021/07/29/Building-EDK2-Qemu-From-Scratch-On-Raspberry-Pi/</url>
     <content><![CDATA[<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><ul>
@@ -312,6 +244,74 @@
         <tag>dynamic programing</tag>
         <tag>k-nearest-neighbors</tag>
         <tag>more algorithms</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Big-O Notation</title>
+    <url>/2018/08/04/Big-O/</url>
+    <content><![CDATA[<p>Some common algorithms and their big-O noations</p>
+<table>
+<thead>
+<tr>
+<th align="left">constant time</th>
+<th align="left">logarithmic time</th>
+<th align="left">linear time</th>
+<th align="left">linear-multiply-log</th>
+<th align="left">square time</th>
+<th align="left">factorial time</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">O(1)</td>
+<td align="left">O(log2n)</td>
+<td align="left">O(n)</td>
+<td align="left">O(nlog2n)</td>
+<td align="left">O(n2)</td>
+<td align="left">O(n!)</td>
+</tr>
+<tr>
+<td align="left">hash</td>
+<td align="left">binary search</td>
+<td align="left">simple search</td>
+<td align="left">quik/merge sort</td>
+<td align="left">selection sort</td>
+<td align="left">traveling salesperson</td>
+</tr>
+</tbody></table>
+<h3 id="O-log2n"><a href="#O-log2n" class="headerlink" title="O(log2n)"></a>O(log2n)</h3><ul>
+<li><p>logarithmic time<br><img src="log2n.png" alt="logarithmic time"></p>
+</li>
+<li><p>code of binary search</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;9, 15, 21, 23, 57, 98, 101, 111&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;array[%d] = %d, &quot;, i, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int bsearch(int array[], int size, int key)</span><br><span class="line">&#123;</span><br><span class="line">  int i, low, high, guess;</span><br><span class="line"> </span><br><span class="line">  low = 0; high = size - 1;</span><br><span class="line"></span><br><span class="line">  while (low &lt;= high) &#123;</span><br><span class="line">    guess = (low + high) / 2;</span><br><span class="line"></span><br><span class="line">    if (key &gt; array[guess]) &#123;</span><br><span class="line">      low = guess + 1;</span><br><span class="line">    &#125; else if (key &lt; array[guess]) &#123;</span><br><span class="line">      high = guess - 1;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">      printf(&quot;key %d index is %d\n&quot;, key, guess);</span><br><span class="line">      return guess;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int i, key[] = &#123;0, 9, 15, 57, 98, 101, 111, 230&#125;;</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot;Array&quot;);</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; sizeof(key) / sizeof(int); i++) &#123;</span><br><span class="line">    if (bsearch(array, asize, key[i]) &lt; 0) &#123;</span><br><span class="line">      printf(&quot;key %d is not in array\n&quot;, key[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="O-n"><a href="#O-n" class="headerlink" title="O(n)"></a>O(n)</h3><ul>
+<li><p>linear time<br><img src="n.png" alt="linear time"></p>
+</li>
+<li><p>code of simple search</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;9, 15, 21, 23, 57, 98, 101, 111&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;array[%d] = %d, &quot;, i, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int ssearch(int array[], int size, int key)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"> </span><br><span class="line">  for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line">    if (key == array[i]) &#123;</span><br><span class="line">      printf(&quot;key %d index is %d\n&quot;, key, i);</span><br><span class="line">      return i;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return -1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int i, key[] = &#123;0, 9, 15, 57, 98, 101, 111, 230&#125;;</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot;Array&quot;);</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; sizeof(key) / sizeof(int); i++) &#123;</span><br><span class="line">    if (ssearch(array, asize, key[i]) &lt; 0) &#123;</span><br><span class="line">      printf(&quot;key %d is not in array\n&quot;, key[i]);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="O-nlog2n"><a href="#O-nlog2n" class="headerlink" title="O(nlog2n)"></a>O(nlog2n)</h3><ul>
+<li>linear-multiply-log<br><img src="nlog2n.png" alt="linear-multiply-log"></li>
+</ul>
+<h3 id="O-n2"><a href="#O-n2" class="headerlink" title="O(n2)"></a>O(n2)</h3><ul>
+<li><p>square time<br><img src="n2.png" alt="square time"></p>
+</li>
+<li><p>code of selection sort</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;15, 9, 23, 21, 111, 101, 98&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;array[%d] = %d, &quot;, i, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void ssort(int array[], int size)</span><br><span class="line">&#123;</span><br><span class="line">  int i, j, hit;</span><br><span class="line"> </span><br><span class="line">  for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line"></span><br><span class="line">    hit = i;</span><br><span class="line">    for (j = i; j &lt; size; j++) &#123;</span><br><span class="line">      if (array[j] &lt; array[hit]) &#123;</span><br><span class="line">        hit = j;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    if (i != hit) &#123;</span><br><span class="line">      int swap;</span><br><span class="line"></span><br><span class="line">      swap = array[i];</span><br><span class="line">      array[i] = array[hit];</span><br><span class="line">      array[hit] = swap;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  dump_array(array, asize, &quot;Before sort&quot;);</span><br><span class="line"></span><br><span class="line">  ssort(array, asize);</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot; After sort&quot;);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="O-n-1"><a href="#O-n-1" class="headerlink" title="O(n!)"></a>O(n!)</h3><ul>
+<li>factorial time<br><img src="n!.png" alt="factorial time"></li>
+</ul>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><p><a class="link"   href="https://algs4.cs.princeton.edu/home/" >Algorithms, 4th Edition<i class="fas fa-external-link-alt"></i></a><br>Grokking Algorithms: An illustrated guide for programmers and other curious people</p>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>algorithm</tag>
+        <tag>simple search</tag>
+        <tag>binary search</tag>
+        <tag>selection sort</tag>
       </tags>
   </entry>
   <entry>
@@ -995,6 +995,61 @@ SAMPLE OUTPUT:
       </tags>
   </entry>
   <entry>
+    <title>Hexo Demo</title>
+    <url>/2018/02/16/hello-world/</url>
+    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
+<h3 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h3><ul>
+<li><p>Create a new <a class="link"   href="https://hexo.io/docs/writing.html" >post<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure></li>
+<li><p>Run <a class="link"   href="https://hexo.io/docs/server.html" >server<i class="fas fa-external-link-alt"></i></a></p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ npm install hexo-server; hexo server</span><br><span class="line">bash $ hexo server</span><br></pre></td></tr></table></figure></li>
+<li><p><a class="link"   href="https://hexo.io/docs/generating.html" >Generate<i class="fas fa-external-link-alt"></i></a> static files</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo generate</span><br></pre></td></tr></table></figure></li>
+<li><p><a class="link"   href="https://hexo.io/docs/deployment.html" >Deploy<i class="fas fa-external-link-alt"></i></a> to remote sites</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo deploy</span><br></pre></td></tr></table></figure></li>
+<li><p>Shortcut for clean, generate, deploy</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo clean; hexo ge; hexo de</span><br></pre></td></tr></table></figure></li>
+<li><p><a class="link"   href="https://hexo.io/themes/" >Hexo themes<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+<h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><ul>
+<li><a class="link"   href="https://daringfireball.net/projects/markdown/syntax" >markdown syntax #1<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.jianshu.com/p/20e82ddb37cb#picturelinksize" >markdown syntax #2<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://www.markdownpad.com/" >MarkdownPad<i class="fas fa-external-link-alt"></i></a>: a full-featured Markdown editor for Windows</li>
+</ul>
+<h3 id="Favicon-generator"><a href="#Favicon-generator" class="headerlink" title="Favicon generator"></a>Favicon generator</h3><ul>
+<li><a class="link"   href="https://www.axialis.com/" >axialis<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.flaticon.com/" >flaticon<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://iconsflow.com/" >icons flow<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://realfavicongenerator.net/" >realfavicon<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://fontawesome.com/icons?from=io#brand" >font awesome icon<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Web-framework"><a href="#Web-framework" class="headerlink" title="Web framework"></a>Web framework</h3><ul>
+<li><a class="link"   href="http://flask.pocoo.org/" >flask<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://nginx.org/en/" >nginx<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.djangoproject.com/" >django<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Linux-notes"><a href="#Linux-notes" class="headerlink" title="Linux notes"></a>Linux notes</h3><ul>
+<li>First please run <code>hexo init</code> on an empty folder and then copy your files into it</li>
+<li>Must install the newest <a class="link"   href="https://github.com/nodesource/distributions" >nodejs<i class="fas fa-external-link-alt"></i></a>, not the default version of OS</li>
+<li>Local hexo not found in, solved by update the nodejs, <em>npm install -g n; n 8.12.0 or n latest</em></li>
+<li>/usr/bin/env: node: No such file or directory, solved by <em>ln -s /usr/bin/nodejs /usr/bin/node</em></li>
+<li>ERROR Deployer not found: git, solved by <em>npm install hexo-deployer-git –save</em></li>
+</ul>
+<h3 id="Demo-tutor"><a href="#Demo-tutor" class="headerlink" title="Demo tutor"></a>Demo tutor</h3><ul>
+<li><a class="link"   href="https://www.cnblogs.com/chengxs/p/7496265.html" >CNAME deploy<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.digitalocean.com/community/tutorials/how-to-create-a-blog-with-hexo-on-ubuntu-14-04" >hexo tutor for ubuntu<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.cnblogs.com/visugar/p/6821777.html" >hexo tutor for windows<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>TOOLS</category>
+      </categories>
+      <tags>
+        <tag>demo</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>A Late Simple Guide for hexo with github</title>
     <url>/2021/08/01/guide-for-hexo-with-github/</url>
     <content><![CDATA[<h2 id="Windows-Operations"><a href="#Windows-Operations" class="headerlink" title="Windows Operations"></a>Windows Operations</h2><h3 id="Install-nodejs"><a href="#Install-nodejs" class="headerlink" title="Install nodejs"></a>Install nodejs</h3><p><a class="link"   href="https://nodejs.org/en/download/" >NodeJS<i class="fas fa-external-link-alt"></i></a></p>
@@ -1050,61 +1105,6 @@ SAMPLE OUTPUT:
       <tags>
         <tag>hexo</tag>
         <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Hexo Demo</title>
-    <url>/2018/02/16/hello-world/</url>
-    <content><![CDATA[<p>Welcome to <a class="link"   href="https://hexo.io/" >Hexo<i class="fas fa-external-link-alt"></i></a>! This is your very first post. Check <a class="link"   href="https://hexo.io/docs/" >documentation<i class="fas fa-external-link-alt"></i></a> for more info. If you get any problems when using Hexo, you can find the answer in <a class="link"   href="https://hexo.io/docs/troubleshooting.html" >troubleshooting<i class="fas fa-external-link-alt"></i></a> or you can ask me on <a class="link"   href="https://github.com/hexojs/hexo/issues" >GitHub<i class="fas fa-external-link-alt"></i></a>.</p>
-<h3 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h3><ul>
-<li><p>Create a new <a class="link"   href="https://hexo.io/docs/writing.html" >post<i class="fas fa-external-link-alt"></i></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo new &quot;My New Post&quot;</span><br></pre></td></tr></table></figure></li>
-<li><p>Run <a class="link"   href="https://hexo.io/docs/server.html" >server<i class="fas fa-external-link-alt"></i></a></p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ npm install hexo-server; hexo server</span><br><span class="line">bash $ hexo server</span><br></pre></td></tr></table></figure></li>
-<li><p><a class="link"   href="https://hexo.io/docs/generating.html" >Generate<i class="fas fa-external-link-alt"></i></a> static files</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo generate</span><br></pre></td></tr></table></figure></li>
-<li><p><a class="link"   href="https://hexo.io/docs/deployment.html" >Deploy<i class="fas fa-external-link-alt"></i></a> to remote sites</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo deploy</span><br></pre></td></tr></table></figure></li>
-<li><p>Shortcut for clean, generate, deploy</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">bash $ hexo clean; hexo ge; hexo de</span><br></pre></td></tr></table></figure></li>
-<li><p><a class="link"   href="https://hexo.io/themes/" >Hexo themes<i class="fas fa-external-link-alt"></i></a></p>
-</li>
-</ul>
-<h3 id="Markdown"><a href="#Markdown" class="headerlink" title="Markdown"></a>Markdown</h3><ul>
-<li><a class="link"   href="https://daringfireball.net/projects/markdown/syntax" >markdown syntax #1<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.jianshu.com/p/20e82ddb37cb#picturelinksize" >markdown syntax #2<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://www.markdownpad.com/" >MarkdownPad<i class="fas fa-external-link-alt"></i></a>: a full-featured Markdown editor for Windows</li>
-</ul>
-<h3 id="Favicon-generator"><a href="#Favicon-generator" class="headerlink" title="Favicon generator"></a>Favicon generator</h3><ul>
-<li><a class="link"   href="https://www.axialis.com/" >axialis<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.flaticon.com/" >flaticon<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://iconsflow.com/" >icons flow<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://realfavicongenerator.net/" >realfavicon<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://fontawesome.com/icons?from=io#brand" >font awesome icon<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Web-framework"><a href="#Web-framework" class="headerlink" title="Web framework"></a>Web framework</h3><ul>
-<li><a class="link"   href="http://flask.pocoo.org/" >flask<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://nginx.org/en/" >nginx<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.djangoproject.com/" >django<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Linux-notes"><a href="#Linux-notes" class="headerlink" title="Linux notes"></a>Linux notes</h3><ul>
-<li>First please run <code>hexo init</code> on an empty folder and then copy your files into it</li>
-<li>Must install the newest <a class="link"   href="https://github.com/nodesource/distributions" >nodejs<i class="fas fa-external-link-alt"></i></a>, not the default version of OS</li>
-<li>Local hexo not found in, solved by update the nodejs, <em>npm install -g n; n 8.12.0 or n latest</em></li>
-<li>/usr/bin/env: node: No such file or directory, solved by <em>ln -s /usr/bin/nodejs /usr/bin/node</em></li>
-<li>ERROR Deployer not found: git, solved by <em>npm install hexo-deployer-git –save</em></li>
-</ul>
-<h3 id="Demo-tutor"><a href="#Demo-tutor" class="headerlink" title="Demo tutor"></a>Demo tutor</h3><ul>
-<li><a class="link"   href="https://www.cnblogs.com/chengxs/p/7496265.html" >CNAME deploy<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.digitalocean.com/community/tutorials/how-to-create-a-blog-with-hexo-on-ubuntu-14-04" >hexo tutor for ubuntu<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.cnblogs.com/visugar/p/6821777.html" >hexo tutor for windows<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>TOOLS</category>
-      </categories>
-      <tags>
-        <tag>demo</tag>
       </tags>
   </entry>
   <entry>
@@ -1249,6 +1249,30 @@ SAMPLE OUTPUT:
         <tag>arm64</tag>
         <tag>aarch64</tag>
         <tag>VM</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Collection of Linux Weather Forcast</title>
+    <url>/2018/10/03/linux-weather-forecast/</url>
+    <content><![CDATA[<p><a class="link"   href="https://www.linux.com/news/category/linux-kernel" >Weather Forcast<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Short-term-Forcast"><a href="#Short-term-Forcast" class="headerlink" title="Short-term Forcast"></a>Short-term Forcast</h3><ul>
+<li><a class="link"   href="https://lwn.net/Articles/748879/" >Time-based packet transmission<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://lwn.net/Articles/758353/" >CAKE queueing discipline<i class="fas fa-external-link-alt"></i></a>: offers significantly better networking performance, especially in home or small-business settings.</li>
+<li><a class="link"   href="https://lwn.net/Articles/758963/" >The block I/O latency controller<i class="fas fa-external-link-alt"></i></a>: allows an administrator to provide block (disk) I/O response-time guarantees to specific processes.</li>
+</ul>
+<h3 id="Kernel-4-18"><a href="#Kernel-4-18" class="headerlink" title="Kernel-4.18"></a>Kernel-4.18</h3><ul>
+<li><a class="link"   href="https://lwn.net/Articles/747551/" >bpfilter<i class="fas fa-external-link-alt"></i></a>: expected to be the base on which the next generation of kernel firewalling systems is built.</li>
+<li><a class="link"   href="https://lwn.net/Articles/754681/" >A reworked TCP zero-copy receive API<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://lwn.net/Articles/750845/" >Accelerating networking with AF_XDP<i class="fas fa-external-link-alt"></i></a>: a larger effort to win back users of user-space networking stacks by providing better facilities in the kernel.</li>
+<li><a class="link"   href="https://lwn.net/Articles/760690/" >Statistics from the 4.18 development cycle<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.linux.com/news/2018/9/linux-weather-forecast" >Linux Weather Forecast 2018.09<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>KERNEL</category>
+      </categories>
+      <tags>
+        <tag>kernel</tag>
       </tags>
   </entry>
   <entry>
@@ -1428,30 +1452,6 @@ SAMPLE OUTPUT:
         <tag>tool</tag>
         <tag>bookmark</tag>
         <tag>website</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Collection of Linux Weather Forcast</title>
-    <url>/2018/10/03/linux-weather-forecast/</url>
-    <content><![CDATA[<p><a class="link"   href="https://www.linux.com/news/category/linux-kernel" >Weather Forcast<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Short-term-Forcast"><a href="#Short-term-Forcast" class="headerlink" title="Short-term Forcast"></a>Short-term Forcast</h3><ul>
-<li><a class="link"   href="https://lwn.net/Articles/748879/" >Time-based packet transmission<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://lwn.net/Articles/758353/" >CAKE queueing discipline<i class="fas fa-external-link-alt"></i></a>: offers significantly better networking performance, especially in home or small-business settings.</li>
-<li><a class="link"   href="https://lwn.net/Articles/758963/" >The block I/O latency controller<i class="fas fa-external-link-alt"></i></a>: allows an administrator to provide block (disk) I/O response-time guarantees to specific processes.</li>
-</ul>
-<h3 id="Kernel-4-18"><a href="#Kernel-4-18" class="headerlink" title="Kernel-4.18"></a>Kernel-4.18</h3><ul>
-<li><a class="link"   href="https://lwn.net/Articles/747551/" >bpfilter<i class="fas fa-external-link-alt"></i></a>: expected to be the base on which the next generation of kernel firewalling systems is built.</li>
-<li><a class="link"   href="https://lwn.net/Articles/754681/" >A reworked TCP zero-copy receive API<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://lwn.net/Articles/750845/" >Accelerating networking with AF_XDP<i class="fas fa-external-link-alt"></i></a>: a larger effort to win back users of user-space networking stacks by providing better facilities in the kernel.</li>
-<li><a class="link"   href="https://lwn.net/Articles/760690/" >Statistics from the 4.18 development cycle<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.linux.com/news/2018/9/linux-weather-forecast" >Linux Weather Forecast 2018.09<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>KERNEL</category>
-      </categories>
-      <tags>
-        <tag>kernel</tag>
       </tags>
   </entry>
   <entry>
@@ -1685,6 +1685,7 @@ SAMPLE OUTPUT:
 </li>
 <li><strong>Startups</strong>: <ul>
 <li><a class="link"   href="https://ayarlabs.com/" >2015 AyarLabs<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://ayarlabs.com/disaggregating-system-architectures-for-future-hpc-and-ai-workloads/" >Disaggregating System Architectures for Future HPC and AI Workloads<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.fungible.com/" >2015 Fungible<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://www.fungible.com/wp-content/uploads/2020/08/WP0033.01.02020820-TrueFabric-A-Fundamental-Advance-to-the-State-of-the-Art-in-Data-Center-Networks.pdf" >TrueFabric: A Fundamental Advance to the State of the Art in Data Center Networks<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.fungible.com/news/announcing-fungible-gpu-connect-connect-any-gpu-to-any-server-over-ethernet/" >FUNGIBLE GPU-CONNECT™ – CONNECT ANY GPU TO ANY SERVER OVER ETHERNET<i class="fas fa-external-link-alt"></i></a></li>
 <li><a class="link"   href="https://www.liqid.com/" >2016 LIQID<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.liqid.com/why-liqid/technology" >Disaggregate and Compose Your Datacenter<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.dropbox.com/s/ihu7m103w9lg5ju/Sumit_Puri-RESDIS2022.pdf?dl=0" >RESDIS ‘22, Rethink HPC Possibilities with Composable<i class="fas fa-external-link-alt"></i></a></li>
 <li><a class="link"   href="https://memverge.com/" >2017 MemVerge<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://memverge.com/hello-vmware-and-welcome-to-the-big-memory-party/" >Hello VMware, and Welcome to the Big Memory Party!<i class="fas fa-external-link-alt"></i></a></li>
 <li><a class="link"   href="https://www.asteralabs.com/" >2017 Astera Labs<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.asteralabs.com/wp-content/uploads/2021/03/Astera_Labs_White_Paper-Data_Center_Trends_400GbE_800GbE_final.pdf" >Data Center Resource Disaggregation Drives Need for Cost- Effective 400/800-GbE Interconnects<i class="fas fa-external-link-alt"></i></a></li>
