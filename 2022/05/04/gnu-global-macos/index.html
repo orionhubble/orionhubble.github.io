@@ -9,7 +9,7 @@
     
     <title>
         
-            KVM/QEMU Architecture |
+            MacOS GNU Global |
         
         Orion Hubble
     </title>
@@ -137,7 +137,7 @@
     <div class="article-content-container">
 
         <div class="article-title">
-            <span class="title-hover-animation">KVM/QEMU Architecture</span>
+            <span class="title-hover-animation">MacOS GNU Global</span>
         </div>
 
         
@@ -156,8 +156,8 @@
                         <div class="article-meta-info">
     <span class="article-date article-meta-item">
         <i class="fas fa-edit"></i>&nbsp;
-        <span class="pc">2022-02-13 17:23:01</span>
-        <span class="mobile">2022-02-13 17:23</span>
+        <span class="pc">2022-05-04 21:23:01</span>
+        <span class="mobile">2022-05-04 21:23</span>
     </span>
     
         <span class="article-categories article-meta-item">
@@ -165,7 +165,7 @@
             <ul>
                 
                     <li>
-                        <a href="/categories/virtualization/">virtualization</a>&nbsp;
+                        <a href="/categories/TOOLS/">TOOLS</a>&nbsp;
                     </li>
                 
             </ul>
@@ -177,11 +177,11 @@
             <ul>
                 
                     <li>
-                        <a href="/tags/KVM/">KVM</a>&nbsp;
+                        <a href="/tags/GNU-Global/">GNU Global</a>&nbsp;
                     </li>
                 
                     <li>
-                        | <a href="/tags/QEMU/">QEMU</a>&nbsp;
+                        | <a href="/tags/Source-Insight/">Source Insight</a>&nbsp;
                     </li>
                 
             </ul>
@@ -200,25 +200,17 @@
         
 
         <div class="article-content markdown-body">
-            <h3 id="Architecture-Bird-View"><a href="#Architecture-Bird-View" class="headerlink" title="Architecture Bird View"></a>Architecture Bird View</h3><p><img src="./kvm-qemu-architecture-bird-view.png" alt="Architecture Bird View"></p>
-<ul>
-<li>KVM source code directories<br><img src="./kvm-sourcecode.jpg" alt="KVM Source Codes"></li>
-<li>CPU &amp; Memory<br><img src="./CPU-Memeory-Virtualization.jpg" alt="CPU &amp; Memory Virtualization"></li>
-<li>Device &amp; Interrupt<br><img src="./device-interrupt.jpg" alt="Deive &amp; Interrupt Virtualization"></li>
+            <h3 id="MacOS’s-Source-Insight"><a href="#MacOS’s-Source-Insight" class="headerlink" title="MacOS’s Source Insight"></a>MacOS’s Source Insight</h3><p>Why GNU Global source code tagging system? <a class="link"   target="_blank" rel="noopener" href="https://github.com/oracle/opengrok/wiki/Comparison-with-Similar-Tools" >GNU Global Comparison with Similar Tools<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="HowTo"><a href="#HowTo" class="headerlink" title="HowTo"></a>HowTo</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://brew.sh/" >Install Homebrew<i class="fas fa-external-link-alt"></i></a>, The Missing Package Manager for macOS (or Linux)<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/bin/bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)&quot;</span><br></pre></td></tr></table></figure></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.gnu.org/software/global/download.html" >Install Global<i class="fas fa-external-link-alt"></i></a>, <a class="link"   target="_blank" rel="noopener" href="https://formulae.brew.sh/formula/global#default" >Homebrew Global<i class="fas fa-external-link-alt"></i></a><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew install global</span><br></pre></td></tr></table></figure></li>
+<li>Source Tour with Global<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">$ cd source/directory</span><br><span class="line">$ gtags -v</span><br><span class="line">$ htags -sanohITvt &#x27;Welcome to XXX source tour!&#x27;</span><br><span class="line">$ htags --suggest2</span><br><span class="line">$ htags-server -b 127.0.0.1 8000</span><br><span class="line"># for update</span><br><span class="line">$ gtags -vu</span><br></pre></td></tr></table></figure></li>
 </ul>
-<h3 id="Qemu-the-helper-of-KVM"><a href="#Qemu-the-helper-of-KVM" class="headerlink" title="Qemu, the helper of KVM"></a>Qemu, the helper of KVM</h3><ul>
-<li>Qemu main thread<br>glibc event loop mechanism, vl.c main_loop()<br><img src="./main-thread-loop.jpg" alt="Main Thread Loop"></li>
-<li>Qemu thread model<br><img src="./qemu-thread-model.jpg" alt="Thread Model"></li>
-<li>Qemu parameter parsing<br><img src="./qemu-parameter-parsing.jpg" alt="Parameter Parsing"></li>
-<li>Qemu object model(QOM)<br><img src="./qemu-object-model.jpg" alt="Object Model"></li>
-<li>HMP &amp; QMP<br>HMP: Human Monitor Protocol; QMP: Qemu Monitor Protocol<br><img src="./hmp-qmp.jpg" alt="HMP QMP"></li>
-<li>Motherboard and firmware emulation<br><img src="./motherboard-firmware.jpg" alt="Motherboard &amp; Firmware"></li>
-</ul>
-<h3 id="The-road-to-eliminate-virtualization-overhead-datacenter-tax-and-neighour-noise"><a href="#The-road-to-eliminate-virtualization-overhead-datacenter-tax-and-neighour-noise" class="headerlink" title="The road to eliminate (virtualization) overhead (datacenter tax) and neighour noise"></a>The road to eliminate (virtualization) overhead (datacenter tax) and neighour noise</h3><p><img src="./virtualization-optimize.png" alt="Performance optimize direction"></p>
-<h3 id="Referecnes"><a href="#Referecnes" class="headerlink" title="Referecnes"></a>Referecnes</h3><ul>
-<li>《QEMU/KVM源码解析与应用》，李强</li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://wiki.qemu.org/index.php?title=Special:AllPages&from=Features/&to=Features/zzzzz&namespace=0" >Qemu All feature pages<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   target="_blank" rel="noopener" href="https://www.brendangregg.com/blog/2017-11-29/aws-ec2-virtualization-2017.html" >Brendan Gregg’s Blog AWS EC2 Virtualization 2017: Introducing Nitro<i class="fas fa-external-link-alt"></i></a></li>
+<h3 id="Start-Multi-htages-servers"><a href="#Start-Multi-htages-servers" class="headerlink" title="Start Multi htages servers"></a>Start Multi htages servers</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line"></span><br><span class="line">PORT=9000</span><br><span class="line">PDIR=`pwd`</span><br><span class="line">cd $PDIR</span><br><span class="line"></span><br><span class="line">for FILE in *; do</span><br><span class="line">  if [ -d $FILE ]; then</span><br><span class="line">    cd $FILE</span><br><span class="line"></span><br><span class="line">    htags-server -b 127.0.0.1 $PORT &gt;&amp; /dev/null &amp;</span><br><span class="line">    echo &quot;$FILE htags server&#x27;s port $PORT&quot;</span><br><span class="line">    PORT=$(($PORT+1))</span><br><span class="line"></span><br><span class="line">    cd ..</span><br><span class="line">  fi</span><br><span class="line">done</span><br><span class="line"></span><br><span class="line">while [ True ]; do</span><br><span class="line">   echo &quot;htags server is running, wait exit...&quot;</span><br><span class="line">   sleep 60</span><br><span class="line">done</span><br></pre></td></tr></table></figure>
+
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.gnu.org/software/global/" >GNU Global source code tagging system<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   target="_blank" rel="noopener" href="https://www.gnu.org/software/global/globaldoc_toc.html" >GNU Global Tutorial<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 
         </div>
@@ -229,11 +221,11 @@
             <ul class="post-tags-box">
                 
                     <li class="tag-item">
-                        <a href="/tags/KVM/">#KVM</a>&nbsp;
+                        <a href="/tags/GNU-Global/">#GNU Global</a>&nbsp;
                     </li>
                 
                     <li class="tag-item">
-                        <a href="/tags/QEMU/">#QEMU</a>&nbsp;
+                        <a href="/tags/Source-Insight/">#Source Insight</a>&nbsp;
                     </li>
                 
             </ul>
@@ -242,29 +234,14 @@
         
             <div class="article-nav">
                 
-                    <div class="article-prev">
-                        <a class="prev"
-                           rel="prev"
-                           href="/2022/05/04/gnu-global-macos/"
-                        >
-                            <span class="left arrow-icon flex-center">
-                              <i class="fas fa-chevron-left"></i>
-                            </span>
-                            <span class="title flex-center">
-                                <span class="post-nav-title-item">MacOS GNU Global</span>
-                                <span class="post-nav-item">Prev posts</span>
-                            </span>
-                        </a>
-                    </div>
-                
                 
                     <div class="article-next">
                         <a class="next"
                            rel="next"
-                           href="/2022/02/04/next-computation-insight/"
+                           href="/2022/02/13/kvm-qemu-architecture/"
                         >
                             <span class="title flex-center">
-                                <span class="post-nav-title-item">Insight of Next Generation Computation Architecture</span>
+                                <span class="post-nav-title-item">KVM/QEMU Architecture</span>
                                 <span class="post-nav-item">Next posts</span>
                             </span>
                             <span class="right arrow-icon flex-center">
