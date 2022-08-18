@@ -1,67 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title>Building EDK2 Qemu From Scratch On Raspberry Pi</title>
-    <url>/2021/07/29/Building-EDK2-Qemu-From-Scratch-On-Raspberry-Pi/</url>
-    <content><![CDATA[<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><ul>
-<li>a Raspberry PI 4B</li>
-<li>a SD Card, has installed <a class="link"   href="https://ubuntu.com/raspberry-pi" >Ubuntu for Raspberry Pi<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Building-EDK2"><a href="#Building-EDK2" class="headerlink" title="Building EDK2"></a>Building EDK2</h3><ul>
-<li><p>Install required packages</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install build-essential git uuid-dev iasl nasm python</span><br></pre></td></tr></table></figure></li>
-<li><p>Get the latest source for EDKII</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir code; cd code</span><br><span class="line">git clone https://github.com/tianocore/edk2.git</span><br><span class="line">cd edk2; git submodule update --init</span><br></pre></td></tr></table></figure></li>
-<li><p>Config and building</p>
-<ul>
-<li>Compile base tools<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -C BaseTools</span><br></pre></td></tr></table></figure></li>
-<li>Set up build environment<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">. ./edksetup.sh</span><br></pre></td></tr></table></figure></li>
-</ul>
-</li>
-<li><p>Set up build target</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi Conf/target.txt</span><br></pre></td></tr></table></figure>
-<ul>
-<li>set ACTIVE_PLATFORM = <strong>ArmVirtPkg/ArmVirtQemu.dsc</strong></li>
-<li>set TARGET = <strong>DEBUG</strong></li>
-<li>set TARGET_ARCH = <strong>AARCH64</strong></li>
-<li>set TOOL_CHAIN_TAG = <strong>GCC5</strong></li>
-</ul>
-</li>
-<li><p>Building MdeModulePkg module package</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">build</span><br></pre></td></tr></table></figure>
-<p>  Note: <em>build</em>, which is exported by edksetup.sh, is not a system command</p>
-</li>
-<li><p>Get the UEFI bin</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls Build/ArmVirtQemu-AARCH64/DEBUG_GCC5/FV/QEMU_EFI.fd</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="Building-Qemu"><a href="#Building-Qemu" class="headerlink" title="Building Qemu"></a>Building Qemu</h3><ul>
-<li><p>Get the latest source for Qemu</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ..</span><br><span class="line">wget https://download.qemu.org/qemu-6.0.0.tar.xz</span><br><span class="line">tar -xvf qemu-6.0.0.tar.xz</span><br></pre></td></tr></table></figure></li>
-<li><p>Install required packages</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install build-essential</span><br><span class="line">sudo apt install libaio1 libaio-dev</span><br></pre></td></tr></table></figure></li>
-<li><p>Config and building</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd qemu-6.0.0</span><br><span class="line">./configure --enable-trace-backend=simple --enable-debug --target-list=aarch64-softmmu --prefix=/usr/local --without-default-features --enable-kvm --enable-linux-aio --enable-vhost-net --enable-vhost-vsock --enable-vhost-scsi --enable-vhost-kernel --enable-vnc --enable-tools</span><br><span class="line">make -j 3</span><br></pre></td></tr></table></figure>
-<p>  Note: type <strong>./configure –help</strong> to set your own configurations</p>
-</li>
-<li><p>Get the Qemu bin</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./build/qemu-system-aarch64 --version</span><br><span class="line">./build/qemu-img --version</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
-<li><a class="link"   href="https://www.raspberrypi.org/software/" >Install Raspberry Pi OS using Raspberry Pi Imager<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://wiki.ubuntu.com/UEFI/EDK2" >Ubuntu EDK2<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://github.com/qemu/QEMU" >Git Qemu<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>PRACTICE</category>
-      </categories>
-      <tags>
-        <tag>EDK2</tag>
-        <tag>Qemu</tag>
-        <tag>Raspberry Pi</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Big-O Notation</title>
     <url>/2018/08/04/Big-O/</url>
     <content><![CDATA[<p>Some common algorithms and their big-O noations</p>
@@ -127,6 +66,67 @@
         <tag>simple search</tag>
         <tag>binary search</tag>
         <tag>selection sort</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Building EDK2 Qemu From Scratch On Raspberry Pi</title>
+    <url>/2021/07/29/Building-EDK2-Qemu-From-Scratch-On-Raspberry-Pi/</url>
+    <content><![CDATA[<h3 id="Prerequisites"><a href="#Prerequisites" class="headerlink" title="Prerequisites"></a>Prerequisites</h3><ul>
+<li>a Raspberry PI 4B</li>
+<li>a SD Card, has installed <a class="link"   href="https://ubuntu.com/raspberry-pi" >Ubuntu for Raspberry Pi<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Building-EDK2"><a href="#Building-EDK2" class="headerlink" title="Building EDK2"></a>Building EDK2</h3><ul>
+<li><p>Install required packages</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install build-essential git uuid-dev iasl nasm python</span><br></pre></td></tr></table></figure></li>
+<li><p>Get the latest source for EDKII</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">mkdir code; cd code</span><br><span class="line">git clone https://github.com/tianocore/edk2.git</span><br><span class="line">cd edk2; git submodule update --init</span><br></pre></td></tr></table></figure></li>
+<li><p>Config and building</p>
+<ul>
+<li>Compile base tools<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">make -C BaseTools</span><br></pre></td></tr></table></figure></li>
+<li>Set up build environment<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">. ./edksetup.sh</span><br></pre></td></tr></table></figure></li>
+</ul>
+</li>
+<li><p>Set up build target</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">vi Conf/target.txt</span><br></pre></td></tr></table></figure>
+<ul>
+<li>set ACTIVE_PLATFORM = <strong>ArmVirtPkg/ArmVirtQemu.dsc</strong></li>
+<li>set TARGET = <strong>DEBUG</strong></li>
+<li>set TARGET_ARCH = <strong>AARCH64</strong></li>
+<li>set TOOL_CHAIN_TAG = <strong>GCC5</strong></li>
+</ul>
+</li>
+<li><p>Building MdeModulePkg module package</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">build</span><br></pre></td></tr></table></figure>
+<p>  Note: <em>build</em>, which is exported by edksetup.sh, is not a system command</p>
+</li>
+<li><p>Get the UEFI bin</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">ls Build/ArmVirtQemu-AARCH64/DEBUG_GCC5/FV/QEMU_EFI.fd</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Building-Qemu"><a href="#Building-Qemu" class="headerlink" title="Building Qemu"></a>Building Qemu</h3><ul>
+<li><p>Get the latest source for Qemu</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd ..</span><br><span class="line">wget https://download.qemu.org/qemu-6.0.0.tar.xz</span><br><span class="line">tar -xvf qemu-6.0.0.tar.xz</span><br></pre></td></tr></table></figure></li>
+<li><p>Install required packages</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">sudo apt install build-essential</span><br><span class="line">sudo apt install libaio1 libaio-dev</span><br></pre></td></tr></table></figure></li>
+<li><p>Config and building</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">cd qemu-6.0.0</span><br><span class="line">./configure --enable-trace-backend=simple --enable-debug --target-list=aarch64-softmmu --prefix=/usr/local --without-default-features --enable-kvm --enable-linux-aio --enable-vhost-net --enable-vhost-vsock --enable-vhost-scsi --enable-vhost-kernel --enable-vnc --enable-tools</span><br><span class="line">make -j 3</span><br></pre></td></tr></table></figure>
+<p>  Note: type <strong>./configure –help</strong> to set your own configurations</p>
+</li>
+<li><p>Get the Qemu bin</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">./build/qemu-system-aarch64 --version</span><br><span class="line">./build/qemu-img --version</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="References"><a href="#References" class="headerlink" title="References"></a>References</h3><ul>
+<li><a class="link"   href="https://www.raspberrypi.org/software/" >Install Raspberry Pi OS using Raspberry Pi Imager<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://wiki.ubuntu.com/UEFI/EDK2" >Ubuntu EDK2<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://github.com/qemu/QEMU" >Git Qemu<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>PRACTICE</category>
+      </categories>
+      <tags>
+        <tag>EDK2</tag>
+        <tag>Qemu</tag>
+        <tag>Raspberry Pi</tag>
       </tags>
   </entry>
   <entry>
@@ -345,6 +345,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Block IO Path in Kernel</title>
+    <url>/2018/04/01/bio-path/</url>
+    <content><![CDATA[<h3 id="Block-io-Path"><a href="#Block-io-Path" class="headerlink" title="Block io Path"></a>Block io Path</h3><ul>
+<li><p>Block io Path Overview<br><img src="bio-path.jpg" alt="Block io Path Overview"></p>
+</li>
+<li><p>Linux VFS cache path, submit_bh –&gt; submit_bio.</p>
+</li>
+</ul>
+<h3 id="Chanllenges"><a href="#Chanllenges" class="headerlink" title="Chanllenges"></a>Chanllenges</h3><ul>
+<li>Single-queue contend between multi-cpus and multi-threads, <a class="link"   href="https://events.static.linuxfound.org/sites/events/files/slides/scsi.pdf" >High Performance Storage with blk-mq and scsi-mq(Christoph Hellwig)<i class="fas fa-external-link-alt"></i></a>.</li>
+</ul>
+<h3 id="Related-Books"><a href="#Related-Books" class="headerlink" title="Related Books"></a>Related Books</h3><ul>
+<li>存储技术原理分析 作者：敖青云</li>
+<li>EMC’s Information Storage and Management</li>
+</ul>
+<h3 id="Extended-Reading-Articles"><a href="#Extended-Reading-Articles" class="headerlink" title="Extended Reading Articles"></a>Extended Reading Articles</h3><ul>
+<li><a class="link"   href="https://lwn.net/Articles/336224/" >Linux kernel design patterns - part 1<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://lwn.net/Articles/336255/" >Linux kernel design patterns - part 2<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://lwn.net/Articles/336262/" >Linux kernel design patterns - part 3<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>KERNEL</category>
+      </categories>
+      <tags>
+        <tag>storage</tag>
+        <tag>block io</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Binary Index Tree</title>
     <url>/2020/01/10/binary-index-tree/</url>
     <content><![CDATA[<h3 id="Binary-Index-Tree"><a href="#Binary-Index-Tree" class="headerlink" title="Binary Index Tree"></a>Binary Index Tree</h3><p>Binary Indexed Tree also called Fenwick Tree provides a way to represent an array of numbers in an array, allowing prefix sums to be calculated efficiently. For example, an array [2, 3, -1, 0, 6] is given, then the prefix sum of first 3 elements [2, 3, -1] is 2 + 3 + -1 = 4. Calculating prefix sum efficiently is useful in various scenarios. Let’s start with a simple problem.</p>
@@ -424,36 +454,6 @@ SAMPLE OUTPUT:
       <tags>
         <tag>fenwick tree</tag>
         <tag>binary index tree</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Block IO Path in Kernel</title>
-    <url>/2018/04/01/bio-path/</url>
-    <content><![CDATA[<h3 id="Block-io-Path"><a href="#Block-io-Path" class="headerlink" title="Block io Path"></a>Block io Path</h3><ul>
-<li><p>Block io Path Overview<br><img src="bio-path.jpg" alt="Block io Path Overview"></p>
-</li>
-<li><p>Linux VFS cache path, submit_bh –&gt; submit_bio.</p>
-</li>
-</ul>
-<h3 id="Chanllenges"><a href="#Chanllenges" class="headerlink" title="Chanllenges"></a>Chanllenges</h3><ul>
-<li>Single-queue contend between multi-cpus and multi-threads, <a class="link"   href="https://events.static.linuxfound.org/sites/events/files/slides/scsi.pdf" >High Performance Storage with blk-mq and scsi-mq(Christoph Hellwig)<i class="fas fa-external-link-alt"></i></a>.</li>
-</ul>
-<h3 id="Related-Books"><a href="#Related-Books" class="headerlink" title="Related Books"></a>Related Books</h3><ul>
-<li>存储技术原理分析 作者：敖青云</li>
-<li>EMC’s Information Storage and Management</li>
-</ul>
-<h3 id="Extended-Reading-Articles"><a href="#Extended-Reading-Articles" class="headerlink" title="Extended Reading Articles"></a>Extended Reading Articles</h3><ul>
-<li><a class="link"   href="https://lwn.net/Articles/336224/" >Linux kernel design patterns - part 1<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://lwn.net/Articles/336255/" >Linux kernel design patterns - part 2<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://lwn.net/Articles/336262/" >Linux kernel design patterns - part 3<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>KERNEL</category>
-      </categories>
-      <tags>
-        <tag>storage</tag>
-        <tag>block io</tag>
       </tags>
   </entry>
   <entry>
@@ -568,111 +568,6 @@ SAMPLE OUTPUT:
       <tags>
         <tag>design patterns</tag>
         <tag>uml</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Expert &amp; Association Map</title>
-    <url>/2020/10/28/expert-association-map/</url>
-    <content><![CDATA[<p>Build a map of technical experts and associations, try to stand on the shoulder of giants :)</p>
-<h3 id="Experts"><a href="#Experts" class="headerlink" title="Experts"></a>Experts</h3><ul>
-<li>Computer Scientists<ul>
-<li><a class="link"   href="https://scholar.google.com.sg/citations?hl=en&user=tp07xT0AAAAJ" >John L. Hennessy<i class="fas fa-external-link-alt"></i></a>: Stanford University, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=John+L.+Hennessy&btnG=" >scholar links<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://scholar.google.com.sg/citations?user=Wj4ZBFIAAAAJ&hl=en&oi=sra" >David A. Patterson<i class="fas fa-external-link-alt"></i></a>: Professor of Computer Science, UC Berkeley, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=David+A.+Patterson&btnG=" >scholar links<i class="fas fa-external-link-alt"></i></a></li>
-<li>Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau: University of Wisconsin-Madison, <a class="link"   href="https://pages.cs.wisc.edu/~remzi/OSTEP/" >Operating Systems: Three Easy Pieces<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li>Maintainors<ul>
-<li>KVM &amp; Qemu: <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=Gleb+Natapov&btnG=" >Gleb Natapov<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=Paolo+Bonzini&btnG=" >Paolo Bonzini<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li>Industry<ul>
-<li>James B. Keller, a Microprocessor Engineer, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=James+B.+Keller&btnG=" >scholar links<i class="fas fa-external-link-alt"></i></a></li>
-<li>Gerard Williams III, a Senior Director at Apple and Chief CPU Architect for nearly a decade</li>
-</ul>
-</li>
-<li>Analysts<ul>
-<li><a class="link"   href="https://janakiram.com/" >JANAKIRAM MSV<i class="fas fa-external-link-alt"></i></a>: Analyst. Advisor. Architect. the convergence of machine intelligence and modern infrastructure.</li>
-</ul>
-</li>
-</ul>
-<h3 id="Associations"><a href="#Associations" class="headerlink" title="Associations"></a>Associations</h3><ul>
-<li><a class="link"   href="https://amturing.acm.org/" >A.M. Turing Award<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://supercomputing.org/" >SuperComputing<i class="fas fa-external-link-alt"></i></a></li>
-<li>General: standard organizations, industry associations and conferences<ul>
-<li><a href="https://www.acm.org/"><strong>ACM</strong></a>: Association for Computing Machinery, <a class="link"   href="https://dl.acm.org/sigs" >SIGs<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://dl.acm.org/conferences" >Conferences<i class="fas fa-external-link-alt"></i></a><ul>
-<li><a class="link"   href="https://www.acm.org/conferences/best-paper-awards" >Conferences Best Paper Awards<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li><a href="https://www.usenix.org/"><strong>usenix</strong></a>: the Advanced Computing Systems Association, <a class="link"   href="https://www.usenix.org/conference" >Conferences<i class="fas fa-external-link-alt"></i></a><ul>
-<li><a class="link"   href="https://www.usenix.org/conferences/best-papers" >Best Papers<i class="fas fa-external-link-alt"></i></a>: <em>OSDI Jay Lepreau Best Paper Award</em>, <em>ATC Best Paper Award</em></li>
-</ul>
-</li>
-<li><a class="link"   href="https://www.linuxfoundation.org/" >Linux Foundation<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://events.linuxfoundation.org/" >Events<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://ietf.org/" >IETF<i class="fas fa-external-link-alt"></i></a>: Internet Engineering Task Force</li>
-<li><a class="link"   href="https://www.ieee.org/" >IEEE<i class="fas fa-external-link-alt"></i></a>: Institute of Electrical and Electronics Engineers<ul>
-<li><a class="link"   href="https://ieeexplore.ieee.org/xpl/conhome/9499716/proceeding" >Annual International Symposium on Computer Architecture, ISCA<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li><a class="link"   href="https://www.ccf.org.cn/" >CCF<i class="fas fa-external-link-alt"></i></a>: China Computer Federation</li>
-<li><a class="link"   href="https://www.linaro.org/events/" >Linaro Events<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://fosdem.org/" >FOSDEM<i class="fas fa-external-link-alt"></i></a>: a free event for software developers to meet, share ideas and collaborate.</li>
-</ul>
-</li>
-<li>Network: standard organizations, industry associations and conferences<ul>
-<li><a class="link"   href="https://dl.acm.org/conference/ancs" >ACM ANCS<i class="fas fa-external-link-alt"></i></a>: Architecture for Networking and Communications Systems</li>
-<li><a class="link"   href="https://www.usenix.org/conferences/byname/178" >usenix NSDI Symposia<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.tiaonline.org/" >TIA<i class="fas fa-external-link-alt"></i></a>: Telecommunications Industry Association</li>
-<li><a class="link"   href="http://www.incits.org/" >INCITS<i class="fas fa-external-link-alt"></i></a>: the InterNational Committee for Information Technology Standards</li>
-<li><a class="link"   href="https://www.oasis-open.org/committees/" >OASIS Technical Committees<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio" >virtio<i class="fas fa-external-link-alt"></i></a> etc.</li>
-</ul>
-</li>
-<li>Hypervisor: standard organizations, industry associations and conferences<ul>
-<li><a class="link"   href="https://dl.acm.org/conference/sosp" >ACM SOSP<i class="fas fa-external-link-alt"></i></a>: ACM Symposium on Operating Systems Principles</li>
-<li><a class="link"   href="http://www.eurosys.org/" >ACM EUROSYS<i class="fas fa-external-link-alt"></i></a>: European Conference on Computer Systems</li>
-<li><a class="link"   href="https://dl.acm.org/conference/vee" >ACM VEE<i class="fas fa-external-link-alt"></i></a>: ACM SIGPLAN/SIGOPS International Conference on Virtual Execution Environments</li>
-<li><a class="link"   href="https://www.usenix.org/conferences/byname/179" >usenix OSDI Symposia<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://events.linuxfoundation.org/events/kvm-forum" >KVM Forum<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://events.docker.com/events/dockercon/" >DockerCon<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.cncf.io/" >CNCF<i class="fas fa-external-link-alt"></i></a>: cloud native computing foundation</li>
-</ul>
-</li>
-<li>Storage: standard organizations, industry associations and conferences<ul>
-<li><a class="link"   href="https://nvmexpress.org/" >NVMe<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.snia.org/" >SNIA<i class="fas fa-external-link-alt"></i></a>: Storage Networking Industry Association</li>
-<li><a class="link"   href="https://www.snia.org/events/storage-developer" >SDC<i class="fas fa-external-link-alt"></i></a>: Storage Developer Conference</li>
-</ul>
-</li>
-<li>Chips<ul>
-<li><a class="link"   href="https://www.hotchips.org/" >Hot Chips<i class="fas fa-external-link-alt"></i></a>: A Symposium on High Performance Chips</li>
-<li><a class="link"   href="https://www.linleygroup.com/" >The Linley Group<i class="fas fa-external-link-alt"></i></a>: The Industry’s leading experts in semiconductor markets</li>
-</ul>
-</li>
-</ul>
-<h3 id="Industry-Events"><a href="#Industry-Events" class="headerlink" title="Industry Events"></a>Industry Events</h3><ul>
-<li><a href="https://www.nextplatform.com/">THE<strong>NEXT</strong>PLATFORM</a>: published by Stackhouse Publishing Inc in partnership with the UK’s top technology publication, <a class="link"   href="https://www.theregister.com/" >The Register<i class="fas fa-external-link-alt"></i></a>. Offers in-depth coverage of high-end computing at large enterprises, supercomputing centers, hyperscale data centers, and public clouds.</li>
-<li><a class="link"   href="https://thesixfivesummit.com/" >The Six Five Summit<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.nvidia.com/en-us/gtc/" >NVIDIA GTC<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.arm.com/company/events" >ARM Events<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.intel.com/content/www/us/en/search.html?ws=text#q=Intel%20Architecture%20Day&sort=relevancy" >Intel Architecture Day<i class="fas fa-external-link-alt"></i></a>, <a href="https://www.vmware.com/vmworld/en/index.html">VMware <strong>vm</strong>world</a></li>
-<li><a class="link"   href="https://www.technologyreview.com/topic/computing/" >MIT Technology Review Topics Computing<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Research-Institutes"><a href="#Research-Institutes" class="headerlink" title="Research Institutes"></a>Research Institutes</h3><ul>
-<li><a class="link"   href="https://www.berkeley.edu/" >UC Berkeley<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www2.eecs.berkeley.edu/Research/Areas/Centers/" >EECS<i class="fas fa-external-link-alt"></i></a><ul>
-<li><a class="link"   href="https://rise.cs.berkeley.edu/" >RISELab at UC Berkeley<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://amplab.cs.berkeley.edu/" >AMPLab<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li><a class="link"   href="http://wuklab.io/" >WukLab<i class="fas fa-external-link-alt"></i></a>, Dept of Computer Science and Engineering University of California, Building Next-Generation Datacenter Systems</li>
-<li><a class="link"   href="https://vt.edu/" >Virginia Tech<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.research.vt.edu/institutes.html" >Research Institutes<i class="fas fa-external-link-alt"></i></a> and <a class="link"   href="https://www.research.vt.edu/institutes/college-dept-research-centers-labs-groups.html" >university research centers<i class="fas fa-external-link-alt"></i></a> <ul>
-<li><a class="link"   href="https://www.ssrg.ece.vt.edu/" >System Software Research Group<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://www.ssrg.ece.vt.edu/projects.html" >projects<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-</li>
-<li><a class="link"   href="https://www.stevens.edu/" >Stevens Institute of Technology<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.stevens.edu/research-entrepreneurship/research-centers-labs" >Research Centers &amp; Labs<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.llnl.gov/" >Lawrence Livermore National Laboratory<i class="fas fa-external-link-alt"></i></a>, area of HPC.</li>
-</ul>
-]]></content>
-      <categories>
-        <category>INDUSTRY</category>
-      </categories>
-      <tags>
-        <tag>expert</tag>
-        <tag>association</tag>
       </tags>
   </entry>
   <entry>
@@ -844,39 +739,6 @@ SAMPLE OUTPUT:
       </tags>
   </entry>
   <entry>
-    <title>Google Driver for Linux</title>
-    <url>/2018/09/28/gcloud-share/</url>
-    <content><![CDATA[<h3 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h3><p>To share directory between windows and linux enviroment with <a class="link"   href="https://drive.google.com/drive/my-drive" >Google Driver<i class="fas fa-external-link-alt"></i></a>. The most important reason to choose google driver is  the compabiltiy of driver client span OS, such as Linux, Windows, macOS, iOS and Android.</p>
-<h3 id="Top-12-Best-Google-Drive-Linux-Client-Software"><a href="#Top-12-Best-Google-Drive-Linux-Client-Software" class="headerlink" title="Top 12 Best Google Drive Linux Client Software"></a><a class="link"   href="https://www.ubuntupit.com/top-12-best-google-drive-linux-client-software/" >Top 12 Best Google Drive Linux Client Software<i class="fas fa-external-link-alt"></i></a></h3><ul>
-<li>GUI Tools: <a class="link"   href="https://www.insynchq.com/" >Insync<i class="fas fa-external-link-alt"></i></a></li>
-<li>Command Line Tools: <a class="link"   href="http://yourcmc.ru/wiki/Grive2" >grive2<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://github.com/astrada/google-drive-ocamlfuse" >google-drive-ocamlfuse<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Grive2-Install-Steps"><a href="#Grive2-Install-Steps" class="headerlink" title="Grive2 Install Steps"></a>Grive2 Install Steps</h3><ul>
-<li><p>For CentOS 7.4</p>
-<ul>
-<li># yum -y groupinstall “Development Tools”</li>
-<li># yum -y install git cmake libgcrypt-devel yajl yajl-devel boost boost-devel curl curl-devel expat-devel cppunit-devel binutils-devel pkgconfig zlib-devel</li>
-</ul>
-</li>
-<li><p>For Ubuntu 16.04</p>
-<ul>
-<li># sudo apt-get update; sudo apt-get upgrade; sudo apt-get install build-essential</li>
-<li># sudo apt-get install git cmake build-essential libgcrypt11-dev libyajl-dev libboost-all-dev libcurl4-openssl-dev libexpat1-dev libcppunit-dev binutils-dev debhelper  zlib1g-dev dpkg-dev pkg-config</li>
-</ul>
-</li>
-<li><p>The Next Steps, <a class="link"   href="http://yourcmc.ru/wiki/Grive2#Download_sources" >grive2 wiki<i class="fas fa-external-link-alt"></i></a>, or the <a class="link"   href="https://github.com/vitalif/grive2" >grive2 github<i class="fas fa-external-link-alt"></i></a></p>
-</li>
-</ul>
-]]></content>
-      <categories>
-        <category>TOOLS</category>
-      </categories>
-      <tags>
-        <tag>tool</tag>
-        <tag>Driver</tag>
-      </tags>
-  </entry>
-  <entry>
     <title>Gartner&#39;s view of Technology and Company</title>
     <url>/2018/02/18/gartner/</url>
     <content><![CDATA[<h3 id="Research-Methodologies"><a href="#Research-Methodologies" class="headerlink" title="Research Methodologies"></a><a class="link"   href="https://www.gartner.com/technology/research/methodologies/methodology.jsp" >Research Methodologies<i class="fas fa-external-link-alt"></i></a></h3><ul>
@@ -940,6 +802,39 @@ SAMPLE OUTPUT:
       <tags>
         <tag>industry</tag>
         <tag>analyst</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Google Driver for Linux</title>
+    <url>/2018/09/28/gcloud-share/</url>
+    <content><![CDATA[<h3 id="Purpose"><a href="#Purpose" class="headerlink" title="Purpose"></a>Purpose</h3><p>To share directory between windows and linux enviroment with <a class="link"   href="https://drive.google.com/drive/my-drive" >Google Driver<i class="fas fa-external-link-alt"></i></a>. The most important reason to choose google driver is  the compabiltiy of driver client span OS, such as Linux, Windows, macOS, iOS and Android.</p>
+<h3 id="Top-12-Best-Google-Drive-Linux-Client-Software"><a href="#Top-12-Best-Google-Drive-Linux-Client-Software" class="headerlink" title="Top 12 Best Google Drive Linux Client Software"></a><a class="link"   href="https://www.ubuntupit.com/top-12-best-google-drive-linux-client-software/" >Top 12 Best Google Drive Linux Client Software<i class="fas fa-external-link-alt"></i></a></h3><ul>
+<li>GUI Tools: <a class="link"   href="https://www.insynchq.com/" >Insync<i class="fas fa-external-link-alt"></i></a></li>
+<li>Command Line Tools: <a class="link"   href="http://yourcmc.ru/wiki/Grive2" >grive2<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://github.com/astrada/google-drive-ocamlfuse" >google-drive-ocamlfuse<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Grive2-Install-Steps"><a href="#Grive2-Install-Steps" class="headerlink" title="Grive2 Install Steps"></a>Grive2 Install Steps</h3><ul>
+<li><p>For CentOS 7.4</p>
+<ul>
+<li># yum -y groupinstall “Development Tools”</li>
+<li># yum -y install git cmake libgcrypt-devel yajl yajl-devel boost boost-devel curl curl-devel expat-devel cppunit-devel binutils-devel pkgconfig zlib-devel</li>
+</ul>
+</li>
+<li><p>For Ubuntu 16.04</p>
+<ul>
+<li># sudo apt-get update; sudo apt-get upgrade; sudo apt-get install build-essential</li>
+<li># sudo apt-get install git cmake build-essential libgcrypt11-dev libyajl-dev libboost-all-dev libcurl4-openssl-dev libexpat1-dev libcppunit-dev binutils-dev debhelper  zlib1g-dev dpkg-dev pkg-config</li>
+</ul>
+</li>
+<li><p>The Next Steps, <a class="link"   href="http://yourcmc.ru/wiki/Grive2#Download_sources" >grive2 wiki<i class="fas fa-external-link-alt"></i></a>, or the <a class="link"   href="https://github.com/vitalif/grive2" >grive2 github<i class="fas fa-external-link-alt"></i></a></p>
+</li>
+</ul>
+]]></content>
+      <categories>
+        <category>TOOLS</category>
+      </categories>
+      <tags>
+        <tag>tool</tag>
+        <tag>Driver</tag>
       </tags>
   </entry>
   <entry>
@@ -1276,6 +1171,30 @@ SAMPLE OUTPUT:
       </tags>
   </entry>
   <entry>
+    <title>Collection of Linux Weather Forcast</title>
+    <url>/2018/10/03/linux-weather-forecast/</url>
+    <content><![CDATA[<p><a class="link"   href="https://www.linux.com/news/category/linux-kernel" >Weather Forcast<i class="fas fa-external-link-alt"></i></a></p>
+<h3 id="Short-term-Forcast"><a href="#Short-term-Forcast" class="headerlink" title="Short-term Forcast"></a>Short-term Forcast</h3><ul>
+<li><a class="link"   href="https://lwn.net/Articles/748879/" >Time-based packet transmission<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://lwn.net/Articles/758353/" >CAKE queueing discipline<i class="fas fa-external-link-alt"></i></a>: offers significantly better networking performance, especially in home or small-business settings.</li>
+<li><a class="link"   href="https://lwn.net/Articles/758963/" >The block I/O latency controller<i class="fas fa-external-link-alt"></i></a>: allows an administrator to provide block (disk) I/O response-time guarantees to specific processes.</li>
+</ul>
+<h3 id="Kernel-4-18"><a href="#Kernel-4-18" class="headerlink" title="Kernel-4.18"></a>Kernel-4.18</h3><ul>
+<li><a class="link"   href="https://lwn.net/Articles/747551/" >bpfilter<i class="fas fa-external-link-alt"></i></a>: expected to be the base on which the next generation of kernel firewalling systems is built.</li>
+<li><a class="link"   href="https://lwn.net/Articles/754681/" >A reworked TCP zero-copy receive API<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://lwn.net/Articles/750845/" >Accelerating networking with AF_XDP<i class="fas fa-external-link-alt"></i></a>: a larger effort to win back users of user-space networking stacks by providing better facilities in the kernel.</li>
+<li><a class="link"   href="https://lwn.net/Articles/760690/" >Statistics from the 4.18 development cycle<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.linux.com/news/2018/9/linux-weather-forecast" >Linux Weather Forecast 2018.09<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>KERNEL</category>
+      </categories>
+      <tags>
+        <tag>kernel</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Links Bookmark</title>
     <url>/2018/02/17/links/</url>
     <content><![CDATA[<p>Some useful links to Get information, just as explorer’s bookmark.</p>
@@ -1448,34 +1367,10 @@ SAMPLE OUTPUT:
         <category>INDUSTRY</category>
       </categories>
       <tags>
-        <tag>tool</tag>
         <tag>industry</tag>
+        <tag>tool</tag>
         <tag>bookmark</tag>
         <tag>website</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Collection of Linux Weather Forcast</title>
-    <url>/2018/10/03/linux-weather-forecast/</url>
-    <content><![CDATA[<p><a class="link"   href="https://www.linux.com/news/category/linux-kernel" >Weather Forcast<i class="fas fa-external-link-alt"></i></a></p>
-<h3 id="Short-term-Forcast"><a href="#Short-term-Forcast" class="headerlink" title="Short-term Forcast"></a>Short-term Forcast</h3><ul>
-<li><a class="link"   href="https://lwn.net/Articles/748879/" >Time-based packet transmission<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://lwn.net/Articles/758353/" >CAKE queueing discipline<i class="fas fa-external-link-alt"></i></a>: offers significantly better networking performance, especially in home or small-business settings.</li>
-<li><a class="link"   href="https://lwn.net/Articles/758963/" >The block I/O latency controller<i class="fas fa-external-link-alt"></i></a>: allows an administrator to provide block (disk) I/O response-time guarantees to specific processes.</li>
-</ul>
-<h3 id="Kernel-4-18"><a href="#Kernel-4-18" class="headerlink" title="Kernel-4.18"></a>Kernel-4.18</h3><ul>
-<li><a class="link"   href="https://lwn.net/Articles/747551/" >bpfilter<i class="fas fa-external-link-alt"></i></a>: expected to be the base on which the next generation of kernel firewalling systems is built.</li>
-<li><a class="link"   href="https://lwn.net/Articles/754681/" >A reworked TCP zero-copy receive API<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://lwn.net/Articles/750845/" >Accelerating networking with AF_XDP<i class="fas fa-external-link-alt"></i></a>: a larger effort to win back users of user-space networking stacks by providing better facilities in the kernel.</li>
-<li><a class="link"   href="https://lwn.net/Articles/760690/" >Statistics from the 4.18 development cycle<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.linux.com/news/2018/9/linux-weather-forecast" >Linux Weather Forecast 2018.09<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-]]></content>
-      <categories>
-        <category>KERNEL</category>
-      </categories>
-      <tags>
-        <tag>kernel</tag>
       </tags>
   </entry>
   <entry>
@@ -1528,6 +1423,113 @@ SAMPLE OUTPUT:
       <tags>
         <tag>program</tag>
         <tag>memory layout</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Expert &amp; Association Map</title>
+    <url>/2020/10/28/expert-association-map/</url>
+    <content><![CDATA[<p>Build a map of technical experts and associations, try to stand on the shoulder of giants :)</p>
+<h3 id="Experts"><a href="#Experts" class="headerlink" title="Experts"></a>Experts</h3><ul>
+<li>Computer Scientists<ul>
+<li><a class="link"   href="https://scholar.google.com.sg/citations?hl=en&user=tp07xT0AAAAJ" >John L. Hennessy<i class="fas fa-external-link-alt"></i></a>: Stanford University, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=John+L.+Hennessy&btnG=" >scholar links<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://scholar.google.com.sg/citations?user=Wj4ZBFIAAAAJ&hl=en&oi=sra" >David A. Patterson<i class="fas fa-external-link-alt"></i></a>: Professor of Computer Science, UC Berkeley, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=David+A.+Patterson&btnG=" >scholar links<i class="fas fa-external-link-alt"></i></a></li>
+<li>Remzi H. Arpaci-Dusseau and Andrea C. Arpaci-Dusseau: University of Wisconsin-Madison, <a class="link"   href="https://pages.cs.wisc.edu/~remzi/OSTEP/" >Operating Systems: Three Easy Pieces<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://cseweb.ucsd.edu/~vahdat/" >Amin Vahdat<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="http://www.sigcomm.org/awards/sigcomm-awards" >SIGCOMM 2020 Lifetime Contribution<i class="fas fa-external-link-alt"></i></a> For groundbreaking contributions to data center and wide area networks.</li>
+</ul>
+</li>
+<li>Maintainors<ul>
+<li>KVM &amp; Qemu: <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=Gleb+Natapov&btnG=" >Gleb Natapov<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=Paolo+Bonzini&btnG=" >Paolo Bonzini<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li>Industry<ul>
+<li>James B. Keller, a Microprocessor Engineer, <a class="link"   href="https://scholar.google.com.sg/scholar?hl=en&as_sdt=0,5&q=James+B.+Keller&btnG=" >scholar links<i class="fas fa-external-link-alt"></i></a></li>
+<li>Gerard Williams III, a Senior Director at Apple and Chief CPU Architect for nearly a decade</li>
+</ul>
+</li>
+<li>Analysts<ul>
+<li><a class="link"   href="https://janakiram.com/" >JANAKIRAM MSV<i class="fas fa-external-link-alt"></i></a>: Analyst. Advisor. Architect. the convergence of machine intelligence and modern infrastructure.</li>
+</ul>
+</li>
+</ul>
+<h3 id="Associations"><a href="#Associations" class="headerlink" title="Associations"></a>Associations</h3><ul>
+<li><a class="link"   href="https://amturing.acm.org/" >A.M. Turing Award<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://supercomputing.org/" >SuperComputing<i class="fas fa-external-link-alt"></i></a></li>
+<li>General: standard organizations, industry associations and conferences<ul>
+<li><a href="https://www.acm.org/"><strong>ACM</strong></a>: Association for Computing Machinery, <a class="link"   href="https://dl.acm.org/sigs" >SIGs<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://dl.acm.org/conferences" >Conferences<i class="fas fa-external-link-alt"></i></a><ul>
+<li><a class="link"   href="https://www.acm.org/conferences/best-paper-awards" >Conferences Best Paper Awards<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://www.sigcomm.org/awards" >SIGCOMM Awards<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li><a href="https://www.usenix.org/"><strong>usenix</strong></a>: the Advanced Computing Systems Association, <a class="link"   href="https://www.usenix.org/conference" >Conferences<i class="fas fa-external-link-alt"></i></a><ul>
+<li><a class="link"   href="https://www.usenix.org/conferences/best-papers" >Best Papers<i class="fas fa-external-link-alt"></i></a>: <em>OSDI Jay Lepreau Best Paper Award</em>, <em>ATC Best Paper Award</em></li>
+</ul>
+</li>
+<li><a class="link"   href="https://www.linuxfoundation.org/" >Linux Foundation<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://events.linuxfoundation.org/" >Events<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://ietf.org/" >IETF<i class="fas fa-external-link-alt"></i></a>: Internet Engineering Task Force</li>
+<li><a class="link"   href="https://www.ieee.org/" >IEEE<i class="fas fa-external-link-alt"></i></a>: Institute of Electrical and Electronics Engineers<ul>
+<li><a class="link"   href="https://ieeexplore.ieee.org/xpl/conhome/9499716/proceeding" >Annual International Symposium on Computer Architecture, ISCA<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li><a class="link"   href="https://www.ccf.org.cn/" >CCF<i class="fas fa-external-link-alt"></i></a>: China Computer Federation</li>
+<li><a class="link"   href="https://www.linaro.org/events/" >Linaro Events<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://fosdem.org/" >FOSDEM<i class="fas fa-external-link-alt"></i></a>: a free event for software developers to meet, share ideas and collaborate.</li>
+</ul>
+</li>
+<li>Network: standard organizations, industry associations and conferences<ul>
+<li><a class="link"   href="https://dl.acm.org/conference/ancs" >ACM ANCS<i class="fas fa-external-link-alt"></i></a>: Architecture for Networking and Communications Systems</li>
+<li><a class="link"   href="https://www.usenix.org/conferences/byname/178" >usenix NSDI Symposia<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.tiaonline.org/" >TIA<i class="fas fa-external-link-alt"></i></a>: Telecommunications Industry Association</li>
+<li><a class="link"   href="http://www.incits.org/" >INCITS<i class="fas fa-external-link-alt"></i></a>: the InterNational Committee for Information Technology Standards</li>
+<li><a class="link"   href="https://www.oasis-open.org/committees/" >OASIS Technical Committees<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://www.oasis-open.org/committees/tc_home.php?wg_abbrev=virtio" >virtio<i class="fas fa-external-link-alt"></i></a> etc.</li>
+</ul>
+</li>
+<li>Hypervisor: standard organizations, industry associations and conferences<ul>
+<li><a class="link"   href="https://dl.acm.org/conference/sosp" >ACM SOSP<i class="fas fa-external-link-alt"></i></a>: ACM Symposium on Operating Systems Principles</li>
+<li><a class="link"   href="http://www.eurosys.org/" >ACM EUROSYS<i class="fas fa-external-link-alt"></i></a>: European Conference on Computer Systems</li>
+<li><a class="link"   href="https://dl.acm.org/conference/vee" >ACM VEE<i class="fas fa-external-link-alt"></i></a>: ACM SIGPLAN/SIGOPS International Conference on Virtual Execution Environments</li>
+<li><a class="link"   href="https://www.usenix.org/conferences/byname/179" >usenix OSDI Symposia<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://events.linuxfoundation.org/events/kvm-forum" >KVM Forum<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://events.docker.com/events/dockercon/" >DockerCon<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.cncf.io/" >CNCF<i class="fas fa-external-link-alt"></i></a>: cloud native computing foundation</li>
+</ul>
+</li>
+<li>Storage: standard organizations, industry associations and conferences<ul>
+<li><a class="link"   href="https://nvmexpress.org/" >NVMe<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.snia.org/" >SNIA<i class="fas fa-external-link-alt"></i></a>: Storage Networking Industry Association</li>
+<li><a class="link"   href="https://www.snia.org/events/storage-developer" >SDC<i class="fas fa-external-link-alt"></i></a>: Storage Developer Conference</li>
+</ul>
+</li>
+<li>Chips<ul>
+<li><a class="link"   href="https://www.hotchips.org/" >Hot Chips<i class="fas fa-external-link-alt"></i></a>: A Symposium on High Performance Chips</li>
+<li><a class="link"   href="https://www.linleygroup.com/" >The Linley Group<i class="fas fa-external-link-alt"></i></a>: The Industry’s leading experts in semiconductor markets</li>
+</ul>
+</li>
+</ul>
+<h3 id="Industry-Events"><a href="#Industry-Events" class="headerlink" title="Industry Events"></a>Industry Events</h3><ul>
+<li><a href="https://www.nextplatform.com/">THE<strong>NEXT</strong>PLATFORM</a>: published by Stackhouse Publishing Inc in partnership with the UK’s top technology publication, <a class="link"   href="https://www.theregister.com/" >The Register<i class="fas fa-external-link-alt"></i></a>. Offers in-depth coverage of high-end computing at large enterprises, supercomputing centers, hyperscale data centers, and public clouds.</li>
+<li><a class="link"   href="https://thesixfivesummit.com/" >The Six Five Summit<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.nvidia.com/en-us/gtc/" >NVIDIA GTC<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.arm.com/company/events" >ARM Events<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.intel.com/content/www/us/en/search.html?ws=text#q=Intel%20Architecture%20Day&sort=relevancy" >Intel Architecture Day<i class="fas fa-external-link-alt"></i></a>, <a href="https://www.vmware.com/vmworld/en/index.html">VMware <strong>vm</strong>world</a></li>
+<li><a class="link"   href="https://www.technologyreview.com/topic/computing/" >MIT Technology Review Topics Computing<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Research-Institutes"><a href="#Research-Institutes" class="headerlink" title="Research Institutes"></a>Research Institutes</h3><ul>
+<li><a class="link"   href="https://www.berkeley.edu/" >UC Berkeley<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www2.eecs.berkeley.edu/Research/Areas/Centers/" >EECS<i class="fas fa-external-link-alt"></i></a><ul>
+<li><a class="link"   href="https://rise.cs.berkeley.edu/" >RISELab at UC Berkeley<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://amplab.cs.berkeley.edu/" >AMPLab<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li><a class="link"   href="http://wuklab.io/" >WukLab<i class="fas fa-external-link-alt"></i></a>, Dept of Computer Science and Engineering University of California, Building Next-Generation Datacenter Systems</li>
+<li><a class="link"   href="https://vt.edu/" >Virginia Tech<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.research.vt.edu/institutes.html" >Research Institutes<i class="fas fa-external-link-alt"></i></a> and <a class="link"   href="https://www.research.vt.edu/institutes/college-dept-research-centers-labs-groups.html" >university research centers<i class="fas fa-external-link-alt"></i></a> <ul>
+<li><a class="link"   href="https://www.ssrg.ece.vt.edu/" >System Software Research Group<i class="fas fa-external-link-alt"></i></a>: <a class="link"   href="https://www.ssrg.ece.vt.edu/projects.html" >projects<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+</li>
+<li><a class="link"   href="https://www.stevens.edu/" >Stevens Institute of Technology<i class="fas fa-external-link-alt"></i></a>, <a class="link"   href="https://www.stevens.edu/research-entrepreneurship/research-centers-labs" >Research Centers &amp; Labs<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.llnl.gov/" >Lawrence Livermore National Laboratory<i class="fas fa-external-link-alt"></i></a>, area of HPC.</li>
+</ul>
+]]></content>
+      <categories>
+        <category>INDUSTRY</category>
+      </categories>
+      <tags>
+        <tag>expert</tag>
+        <tag>association</tag>
       </tags>
   </entry>
   <entry>
@@ -1949,50 +1951,67 @@ SAMPLE OUTPUT:
       </tags>
   </entry>
   <entry>
-    <title>Recursion, divide and conquer</title>
-    <url>/2018/08/12/recursive/</url>
-    <content><![CDATA[<h3 id="the-stack"><a href="#the-stack" class="headerlink" title="the stack"></a>the stack</h3><p>Base actions are push and pop, just like FILO(first in last out) queue.</p>
-<h3 id="base-case-and-recursive-case"><a href="#base-case-and-recursive-case" class="headerlink" title="base case and recursive case"></a>base case and recursive case</h3><p>Every recursive function has two parts: the base case, and the recursive case.</p>
-<h3 id="divide-and-conquer"><a href="#divide-and-conquer" class="headerlink" title="divide and conquer"></a>divide and conquer</h3><p>Suppose you’re a farmer with a plot of land. You want to divide this farm evenly into square plots. You want the plots to be as big as possible. Just divide to get the largest square, and repeat the step with the remaining part.</p>
-<h3 id="inductive-proofs"><a href="#inductive-proofs" class="headerlink" title="inductive proofs"></a>inductive proofs</h3><p>For example, suppose I want to prove that I can climb to the top of a ladder. In the inductive case, if my legs are on a rung, I can put my legs on the next rung. So if I’m on rung 2, I can climb to rung 3. That’s the inductive case.</p>
-<h3 id="Tower-of-Hanoi"><a href="#Tower-of-Hanoi" class="headerlink" title="Tower of Hanoi"></a>Tower of Hanoi</h3><p>The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:</p>
-<ul>
-<li>Only one disk can be moved at a time.</li>
-<li>Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.</li>
-<li>No disk may be placed on top of a smaller disk.</li>
-</ul>
-<p>With 3 disks, the puzzle can be solved in 7 moves. The minimal number of moves required to solve a Tower of Hanoi puzzle is 2^n − 1, where n is the number of disks.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int times = 0;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * @param n, layers of tower</span><br><span class="line">  * @param A, the source</span><br><span class="line">  * @param B, the destination</span><br><span class="line">  * @param C, the swap</span><br><span class="line">  */ </span><br><span class="line">static void hanoi(int n, char A, char B, char C);</span><br><span class="line"></span><br><span class="line">static void hanoi(int n, char A, char B, char C)</span><br><span class="line">&#123;</span><br><span class="line">    if (n &gt; 0) &#123;</span><br><span class="line">        hanoi(n - 1, A, C, B);</span><br><span class="line">        printf(&quot;%c -&gt; %c &quot;, A, C);</span><br><span class="line">        hanoi(n - 1, C, B, A);</span><br><span class="line"></span><br><span class="line">        times++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    int layer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    layer = 3, times = 0;</span><br><span class="line">    hanoi(layer, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;);</span><br><span class="line">    printf(&quot;layer = %d, times %d = 2^%d - 1\n&quot;, layer, times, layer);</span><br><span class="line"></span><br><span class="line">    layer = 4, times = 0;</span><br><span class="line">    hanoi(layer, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;);</span><br><span class="line">    printf(&quot;layer = %d, times %d = 2^%d - 1\n&quot;, layer, times, layer);</span><br><span class="line"></span><br><span class="line">    layer = 7, times = 0;</span><br><span class="line">    hanoi(layer, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;);</span><br><span class="line">    printf(&quot;layer = %d, times %d = 2^%d - 1\n&quot;, layer, times, layer);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+    <title>Segment Tree</title>
+    <url>/2020/01/05/segment-tree/</url>
+    <content><![CDATA[<h3 id="Segment-Tree"><a href="#Segment-Tree" class="headerlink" title="Segment Tree"></a>Segment Tree</h3><p>Segment Tree is used in cases where there are multiple range queries on array and modifications of elements of the same array. For example, finding the sum of all the elements in an array from indices  L to R, or finding the minimum (famously known as Range Minumum Query problem) of all the elements in an array from indices L to R. </p>
+<pre><code>Problem:
+Description of Range Minimum Query
+Given an array A of size N, there are two types of queries on this array.
+  1 qlr: In this query you need to print the minimum in the sub-array A[l:r].
+  2 uxy: In this query you need to update A[x]=y.
 
-<h3 id="Fibonacci-sequence"><a href="#Fibonacci-sequence" class="headerlink" title="Fibonacci sequence"></a>Fibonacci sequence</h3><p>A typical recursive example, F(1)=1, F(2)=1, F(n)=F(n-1)+F(n-2) (n&gt;=2，n∈N)<br>As described above, the base case is F(1)=1, F(2)=1, and the recursive case is F(n)=F(n-1)+F(n-2).</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static unsigned long fibonacci(int n)</span><br><span class="line">&#123;</span><br><span class="line">  if (n == 1 || n == 2) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int n;</span><br><span class="line"></span><br><span class="line">  if (argc != 2) &#123;</span><br><span class="line">    printf(&quot;argc invalid\n&quot;);</span><br><span class="line">    return -1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  n = atoi(argv[1]);</span><br><span class="line">  printf(&quot;fibonacci n = %d\n&quot;, n);</span><br><span class="line"></span><br><span class="line">  printf(&quot;f(%d) = %lu\n&quot;, n, fibonacci(n));</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-<p>Some other fibonacci interesting sequences</p>
-<ul>
-<li>Fibonacci Brick Wall Patterns, The point of this activity is to see how many ways you can build a brick wall using the given amount of bricks.<ul>
-<li>Each wall needs to be two units tall.</li>
-<li>Each brick standing on end is two units tall.</li>
-<li>Each brick laying on it’s side is one unit tall.</li>
-<li>You are first given one, then two, three, etc.</li>
-<li>For one brick there is only one method of building a wall. Two methods for two, and three methods for three.</li>
-<li>How many ways are there to build a wall with four bricks, five?Show your work, and how does this tie into the Fibonacci sequence?</li>
-</ul>
+Input:
+First line of the test case contains two integers, N and Q, size of array A and number of queries.
+Second line contains N space separated integers, elements of A.
+Next Q lines contain one of the two queries.
+
+Output:
+For each type 1 query, print the minimum element in the sub-array A[l:r].
+
+Contraints:
+1&lt;=N,Q,y&lt;=10^5
+1&lt;=l,r,x&lt;=N
+
+SAMPLE INPUT
+5 5
+1 5 2 4 3
+q 1 5
+q 1 3
+q 3 5
+u 3 6
+q 1 5
+
+SAMPLE OUTPUT 
+1
+1
+2
+1
+</code></pre>
+<h3 id="Segment-Tree-Layout"><a href="#Segment-Tree-Layout" class="headerlink" title="Segment Tree Layout"></a>Segment Tree Layout</h3><p><img src="problem-tree.png" alt="Segment Tree Layout"></p>
+<h3 id="Code-Implementation"><a href="#Code-Implementation" class="headerlink" title="Code Implementation"></a>Code Implementation</h3><ul>
+<li><p>Main</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;limits.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int Power2RoundUp(int size)</span><br><span class="line">&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    </span><br><span class="line">    do &#123;</span><br><span class="line">        cnt++;</span><br><span class="line">        size = (size &gt;&gt; 1);</span><br><span class="line">    &#125; while (size &gt; 0);</span><br><span class="line">    </span><br><span class="line">    return (1 &lt;&lt; (cnt + 1));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void PrintfSegTree(int *st, int size, int init)</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    </span><br><span class="line">    printf(&quot;----------\n&quot;);</span><br><span class="line">    for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line">        if (st[i] != init) &#123;</span><br><span class="line">            printf(&quot;%d: %d\n&quot;, i, st[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Write your code here</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    int size, roundUp, opts;</span><br><span class="line">    int *arr, *st;</span><br><span class="line">    char opt;</span><br><span class="line">    int x, y;</span><br><span class="line">    </span><br><span class="line">    scanf(&quot;%d %d\n&quot;, &amp;size, &amp;opts);</span><br><span class="line">    if (size &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    roundUp = Power2RoundUp(size);</span><br><span class="line">    arr = malloc(sizeof(int) * size);</span><br><span class="line">    st = malloc(sizeof(int) * roundUp);</span><br><span class="line">    if (!arr || !st) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    i = 0;</span><br><span class="line">    while ((++i) &lt;= size &amp;&amp; (scanf(&quot;%d&quot;, &amp;arr[i - 1]) != EOF)) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    for (i = 0; i &lt; roundUp; i++) &#123;</span><br><span class="line">        st[i] = INT_MAX;</span><br><span class="line">    &#125;</span><br><span class="line">    ConstructSegTree(st, arr, size);</span><br><span class="line">    //PrintfSegTree(st, roundUp, INT_MAX);</span><br><span class="line">    </span><br><span class="line">    i = 0;</span><br><span class="line">    while ((++i) &lt;= opts &amp;&amp; (scanf(&quot;\n%c %d %d&quot;, &amp;opt, &amp;x, &amp;y) != EOF)) &#123;</span><br><span class="line">        int target;</span><br><span class="line">        </span><br><span class="line">        switch (opt) &#123;</span><br><span class="line">            case &#x27;q&#x27;:</span><br><span class="line">                target = INT_MAX;</span><br><span class="line">                QuerySegTree(st, 1, 0, size - 1, x - 1, y - 1, &amp;target);</span><br><span class="line">                printf(&quot;%d\n&quot;, target);</span><br><span class="line">                break;</span><br><span class="line">            case &#x27;u&#x27;:</span><br><span class="line">                //PrintfSegTree(st, roundUp, INT_MAX);</span><br><span class="line">                UpdateSegTree(st, 1, 0, size - 1, x - 1, y);</span><br><span class="line">                //PrintfSegTree(st, roundUp, INT_MAX);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    free(arr);</span><br><span class="line">    free(st);</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Construct</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void _Construct(int *st, int sti, int *arr, int l, int r)</span><br><span class="line">&#123;</span><br><span class="line">    if (l == r) &#123;</span><br><span class="line">        st[sti] = arr[l];</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    _Construct(st, 2 * sti, arr, l, (l + r) / 2);</span><br><span class="line">    _Construct(st, 2 * sti + 1, arr, (l + r) / 2 + 1, r);</span><br><span class="line">    </span><br><span class="line">    st[sti] = st[2 * sti] &lt; st[2 * sti + 1] ? st[2 * sti] : st[2 * sti + 1] ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void ConstructSegTree(int *st, int *arr, int size)</span><br><span class="line">&#123;</span><br><span class="line">    _Construct(st , 1, arr, 0, size - 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Update</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void UpdateSegTree(int *st, int sti, int l, int r, int idx, int value)</span><br><span class="line">&#123;</span><br><span class="line">    if (idx &lt; l || idx &gt; r) &#123; // not in range</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (l == r &amp;&amp; idx == l) &#123;</span><br><span class="line">        st[sti] = value;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    UpdateSegTree(st, 2 * sti, l, (l + r) / 2, idx, value);</span><br><span class="line">    UpdateSegTree(st, 2 * sti + 1, (l + r) / 2 + 1, r, idx, value);</span><br><span class="line">    </span><br><span class="line">    st[sti] = st[2 * sti] &lt; st[2 * sti + 1] ? st[2 * sti] : st[2 * sti + 1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Query</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void QuerySegTree(int *st, int sti, int l, int r, int ql, int qr, int *target)</span><br><span class="line">&#123;</span><br><span class="line">    if (r &lt; ql || l &gt; qr) &#123; // out query range</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (ql &lt;= l &amp;&amp; r &lt;= qr) &#123; // in query range</span><br><span class="line">        if (st[sti] &lt; *target) &#123;</span><br><span class="line">            *target = st[sti];</span><br><span class="line">        &#125;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    QuerySegTree(st, 2 * sti, l, (l + r) / 2, ql, qr, target);</span><br><span class="line">    QuerySegTree(st, 2 * sti + 1, (l + r) / 2 + 1, r, ql, qr, target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+<li><p>Cautions</p>
 </li>
 </ul>
-<h3 id="quick-sort"><a href="#quick-sort" class="headerlink" title="quick sort"></a>quick sort</h3><p>Another typical recursive example.</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;15, 9, 23, 21, 111, 101, 98, 101, 0, 1&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;%d &quot;, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int partition(int array[], int size)</span><br><span class="line">&#123;</span><br><span class="line">  int i, pivot;</span><br><span class="line">  int s;</span><br><span class="line"></span><br><span class="line">  pivot = size / 2;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line">    if (i == pivot) continue;</span><br><span class="line"></span><br><span class="line">    if (array[i] &lt; array[pivot]) &#123; /* if &lt; pivot, and on the right */</span><br><span class="line">      if (i == (pivot + 1)) &#123;</span><br><span class="line">        s = array[pivot];</span><br><span class="line">        array[pivot] = array[i];</span><br><span class="line">        array[i] = s;</span><br><span class="line"></span><br><span class="line">        pivot = i;</span><br><span class="line">      &#125; else if (i &gt; pivot) &#123;</span><br><span class="line">        s = array[i];</span><br><span class="line">        array[i] = array[pivot + 1];</span><br><span class="line">        array[pivot + 1] = array[pivot];</span><br><span class="line">        array[pivot] = s;</span><br><span class="line"></span><br><span class="line">        pivot += 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (array[i] &gt; array[pivot]) &#123; /* if &gt; pivot, and on the left */</span><br><span class="line">      if (i &lt; pivot) &#123;</span><br><span class="line">        s = array[pivot];</span><br><span class="line">        array[pivot] = array[i];</span><br><span class="line">        array[i] = s;</span><br><span class="line"></span><br><span class="line">        pivot = i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return pivot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void qsort(int array[], int size)</span><br><span class="line">&#123;</span><br><span class="line">  int pivot;</span><br><span class="line"></span><br><span class="line">  if (size &lt; 2) return;</span><br><span class="line"></span><br><span class="line">  pivot = partition(array, size);</span><br><span class="line"></span><br><span class="line">  qsort(&amp;array[0], pivot);</span><br><span class="line">  qsort(&amp;array[pivot + 1], size - pivot - 1);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  dump_array(array, asize, &quot;Before sort&quot;);</span><br><span class="line"></span><br><span class="line">  qsort(array, asize);</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot; After sort&quot;);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="Pascal’s-triangle"><a href="#Pascal’s-triangle" class="headerlink" title="Pascal’s triangle"></a><a class="link"   href="https://en.wikipedia.org/wiki/Pascal%27s_triangle" >Pascal’s triangle<i class="fas fa-external-link-alt"></i></a></h3><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li>程序员的数学（日 结城浩）</li>
-<li><a class="link"   href="https://algs4.cs.princeton.edu/home/" >Algorithms, 4th Edition<i class="fas fa-external-link-alt"></i></a></li>
-<li>Grokking Algorithms: An illustrated guide for programmers and other curious people</li>
+<p>– index 0 is ommited of segment tree array</p>
+<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li><a class="link"   href="https://www.hackerearth.com/zh/practice/" >HackerEarth Practice<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.hackerearth.com/zh/practice/algorithms/searching/linear-search/tutorial/" >HackerEarth Algorithms<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.hackerearth.com/zh/practice/data-structures/advanced-data-structures/segment-trees/tutorial/" >HackerEarth Data Structure<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 ]]></content>
       <categories>
         <category>algorithm</category>
       </categories>
       <tags>
-        <tag>algorithm</tag>
-        <tag>quick sort</tag>
+        <tag>segment tree</tag>
       </tags>
   </entry>
   <entry>
@@ -2102,6 +2121,53 @@ SAMPLE OUTPUT:
         <tag>tool</tag>
         <tag>vpn client</tag>
         <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Recursion, divide and conquer</title>
+    <url>/2018/08/12/recursive/</url>
+    <content><![CDATA[<h3 id="the-stack"><a href="#the-stack" class="headerlink" title="the stack"></a>the stack</h3><p>Base actions are push and pop, just like FILO(first in last out) queue.</p>
+<h3 id="base-case-and-recursive-case"><a href="#base-case-and-recursive-case" class="headerlink" title="base case and recursive case"></a>base case and recursive case</h3><p>Every recursive function has two parts: the base case, and the recursive case.</p>
+<h3 id="divide-and-conquer"><a href="#divide-and-conquer" class="headerlink" title="divide and conquer"></a>divide and conquer</h3><p>Suppose you’re a farmer with a plot of land. You want to divide this farm evenly into square plots. You want the plots to be as big as possible. Just divide to get the largest square, and repeat the step with the remaining part.</p>
+<h3 id="inductive-proofs"><a href="#inductive-proofs" class="headerlink" title="inductive proofs"></a>inductive proofs</h3><p>For example, suppose I want to prove that I can climb to the top of a ladder. In the inductive case, if my legs are on a rung, I can put my legs on the next rung. So if I’m on rung 2, I can climb to rung 3. That’s the inductive case.</p>
+<h3 id="Tower-of-Hanoi"><a href="#Tower-of-Hanoi" class="headerlink" title="Tower of Hanoi"></a>Tower of Hanoi</h3><p>The objective of the puzzle is to move the entire stack to another rod, obeying the following simple rules:</p>
+<ul>
+<li>Only one disk can be moved at a time.</li>
+<li>Each move consists of taking the upper disk from one of the stacks and placing it on top of another stack or on an empty rod.</li>
+<li>No disk may be placed on top of a smaller disk.</li>
+</ul>
+<p>With 3 disks, the puzzle can be solved in 7 moves. The minimal number of moves required to solve a Tower of Hanoi puzzle is 2^n − 1, where n is the number of disks.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int times = 0;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line">  * @param n, layers of tower</span><br><span class="line">  * @param A, the source</span><br><span class="line">  * @param B, the destination</span><br><span class="line">  * @param C, the swap</span><br><span class="line">  */ </span><br><span class="line">static void hanoi(int n, char A, char B, char C);</span><br><span class="line"></span><br><span class="line">static void hanoi(int n, char A, char B, char C)</span><br><span class="line">&#123;</span><br><span class="line">    if (n &gt; 0) &#123;</span><br><span class="line">        hanoi(n - 1, A, C, B);</span><br><span class="line">        printf(&quot;%c -&gt; %c &quot;, A, C);</span><br><span class="line">        hanoi(n - 1, C, B, A);</span><br><span class="line"></span><br><span class="line">        times++;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">    int layer;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    layer = 3, times = 0;</span><br><span class="line">    hanoi(layer, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;);</span><br><span class="line">    printf(&quot;layer = %d, times %d = 2^%d - 1\n&quot;, layer, times, layer);</span><br><span class="line"></span><br><span class="line">    layer = 4, times = 0;</span><br><span class="line">    hanoi(layer, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;);</span><br><span class="line">    printf(&quot;layer = %d, times %d = 2^%d - 1\n&quot;, layer, times, layer);</span><br><span class="line"></span><br><span class="line">    layer = 7, times = 0;</span><br><span class="line">    hanoi(layer, &#x27;A&#x27;, &#x27;B&#x27;, &#x27;C&#x27;);</span><br><span class="line">    printf(&quot;layer = %d, times %d = 2^%d - 1\n&quot;, layer, times, layer);</span><br><span class="line"></span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Fibonacci-sequence"><a href="#Fibonacci-sequence" class="headerlink" title="Fibonacci sequence"></a>Fibonacci sequence</h3><p>A typical recursive example, F(1)=1, F(2)=1, F(n)=F(n-1)+F(n-2) (n&gt;=2，n∈N)<br>As described above, the base case is F(1)=1, F(2)=1, and the recursive case is F(n)=F(n-1)+F(n-2).</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static unsigned long fibonacci(int n)</span><br><span class="line">&#123;</span><br><span class="line">  if (n == 1 || n == 2) &#123;</span><br><span class="line">    return 1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return fibonacci(n - 1) + fibonacci(n - 2);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  int n;</span><br><span class="line"></span><br><span class="line">  if (argc != 2) &#123;</span><br><span class="line">    printf(&quot;argc invalid\n&quot;);</span><br><span class="line">    return -1;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  n = atoi(argv[1]);</span><br><span class="line">  printf(&quot;fibonacci n = %d\n&quot;, n);</span><br><span class="line"></span><br><span class="line">  printf(&quot;f(%d) = %lu\n&quot;, n, fibonacci(n));</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<p>Some other fibonacci interesting sequences</p>
+<ul>
+<li>Fibonacci Brick Wall Patterns, The point of this activity is to see how many ways you can build a brick wall using the given amount of bricks.<ul>
+<li>Each wall needs to be two units tall.</li>
+<li>Each brick standing on end is two units tall.</li>
+<li>Each brick laying on it’s side is one unit tall.</li>
+<li>You are first given one, then two, three, etc.</li>
+<li>For one brick there is only one method of building a wall. Two methods for two, and three methods for three.</li>
+<li>How many ways are there to build a wall with four bricks, five?Show your work, and how does this tie into the Fibonacci sequence?</li>
+</ul>
+</li>
+</ul>
+<h3 id="quick-sort"><a href="#quick-sort" class="headerlink" title="quick sort"></a>quick sort</h3><p>Another typical recursive example.</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">static int array[] = &#123;15, 9, 23, 21, 111, 101, 98, 101, 0, 1&#125;;</span><br><span class="line">static int asize = sizeof(array) / sizeof(int);</span><br><span class="line"></span><br><span class="line">static void dump_array(int array[], int size, const char *prefix)</span><br><span class="line">&#123;</span><br><span class="line">  int i;</span><br><span class="line"></span><br><span class="line">  if (NULL != prefix) &#123;</span><br><span class="line">    printf(&quot;%s: &quot;, prefix);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; asize; i++) &#123;</span><br><span class="line">    printf(&quot;%d &quot;, array[i]);</span><br><span class="line">  &#125;</span><br><span class="line">  printf(&quot;\n&quot;);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static int partition(int array[], int size)</span><br><span class="line">&#123;</span><br><span class="line">  int i, pivot;</span><br><span class="line">  int s;</span><br><span class="line"></span><br><span class="line">  pivot = size / 2;</span><br><span class="line"></span><br><span class="line">  for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line">    if (i == pivot) continue;</span><br><span class="line"></span><br><span class="line">    if (array[i] &lt; array[pivot]) &#123; /* if &lt; pivot, and on the right */</span><br><span class="line">      if (i == (pivot + 1)) &#123;</span><br><span class="line">        s = array[pivot];</span><br><span class="line">        array[pivot] = array[i];</span><br><span class="line">        array[i] = s;</span><br><span class="line"></span><br><span class="line">        pivot = i;</span><br><span class="line">      &#125; else if (i &gt; pivot) &#123;</span><br><span class="line">        s = array[i];</span><br><span class="line">        array[i] = array[pivot + 1];</span><br><span class="line">        array[pivot + 1] = array[pivot];</span><br><span class="line">        array[pivot] = s;</span><br><span class="line"></span><br><span class="line">        pivot += 1;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125; else if (array[i] &gt; array[pivot]) &#123; /* if &gt; pivot, and on the left */</span><br><span class="line">      if (i &lt; pivot) &#123;</span><br><span class="line">        s = array[pivot];</span><br><span class="line">        array[pivot] = array[i];</span><br><span class="line">        array[i] = s;</span><br><span class="line"></span><br><span class="line">        pivot = i;</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  return pivot;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">static void qsort(int array[], int size)</span><br><span class="line">&#123;</span><br><span class="line">  int pivot;</span><br><span class="line"></span><br><span class="line">  if (size &lt; 2) return;</span><br><span class="line"></span><br><span class="line">  pivot = partition(array, size);</span><br><span class="line"></span><br><span class="line">  qsort(&amp;array[0], pivot);</span><br><span class="line">  qsort(&amp;array[pivot + 1], size - pivot - 1);</span><br><span class="line"></span><br><span class="line">  return;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">int main(int argc, char *argv[])</span><br><span class="line">&#123;</span><br><span class="line">  dump_array(array, asize, &quot;Before sort&quot;);</span><br><span class="line"></span><br><span class="line">  qsort(array, asize);</span><br><span class="line"></span><br><span class="line">  dump_array(array, asize, &quot; After sort&quot;);</span><br><span class="line"></span><br><span class="line">  return 0;</span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h3 id="Pascal’s-triangle"><a href="#Pascal’s-triangle" class="headerlink" title="Pascal’s triangle"></a><a class="link"   href="https://en.wikipedia.org/wiki/Pascal%27s_triangle" >Pascal’s triangle<i class="fas fa-external-link-alt"></i></a></h3><h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
+<li>程序员的数学（日 结城浩）</li>
+<li><a class="link"   href="https://algs4.cs.princeton.edu/home/" >Algorithms, 4th Edition<i class="fas fa-external-link-alt"></i></a></li>
+<li>Grokking Algorithms: An illustrated guide for programmers and other curious people</li>
+</ul>
+]]></content>
+      <categories>
+        <category>algorithm</category>
+      </categories>
+      <tags>
+        <tag>algorithm</tag>
+        <tag>quick sort</tag>
       </tags>
   </entry>
   <entry>
@@ -2327,67 +2393,55 @@ SAMPLE OUTPUT:
       </tags>
   </entry>
   <entry>
-    <title>Segment Tree</title>
-    <url>/2020/01/05/segment-tree/</url>
-    <content><![CDATA[<h3 id="Segment-Tree"><a href="#Segment-Tree" class="headerlink" title="Segment Tree"></a>Segment Tree</h3><p>Segment Tree is used in cases where there are multiple range queries on array and modifications of elements of the same array. For example, finding the sum of all the elements in an array from indices  L to R, or finding the minimum (famously known as Range Minumum Query problem) of all the elements in an array from indices L to R. </p>
-<pre><code>Problem:
-Description of Range Minimum Query
-Given an array A of size N, there are two types of queries on this array.
-  1 qlr: In this query you need to print the minimum in the sub-array A[l:r].
-  2 uxy: In this query you need to update A[x]=y.
-
-Input:
-First line of the test case contains two integers, N and Q, size of array A and number of queries.
-Second line contains N space separated integers, elements of A.
-Next Q lines contain one of the two queries.
-
-Output:
-For each type 1 query, print the minimum element in the sub-array A[l:r].
-
-Contraints:
-1&lt;=N,Q,y&lt;=10^5
-1&lt;=l,r,x&lt;=N
-
-SAMPLE INPUT
-5 5
-1 5 2 4 3
-q 1 5
-q 1 3
-q 3 5
-u 3 6
-q 1 5
-
-SAMPLE OUTPUT 
-1
-1
-2
-1
-</code></pre>
-<h3 id="Segment-Tree-Layout"><a href="#Segment-Tree-Layout" class="headerlink" title="Segment Tree Layout"></a>Segment Tree Layout</h3><p><img src="problem-tree.png" alt="Segment Tree Layout"></p>
-<h3 id="Code-Implementation"><a href="#Code-Implementation" class="headerlink" title="Code Implementation"></a>Code Implementation</h3><ul>
-<li><p>Main</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">#include &lt;limits.h&gt;</span><br><span class="line">#include &lt;stdio.h&gt;</span><br><span class="line"></span><br><span class="line">int Power2RoundUp(int size)</span><br><span class="line">&#123;</span><br><span class="line">    int cnt = 0;</span><br><span class="line">    </span><br><span class="line">    do &#123;</span><br><span class="line">        cnt++;</span><br><span class="line">        size = (size &gt;&gt; 1);</span><br><span class="line">    &#125; while (size &gt; 0);</span><br><span class="line">    </span><br><span class="line">    return (1 &lt;&lt; (cnt + 1));</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void PrintfSegTree(int *st, int size, int init)</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    </span><br><span class="line">    printf(&quot;----------\n&quot;);</span><br><span class="line">    for (i = 0; i &lt; size; i++) &#123;</span><br><span class="line">        if (st[i] != init) &#123;</span><br><span class="line">            printf(&quot;%d: %d\n&quot;, i, st[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Write your code here</span><br><span class="line">int main()</span><br><span class="line">&#123;</span><br><span class="line">    int i;</span><br><span class="line">    int size, roundUp, opts;</span><br><span class="line">    int *arr, *st;</span><br><span class="line">    char opt;</span><br><span class="line">    int x, y;</span><br><span class="line">    </span><br><span class="line">    scanf(&quot;%d %d\n&quot;, &amp;size, &amp;opts);</span><br><span class="line">    if (size &lt;= 0) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    roundUp = Power2RoundUp(size);</span><br><span class="line">    arr = malloc(sizeof(int) * size);</span><br><span class="line">    st = malloc(sizeof(int) * roundUp);</span><br><span class="line">    if (!arr || !st) &#123;</span><br><span class="line">        return 0;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    i = 0;</span><br><span class="line">    while ((++i) &lt;= size &amp;&amp; (scanf(&quot;%d&quot;, &amp;arr[i - 1]) != EOF)) &#123;</span><br><span class="line">    &#125;</span><br><span class="line">    for (i = 0; i &lt; roundUp; i++) &#123;</span><br><span class="line">        st[i] = INT_MAX;</span><br><span class="line">    &#125;</span><br><span class="line">    ConstructSegTree(st, arr, size);</span><br><span class="line">    //PrintfSegTree(st, roundUp, INT_MAX);</span><br><span class="line">    </span><br><span class="line">    i = 0;</span><br><span class="line">    while ((++i) &lt;= opts &amp;&amp; (scanf(&quot;\n%c %d %d&quot;, &amp;opt, &amp;x, &amp;y) != EOF)) &#123;</span><br><span class="line">        int target;</span><br><span class="line">        </span><br><span class="line">        switch (opt) &#123;</span><br><span class="line">            case &#x27;q&#x27;:</span><br><span class="line">                target = INT_MAX;</span><br><span class="line">                QuerySegTree(st, 1, 0, size - 1, x - 1, y - 1, &amp;target);</span><br><span class="line">                printf(&quot;%d\n&quot;, target);</span><br><span class="line">                break;</span><br><span class="line">            case &#x27;u&#x27;:</span><br><span class="line">                //PrintfSegTree(st, roundUp, INT_MAX);</span><br><span class="line">                UpdateSegTree(st, 1, 0, size - 1, x - 1, y);</span><br><span class="line">                //PrintfSegTree(st, roundUp, INT_MAX);</span><br><span class="line">                break;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    free(arr);</span><br><span class="line">    free(st);</span><br><span class="line">    </span><br><span class="line">    return 0;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Construct</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void _Construct(int *st, int sti, int *arr, int l, int r)</span><br><span class="line">&#123;</span><br><span class="line">    if (l == r) &#123;</span><br><span class="line">        st[sti] = arr[l];</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    _Construct(st, 2 * sti, arr, l, (l + r) / 2);</span><br><span class="line">    _Construct(st, 2 * sti + 1, arr, (l + r) / 2 + 1, r);</span><br><span class="line">    </span><br><span class="line">    st[sti] = st[2 * sti] &lt; st[2 * sti + 1] ? st[2 * sti] : st[2 * sti + 1] ;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">void ConstructSegTree(int *st, int *arr, int size)</span><br><span class="line">&#123;</span><br><span class="line">    _Construct(st , 1, arr, 0, size - 1);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Update</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void UpdateSegTree(int *st, int sti, int l, int r, int idx, int value)</span><br><span class="line">&#123;</span><br><span class="line">    if (idx &lt; l || idx &gt; r) &#123; // not in range</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (l == r &amp;&amp; idx == l) &#123;</span><br><span class="line">        st[sti] = value;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    UpdateSegTree(st, 2 * sti, l, (l + r) / 2, idx, value);</span><br><span class="line">    UpdateSegTree(st, 2 * sti + 1, (l + r) / 2 + 1, r, idx, value);</span><br><span class="line">    </span><br><span class="line">    st[sti] = st[2 * sti] &lt; st[2 * sti + 1] ? st[2 * sti] : st[2 * sti + 1];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Query</p>
-<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">void QuerySegTree(int *st, int sti, int l, int r, int ql, int qr, int *target)</span><br><span class="line">&#123;</span><br><span class="line">    if (r &lt; ql || l &gt; qr) &#123; // out query range</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (ql &lt;= l &amp;&amp; r &lt;= qr) &#123; // in query range</span><br><span class="line">        if (st[sti] &lt; *target) &#123;</span><br><span class="line">            *target = st[sti];</span><br><span class="line">        &#125;</span><br><span class="line">        return;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    QuerySegTree(st, 2 * sti, l, (l + r) / 2, ql, qr, target);</span><br><span class="line">    QuerySegTree(st, 2 * sti + 1, (l + r) / 2 + 1, r, ql, qr, target);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
-<li><p>Cautions</p>
+    <title>Learn Vim</title>
+    <url>/2018/09/08/vim/</url>
+    <content><![CDATA[<h3 id="Vim-Modes"><a href="#Vim-Modes" class="headerlink" title="Vim Modes"></a>Vim Modes</h3><ul>
+<li>Vim modes switch<br><img src="vim-modes.png" alt="Vim Modes Switch"></li>
+<li>Remap &lt;Esc&gt; key, changing <a class="link"   href="http://learnvimscriptthehardway.stevelosh.com/chapters/06.html" >the leader key<i class="fas fa-external-link-alt"></i></a><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cat ~/.vimrc </span><br><span class="line">inoremap jk &lt;Esc&gt;</span><br><span class="line">let mapleader=&quot;&lt;Space&gt;&quot;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h3 id="Free-Online-Resources-to-Learn-Vim"><a href="#Free-Online-Resources-to-Learn-Vim" class="headerlink" title="Free Online Resources to Learn Vim"></a>Free Online Resources to Learn Vim</h3><ul>
+<li><a class="link"   href="https://www.vim.org/" >vim<i class="fas fa-external-link-alt"></i></a>, vimtutor</li>
+<li><a class="link"   href="https://www.openvim.com/" >openvim<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://vimcasts.org/" >vimcasts<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://www.vimgenius.com/" >vim genius<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://vim.rtorr.com/" >vim cheet sheet<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.vim.org/scripts/script.php?script_id=3409" >HJKL-learning game<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://vim-adventures.com/" >vim-adventures game<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Vedios-and-Blogs"><a href="#Vedios-and-Blogs" class="headerlink" title="Vedios and Blogs"></a>Vedios and Blogs</h3><ul>
+<li><a class="link"   href="http://derekwyatt.org/vim/tutorials/index.html" >vim vedios<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://vimeo.com/search?q=welcom+to+vim" >basics of vim<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://www.labnol.org/internet/learning-vim-for-beginners/28820/" >Learning Vim for Beginners<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://medium.com/actualize-network/how-to-learn-vim-a-four-week-plan-cd8b376a9b85" >How To Learn Vim: A Four Week Plan<i class="fas fa-external-link-alt"></i></a></li>
+</ul>
+<h3 id="Frequent-Commands"><a href="#Frequent-Commands" class="headerlink" title="Frequent Commands"></a>Frequent Commands</h3><ul>
+<li>One line<ul>
+<li>Ctrl+Y → Move viewport down</li>
+<li>Ctrl+E → Move viewport up (Extra lines)</li>
+</ul>
+</li>
+<li>Full screen<ul>
+<li>Ctrl+F → Move viewport Forward</li>
+<li>Ctrl+B → Move viewport Backward</li>
+</ul>
+</li>
+<li>Half a screen<ul>
+<li>Ctrl+U → Move viewport Up</li>
+<li>Ctrl+D → Move viewport Down</li>
+</ul>
 </li>
 </ul>
-<p>– index 0 is ommited of segment tree array</p>
 <h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a class="link"   href="https://www.hackerearth.com/zh/practice/" >HackerEarth Practice<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.hackerearth.com/zh/practice/algorithms/searching/linear-search/tutorial/" >HackerEarth Algorithms<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.hackerearth.com/zh/practice/data-structures/advanced-data-structures/segment-trees/tutorial/" >HackerEarth Data Structure<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="https://danielmiessler.com/study/vim/" >A vim Tutorial and Primer<i class="fas fa-external-link-alt"></i></a></li>
+<li><a class="link"   href="http://learnvimscriptthehardway.stevelosh.com/" >Learn Vimscript the Hard Way<i class="fas fa-external-link-alt"></i></a></li>
 </ul>
 ]]></content>
       <categories>
-        <category>algorithm</category>
+        <category>TOOLS</category>
       </categories>
       <tags>
-        <tag>segment tree</tag>
+        <tag>tool</tag>
+        <tag>vim</tag>
       </tags>
   </entry>
   <entry>
@@ -2445,55 +2499,28 @@ SAMPLE OUTPUT
       </tags>
   </entry>
   <entry>
-    <title>Learn Vim</title>
-    <url>/2018/09/08/vim/</url>
-    <content><![CDATA[<h3 id="Vim-Modes"><a href="#Vim-Modes" class="headerlink" title="Vim Modes"></a>Vim Modes</h3><ul>
-<li>Vim modes switch<br><img src="vim-modes.png" alt="Vim Modes Switch"></li>
-<li>Remap &lt;Esc&gt; key, changing <a class="link"   href="http://learnvimscriptthehardway.stevelosh.com/chapters/06.html" >the leader key<i class="fas fa-external-link-alt"></i></a><figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line"># cat ~/.vimrc </span><br><span class="line">inoremap jk &lt;Esc&gt;</span><br><span class="line">let mapleader=&quot;&lt;Space&gt;&quot;</span><br></pre></td></tr></table></figure></li>
-</ul>
-<h3 id="Free-Online-Resources-to-Learn-Vim"><a href="#Free-Online-Resources-to-Learn-Vim" class="headerlink" title="Free Online Resources to Learn Vim"></a>Free Online Resources to Learn Vim</h3><ul>
-<li><a class="link"   href="https://www.vim.org/" >vim<i class="fas fa-external-link-alt"></i></a>, vimtutor</li>
-<li><a class="link"   href="https://www.openvim.com/" >openvim<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://vimcasts.org/" >vimcasts<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://www.vimgenius.com/" >vim genius<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://vim.rtorr.com/" >vim cheet sheet<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.vim.org/scripts/script.php?script_id=3409" >HJKL-learning game<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://vim-adventures.com/" >vim-adventures game<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Vedios-and-Blogs"><a href="#Vedios-and-Blogs" class="headerlink" title="Vedios and Blogs"></a>Vedios and Blogs</h3><ul>
-<li><a class="link"   href="http://derekwyatt.org/vim/tutorials/index.html" >vim vedios<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://vimeo.com/search?q=welcom+to+vim" >basics of vim<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://www.labnol.org/internet/learning-vim-for-beginners/28820/" >Learning Vim for Beginners<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="https://medium.com/actualize-network/how-to-learn-vim-a-four-week-plan-cd8b376a9b85" >How To Learn Vim: A Four Week Plan<i class="fas fa-external-link-alt"></i></a></li>
-</ul>
-<h3 id="Frequent-Commands"><a href="#Frequent-Commands" class="headerlink" title="Frequent Commands"></a>Frequent Commands</h3><ul>
-<li>One line<ul>
-<li>Ctrl+Y → Move viewport down</li>
-<li>Ctrl+E → Move viewport up (Extra lines)</li>
-</ul>
+    <title>Why 25G Nic</title>
+    <url>/2018/08/03/why-25g-nic/</url>
+    <content><![CDATA[<h3 id="Backgroud"><a href="#Backgroud" class="headerlink" title="Backgroud"></a>Backgroud</h3><p>Choose 25g nic or 40g nic in server?</p>
+<h3 id="About-PCIe-full-duplex-communication"><a href="#About-PCIe-full-duplex-communication" class="headerlink" title="About PCIe, full-duplex communication"></a>About PCIe, full-duplex communication</h3><ul>
+<li><p>Lanes and Links<br><img src="pcie-lanes-and-links-.jpg" alt="Lanes and Links"></p>
 </li>
-<li>Full screen<ul>
-<li>Ctrl+F → Move viewport Forward</li>
-<li>Ctrl+B → Move viewport Backward</li>
-</ul>
-</li>
-<li>Half a screen<ul>
-<li>Ctrl+U → Move viewport Up</li>
-<li>Ctrl+D → Move viewport Down</li>
-</ul>
+<li><p>PCI Express link performance, each direction<br><img src="PCI-Express-link-performance-.jpg" alt="PCI Express link performance, each direction"></p>
 </li>
 </ul>
-<h3 id="Reference"><a href="#Reference" class="headerlink" title="Reference"></a>Reference</h3><ul>
-<li><a class="link"   href="https://danielmiessler.com/study/vim/" >A vim Tutorial and Primer<i class="fas fa-external-link-alt"></i></a></li>
-<li><a class="link"   href="http://learnvimscriptthehardway.stevelosh.com/" >Learn Vimscript the Hard Way<i class="fas fa-external-link-alt"></i></a></li>
+<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>For PCIe 3.0x8, 25G dual-ports NIC is better for PCIe bandwidth efficient.</p>
+<h3 id="Append"><a href="#Append" class="headerlink" title="Append"></a>Append</h3><ul>
+<li>PCIe Standard: <a class="link"   href="https://pcisig.com/" >PCI-SIG<i class="fas fa-external-link-alt"></i></a></li>
+<li>PCIe Roadmap<br><img src="pcie-roadmap.png" alt="PCIe Roadmap"></li>
 </ul>
 ]]></content>
       <categories>
-        <category>TOOLS</category>
+        <category>INDUSTRY</category>
       </categories>
       <tags>
-        <tag>tool</tag>
-        <tag>vim</tag>
+        <tag>hardware</tag>
+        <tag>pcie</tag>
+        <tag>nic</tag>
       </tags>
   </entry>
   <entry>
@@ -2645,31 +2672,6 @@ SAMPLE OUTPUT
         <tag>virtualization</tag>
         <tag>aarch64</tag>
         <tag>x86_64</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>Why 25G Nic</title>
-    <url>/2018/08/03/why-25g-nic/</url>
-    <content><![CDATA[<h3 id="Backgroud"><a href="#Backgroud" class="headerlink" title="Backgroud"></a>Backgroud</h3><p>Choose 25g nic or 40g nic in server?</p>
-<h3 id="About-PCIe-full-duplex-communication"><a href="#About-PCIe-full-duplex-communication" class="headerlink" title="About PCIe, full-duplex communication"></a>About PCIe, full-duplex communication</h3><ul>
-<li><p>Lanes and Links<br><img src="pcie-lanes-and-links-.jpg" alt="Lanes and Links"></p>
-</li>
-<li><p>PCI Express link performance, each direction<br><img src="PCI-Express-link-performance-.jpg" alt="PCI Express link performance, each direction"></p>
-</li>
-</ul>
-<h3 id="Conclusion"><a href="#Conclusion" class="headerlink" title="Conclusion"></a>Conclusion</h3><p>For PCIe 3.0x8, 25G dual-ports NIC is better for PCIe bandwidth efficient.</p>
-<h3 id="Append"><a href="#Append" class="headerlink" title="Append"></a>Append</h3><ul>
-<li>PCIe Standard: <a class="link"   href="https://pcisig.com/" >PCI-SIG<i class="fas fa-external-link-alt"></i></a></li>
-<li>PCIe Roadmap<br><img src="pcie-roadmap.png" alt="PCIe Roadmap"></li>
-</ul>
-]]></content>
-      <categories>
-        <category>INDUSTRY</category>
-      </categories>
-      <tags>
-        <tag>hardware</tag>
-        <tag>pcie</tag>
-        <tag>nic</tag>
       </tags>
   </entry>
   <entry>
